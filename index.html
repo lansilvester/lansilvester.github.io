@@ -132,3 +132,89 @@
 
         // Fungsi menyetor log chat dan identitas terperinci ke Google Sheets secara background
         async function logChatToSheets(promptText, responseText) {
+            const userIdentity = await getDeviceIdentity();
+
+            const formData = new FormData();
+            formData.append(ENTRY_IDENTITY, userIdentity);
+            formData.append(ENTRY_PROMPT, promptText);
+            formData.append(ENTRY_RESPONSE, responseText);
+
+            try {
+                await fetch(FORM_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: formData
+                });
+                console.log("Log obrolan dan data analitik berhasil disimpan ke Google Sheets.");
+            } catch (error) {
+                console.error("Gagal mengirim log obrolan:", error);
+            }
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage('user', text);
+            userInput.value = '';
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'flex justify-start text-xs text-orange-400 italic font-medium p-4';
+            loadingDiv.textContent = 'AI sedang memikirkan respons terbaik...';
+            loadingDiv.id = 'loading-state';
+            chatBox.appendChild(loadingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                const response = await fetch(NGROK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer lm-studio'
+                    },
+                    body: JSON.stringify({
+                        model: MODEL_NAME,
+                        messages: [{ role: "user", content: text }],
+                        temperature: 0.3
+                    })
+                });
+
+                const data = await response.json();
+                
+                const currentLoading = document.getElementById('loading-state');
+                if (currentLoading) chatBox.removeChild(currentLoading);
+
+                if (data.error) {
+                    appendMessage('ai', `Error dari PC Local: ${data.error.message || JSON.stringify(data.error)}`);
+                    return;
+                }
+
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    const aiResponseText = data.choices[0].message.content;
+                    
+                    appendMessage('ai', aiResponseText);
+                    
+                    // Eksekusi perekaman log otomatis ke Google Sheets
+                    logChatToSheets(text, aiResponseText);
+                } else {
+                    appendMessage('ai', `Format tidak dikenali. Respon server: ${JSON.stringify(data)}`);
+                }
+            } catch (error) {
+                const currentLoading = document.getElementById('loading-state');
+                if (currentLoading) chatBox.removeChild(currentLoading);
+                
+                appendMessage('ai', `Gagal terhubung ke PC Local: ${error.message}. Pastikan LM Studio server & Ngrok Anda sudah aktif.`);
+                console.error(error);
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
