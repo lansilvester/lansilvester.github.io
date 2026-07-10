@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day One AI - OpenRouter Interface</title>
+    <title>Day One AI - Local Interface</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
     <header class="bg-orange-600 p-5 shadow-lg border-b border-orange-700 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
         <h1 class="text-2xl font-extrabold text-white">Day One AI</h1>
         <div class="flex items-center gap-2">
-            <span class="text-xs font-semibold bg-white text-orange-700 px-3 py-1.5 rounded-full shadow border border-orange-100">Cloud API (OpenRouter)</span>
+            <span class="text-xs font-semibold bg-white text-orange-700 px-3 py-1.5 rounded-full shadow border border-orange-100">Live via Ngrok</span>
             <div class="w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white shadow"></div>
         </div>
     </header>
@@ -37,8 +37,8 @@
     <div id="chat-box" class="flex-1 overflow-y-auto pt-24 pb-32 px-6 space-y-6 max-w-4xl mx-auto w-full">
         <div class="flex justify-start">
             <div class="bg-white p-5 rounded-3xl rounded-bl-none max-w-[85%] whitespace-pre-wrap shadow-xl border border-gray-100">
-                <p class="text-orange-600 font-bold mb-1.5 text-lg">AI Cloud Ready.</p>
-                <p class="text-sm text-gray-600">Sistem AI Cloud aktif 24 jam. Silakan ketik instruksi pemrograman atau pertanyaan Anda di bawah.</p>
+                <p class="text-orange-600 font-bold mb-1.5 text-lg">Qwen 2.5 Coder 14B Ready.</p>
+                <p class="text-sm text-gray-600">Model local Anda siap membantu. Silakan ketik instruksi pemrograman atau pertanyaan Anda di bawah.</p>
             </div>
         </div>
     </div>
@@ -51,14 +51,10 @@
     </footer>
 
     <script>
-        // === 1. KONFIGURASI API OPENROUTER ===
-        const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
-        
-        // Memakai ID model gratis resmi yang terdaftar dan stabil di OpenRouter
-        const MODEL_NAME = "google/gemma-2-9b-it:free"; 
-        
-        // PENTING: Ganti dengan API Key baru yang Anda generate di OpenRouter (sk-or-v1-...)
-        const OPENROUTER_API_KEY = "PASTE_API_KEY_BARU_ANDA_DI_SINI"; 
+        // === 1. KONFIGURASI API LM STUDIO & NGROK ===
+        // PENTING: Selalu perbarui URL Ngrok di bawah jika Anda merestart terminal Ngrok di PC utama
+        const NGROK_URL = "https://spray-blaspheme-rabid.ngrok-free.dev/v1/chat/completions";
+        const MODEL_NAME = "qwen2.5-coder-14b";
 
         // === 2. KONFIGURASI DATA LOG GOOGLE FORM ===
         const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSetlRxWs5sjk6vgNrz3W_n4F7nuY43_zRag9vOseku_MQl0Dw/formResponse"; 
@@ -70,15 +66,23 @@
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
 
-        // Fungsi otomatis menangkap IP publik dan detail sistem operasi/perangkat
+        // Fungsi otomatis menangkap IP publik, detail lokasi/ISP, dan sistem operasi/perangkat
         async function getDeviceIdentity() {
-            let ipAddress = "IP Tidak Terdeteksi";
+            let detailIdentity = "Identitas Tidak Terdeteksi";
             try {
-                const res = await fetch("https://api.ipify.org?format=json");
+                // Menggunakan ip-api.com untuk mendapatkan Geo-IP (Kota, Negara, ISP) sekaligus
+                const res = await fetch("http://ip-api.com/json/");
                 const data = await res.json();
-                ipAddress = data.ip;
+                if(data.status === "success") {
+                    detailIdentity = `[${data.query}] - ${data.city}, ${data.regionName} (${data.isp})`;
+                } else {
+                    // Fallback ke ipify jika ip-api gagal
+                    const resIpify = await fetch("https://api.ipify.org?format=json");
+                    const dataIpify = await resIpify.json();
+                    detailIdentity = `[${dataIpify.ip}]`;
+                }
             } catch (e) {
-                console.log("Gagal mengambil IP (Mungkin diblokir adblocker):", e);
+                console.log("Gagal mengambil data Geo-IP (Mungkin diblokir adblocker):", e);
             }
 
             const ua = navigator.userAgent;
@@ -96,7 +100,9 @@
                 deviceType = ua.indexOf("iPad") !== -1 ? "Tablet" : "Smartphone";
             }
 
-            return `[${ipAddress}] - ${deviceType} (${os})`;
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            return `${detailIdentity} - ${deviceType} (${os}) - TZ: ${timeZone}`;
         }
 
         function appendMessage(sender, text) {
@@ -124,97 +130,5 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Fungsi menyetor log chat dan identitas pengguna ke Google Sheets secara background
+        // Fungsi menyetor log chat dan identitas terperinci ke Google Sheets secara background
         async function logChatToSheets(promptText, responseText) {
-            const userIdentity = await getDeviceIdentity();
-
-            const formData = new FormData();
-            formData.append(ENTRY_IDENTITY, userIdentity);
-            formData.append(ENTRY_PROMPT, promptText);
-            formData.append(ENTRY_RESPONSE, responseText);
-
-            try {
-                await fetch(FORM_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    body: formData
-                });
-                console.log("Log obrolan dan identitas berhasil disimpan ke Google Sheets.");
-            } catch (error) {
-                console.error("Gagal mengirim log obrolan:", error);
-            }
-        }
-
-        async function sendMessage() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            appendMessage('user', text);
-            userInput.value = '';
-
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'flex justify-start text-xs text-orange-400 italic font-medium p-4';
-            loadingDiv.textContent = 'AI sedang memikirkan respons terbaik...';
-            loadingDiv.id = 'loading-state';
-            chatBox.appendChild(loadingDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            try {
-                const response = await fetch(OPENROUTER_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                        'HTTP-Referer': window.location.origin, 
-                        'X-Title': 'Day One AI UI' 
-                    },
-                    body: JSON.stringify({
-                        model: MODEL_NAME,
-                        // Jika model utama sibuk, OpenRouter otomatis mengalihkan ke model cadangan gratis ini:
-                        models: [
-                            "google/gemma-2-9b-it:free",
-                            "qwen/qwen-2.5-7b-instruct:free",
-                            "meta-llama/llama-3.1-8b-instruct:free"
-                        ],
-                        messages: [{ role: "user", content: text }],
-                        temperature: 0.3
-                    })
-                });
-
-                const data = await response.json();
-                
-                const currentLoading = document.getElementById('loading-state');
-                if (currentLoading) chatBox.removeChild(currentLoading);
-
-                if (data.error) {
-                    appendMessage('ai', `Error dari OpenRouter: ${data.error.message || JSON.stringify(data.error)}`);
-                    return;
-                }
-
-                if (data.choices && data.choices[0] && data.choices[0].message) {
-                    const aiResponseText = data.choices[0].message.content;
-                    
-                    appendMessage('ai', aiResponseText);
-                    logChatToSheets(text, aiResponseText);
-                } else {
-                    appendMessage('ai', `Format tidak dikenali. Respon server: ${JSON.stringify(data)}`);
-                }
-            } catch (error) {
-                const currentLoading = document.getElementById('loading-state');
-                if (currentLoading) chatBox.removeChild(currentLoading);
-                
-                appendMessage('ai', `Gagal terhubung ke OpenRouter: ${error.message}`);
-                console.error(error);
-            }
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-    </script>
-</body>
-</html>
