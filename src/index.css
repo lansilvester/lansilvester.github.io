@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --c-body: #fbfbfe;
+  --c-card: #ffffff;
+  --c-title: #25232e;
+  --c-text: #6f6d7d;
+  --c-muted: #a2a0b0;
+  --c-border: rgba(37, 35, 46, 0.08);
+  --c-shadow: 0 6px 24px rgba(37, 35, 46, 0.08);
+  --p-primary: #3b82f6;
+  --p-primary-alt: #2563eb;
+  --p-primary-lighter: #bfdbfe;
+}
+
+html[data-mode='creative'] {
+  --p-primary: #f97316;
+  --p-primary-alt: #ea580c;
+  --p-primary-lighter: #fed7aa;
+}
+
+.dark {
+  --c-body: #16151f;
+  --c-card: #211f2c;
+  --c-title: #f2f1f7;
+  --c-text: #c4c2d0;
+  --c-muted: #8a8796;
+  --c-border: rgba(242, 241, 247, 0.08);
+  --c-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --color-primary: var(--p-primary);
+  --color-primary-alt: var(--p-primary-alt);
+  --color-primary-lighter: var(--p-primary-lighter);
+  --color-body: var(--c-body);
+  --color-card: var(--c-card);
+  --color-title: var(--c-title);
+  --color-text: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-border);
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --shadow-card: var(--c-shadow);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-body text-text font-sans antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-lighter);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== Scroll reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal[data-direction="left"] {
+  transform: translateX(-2.5rem);
+}
+.reveal[data-direction="right"] {
+  transform: translateX(2.5rem);
+}
+.reveal[data-direction="zoom"] {
+  transform: scale(0.92);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Animasi float untuk blob foto ===== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.9rem);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ===== Mode font (hanya area konten yang menyesuaikan) ===== */
+.mode-developer {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.mode-creative {
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.mode-creative :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+/* ===== Font teks "Developer" pada ModeSwitch ===== */
+.font-bitcount {
+  font-family: "Bitcount Prop Single", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ===== Animasi fade saat mode berpindah ===== */
+@keyframes mode-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mode-fade {
+  animation: mode-fade 0.5s ease both;
+}
+
+/* ===== Transisi halus saat toggle mode berpindah ===== */
+html,
+body {
+  overflow-x: hidden;
+  transition:
+    background-color 0.55s ease,
+    color 0.55s ease;
+}
+
+/* ===== Marquee logo (bergerak kanan -> kiri, infinite) ===== */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+/* Transisi masuk saat mode berpindah (swap instan + fade-in) */
+@keyframes marquee-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marquee-enter {
+  animation: marquee-enter 0.45s ease-out;
+}
+
+/* Mask tepi marquee: lapisan blur hanya terlihat di kiri/kanan */
+.marquee-edge {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 34%,
+    transparent 38%,
+    transparent 62%,
+    #000 66%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 34%,
+    transparent 38%,
+    transparent 62%,
+    #000 66%,
+    #000 100%
+  );
+}
+
+/* Mask fade: lapisan tajam memudar di tepi kiri/kanan */
+.marquee-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 34%,
+    #000 66%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 34%,
+    #000 66%,
+    transparent 100%
+  );
+}
+
+/* ===== Efek hover interaktif ===== */
+/* Kilau menyapu untuk tombol utama */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-160%) skewX(-20deg);
+  pointer-events: none;
+}
+.btn-shine:hover::before {
+  animation: btn-shine-sweep 0.85s ease;
+}
+@keyframes btn-shine-sweep {
+  to {
+    transform: translateX(520%) skewX(-20deg);
+  }
+}
+
+/* Isi horizontal untuk tombol outline */
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--p-primary);
+  transform: translateX(-101%);
+  transition: transform 0.35s ease;
+}
+.btn-fill:hover::before {
+  transform: translateX(0);
+}
+.btn-fill:hover {
+  color: #fff;
+  border-color: var(--p-primary);
+}
+
+/* Garis bawah meluncur untuk link teks */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.link-underline:hover::after,
+.link-underline.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Garis bawah tab kualifikasi */
+.tab-link {
+  position: relative;
+}
+.tab-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--p-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.tab-link:hover::after,
+.tab-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Ikon menggoyang saat grup di-hover */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-10deg) scale(1.15);
+  }
+  50% {
+    transform: rotate(10deg) scale(1.15);
+  }
+}
+
+/* Marquee berhenti sesaat saat di-hover (semua lapisan agar tetap sinkron) */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-float {
+    animation: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-enter {
+    animation: none;
+  }
+  .btn-shine:hover::before {
+    animation: none;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: running;
+  }
+}
