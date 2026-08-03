@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer'
 import ScrollUp from './components/layout/ScrollUp'
 import { useTheme } from './hooks/useTheme'
 import playModeSound from './utils/playModeSound'
+import { LAYOUT } from './data/content'
 
 const Skills = lazy(() => import('./components/sections/Skills'))
 const Qualification = lazy(() => import('./components/sections/Qualification'))
@@ -40,31 +41,43 @@ function App() {
     document.documentElement.setAttribute('data-mode', mode)
   }, [mode])
 
+  const sections = {
+    home: <Home mode={mode} />,
+    about: <About />,
+    modeswitch: <ModeSwitch mode={mode} onChange={handleModeChange} />,
+    skills: (
+      <div key={`skills-${mode}`} className={`mode-fade ${modeClass}`}>
+        <Skills mode={mode} />
+      </div>
+    ),
+    qualification: <Qualification />,
+    services: (
+      <div key={`services-${mode}`} className={`mode-fade ${modeClass}`}>
+        <Services mode={mode} />
+      </div>
+    ),
+    portfolio: (
+      <div key={`portfolio-${mode}`} className={`mode-fade ${modeClass}`}>
+        <Portfolio mode={mode} />
+      </div>
+    ),
+    testimonial: <Testimonial />,
+    pricing: <Pricing />,
+    cta: <ProjectInMind />,
+    contact: <Contact />,
+  }
+
   return (
     <div>
       <Header dark={dark} onToggleTheme={toggle} />
       <main>
-        <Home mode={mode} />
-        <About />
-        <ModeSwitch mode={mode} onChange={handleModeChange} />
-        <Suspense fallback={null}>
-          <div key={`skills-${mode}`} className={`mode-fade ${modeClass}`}>
-            <Skills mode={mode} />
-          </div>
-          <div className={modeClass}>
-            <Qualification />
-          </div>
-          <div key={`services-${mode}`} className={`mode-fade ${modeClass}`}>
-            <Services mode={mode} />
-          </div>
-          <div key={`portfolio-${mode}`} className={`mode-fade ${modeClass}`}>
-            <Portfolio mode={mode} />
-          </div>
-          <Testimonial />
-          <Pricing />
-          <ProjectInMind />
-          <Contact />
-        </Suspense>
+        {LAYOUT.sections
+          .filter((s) => s.enabled)
+          .map((s) => (
+            <Suspense fallback={null} key={s.id}>
+              {sections[s.id]}
+            </Suspense>
+          ))}
       </main>
       <Footer />
       <ScrollUp />

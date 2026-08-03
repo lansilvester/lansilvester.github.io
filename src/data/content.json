@@ -1,0 +1,460 @@
+{
+  "NAV_LINKS": [
+    { "label": { "id": "Home", "en": "Home" }, "href": "#home", "icon": "home" },
+    { "label": { "id": "Tentang", "en": "About" }, "href": "#about", "icon": "user" },
+    { "label": { "id": "Skill", "en": "Skills" }, "href": "#skills", "icon": "file" },
+    { "label": { "id": "Layanan", "en": "Services" }, "href": "#services", "icon": "briefcase" },
+    { "label": { "id": "Portfolio", "en": "Portfolio" }, "href": "#portfolio", "icon": "image" },
+    { "label": { "id": "Kontak", "en": "Contact" }, "href": "#contact", "icon": "mail" }
+  ],
+  "SOCIALS": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/varland-lengkong-323120152/",
+      "icon": "linkedin"
+    },
+    { "name": "Instagram", "url": "https://instagram.com/lansilvester", "icon": "instagram" },
+    { "name": "GitHub", "url": "https://github.com/lansilvester", "icon": "github" }
+  ],
+  "FOOTER_SOCIALS": [
+    { "name": "Facebook", "url": "https://facebook.com/", "icon": "facebook" },
+    { "name": "Instagram", "url": "https://instagram.com/lansilvester", "icon": "instagram" },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/channel/UCpGHBPDaXZtKm-gUhQzj5MQ",
+      "icon": "youtube"
+    },
+    { "name": "GitHub", "url": "https://github.com/lansilvester", "icon": "github" },
+    { "name": "LinkedIn", "url": "https://id.linkedin.com/in/varland-lengkong-323120152", "icon": "linkedin" }
+  ],
+  "HERO": {
+    "name": "Alan",
+    "photo": "/images/profile.svg",
+    "phone": "(+62)821-8730-1372",
+    "email": "alan.lengkong@gmail.com",
+    "location": "Manado City - North Sulawesi",
+    "whatsapp": "https://wa.me/6282187301372"
+  },
+  "ABOUT": {
+    "photo": "/images/about.svg",
+    "cv": "/CV/CV-Varland-Lengkong.pdf",
+    "stats": [
+      { "value": "5+", "label": { "id": "Tahun mendalami programming", "en": "Years of programming" } },
+      { "value": "20+", "label": { "id": "Project pengembangan", "en": "Projects delivered" } }
+    ]
+  },
+  "QUALIFICATIONS": {
+    "education": [
+      {
+        "title": { "id": "Teknik Informatika", "en": "Informatics Engineering" },
+        "place": { "id": "Politeknik Negeri Manado", "en": "Politeknik Negeri Manado" },
+        "period": "2019 - 2023",
+        "side": "right"
+      },
+      {
+        "title": { "id": "Teknik Komputer Jaringan", "en": "Computer & Network Engineering" },
+        "place": { "id": "SMK Negeri 1 Manado", "en": "SMK Negeri 1 Manado" },
+        "period": "2015 - 2018",
+        "side": "left"
+      }
+    ],
+    "work": [
+      {
+        "title": { "id": "Penelitian dan pengabdian masyarakat", "en": "Research and community service" },
+        "place": { "id": "Politeknik Negeri Manado", "en": "Politeknik Negeri Manado" },
+        "period": "2021-Sekarang",
+        "side": "right"
+      },
+      {
+        "title": { "id": "EO International Labour Organization", "en": "EO International Labour Organization" },
+        "place": { "id": "Politeknik Negeri Manado | Desa Tiwoho", "en": "Politeknik Negeri Manado | Tiwoho Village" },
+        "period": "2019-2021",
+        "side": "left"
+      },
+      {
+        "title": { "id": "Studio Assistant", "en": "Studio Assistant" },
+        "place": { "id": "Flammen Studio", "en": "Flammen Studio" },
+        "period": "2018-2019",
+        "side": "right"
+      },
+      {
+        "title": { "id": "Web Design & Development", "en": "Web Design & Development" },
+        "place": { "id": "Lomba Kompetensi Siswa (LKS) hingga tingkat Nasional", "en": "Student Skills Competition (LKS) up to national level" },
+        "period": "2018 | Lombok",
+        "side": "left"
+      }
+    ]
+  },
+  "TESTIMONIALS": [
+    {
+      "name": "Johanes Roring",
+      "role": { "id": "Klien", "en": "Client" },
+      "image": "/images/testimonial2.svg",
+      "stars": 5,
+      "text": {
+        "id": "Tulis testimoni asli dari klien Anda di sini. Ceritakan pengalaman bekerja sama dan hasil yang didapat, lalu ganti teks ini dengan review sungguhan.",
+        "en": "Write a real client testimonial here. Tell the story of working together and the results, then replace this text with an actual review."
+      }
+    },
+    {
+      "name": "Yogi Tangkilisan",
+      "role": { "id": "Klien", "en": "Client" },
+      "image": "/images/testimonial3.svg",
+      "stars": 5,
+      "text": {
+        "id": "Tulis testimoni asli lainnya di sini. Satu dua kalimat jujur tentang kualitas kerja dan kemudahan komunikasi sudah sangat membantu.",
+        "en": "Write another real testimonial here. One or two honest sentences about work quality and communication already help a lot."
+      }
+    }
+  ],
+  "CONTACT_INFO": [
+    {
+      "label": { "id": "Nomor telepon", "en": "Phone number" },
+      "value": "(+62)821-8730-1372",
+      "icon": "phone",
+      "href": "tel:+6282187301372"
+    },
+    {
+      "label": { "id": "Email", "en": "Email" },
+      "value": "alan.lengkong@gmail.com",
+      "icon": "mail",
+      "href": "mailto:alan.lengkong@gmail.com"
+    },
+    {
+      "label": { "id": "Lokasi", "en": "Location" },
+      "value": "Manado City - North Sulawesi",
+      "icon": "map",
+      "href": null
+    },
+    {
+      "label": { "id": "Chat WhatsApp", "en": "Chat on WhatsApp" },
+      "value": "WhatsApp",
+      "icon": "whatsapp",
+      "href": "https://wa.me/6282187301372"
+    }
+  ],
+  "MODES": {
+    "developer": {
+      "id": "developer",
+      "label": { "id": "Developer", "en": "Developer" },
+      "shortLabel": { "id": "Developer", "en": "Developer" },
+      "subLabel": "Coding & Web",
+      "icon": "code",
+      "homeSubtitle": { "id": "Web Developer | Freelancer", "en": "Web Developer | Freelancer" },
+      "skillsSubtitle": { "id": "Skill developer yang dikuasai", "en": "Developer skills I master" },
+      "skills": [
+        {
+          "id": "frontend",
+          "title": { "id": "Frontend Developer", "en": "Frontend Developer" },
+          "subtitle": { "id": "Lebih dari 5 tahun", "en": "5+ years" },
+          "icon": "code",
+          "skills": ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"]
+        },
+        {
+          "id": "backend",
+          "title": { "id": "Backend Developer", "en": "Backend Developer" },
+          "subtitle": { "id": "Lebih dari 5 tahun", "en": "5+ years" },
+          "icon": "server",
+          "skills": ["PHP", "MySQL", "Python", "Node JS", "Express JS"]
+        },
+        {
+          "id": "tools",
+          "title": { "id": "Database & Tools", "en": "Database & Tools" },
+          "subtitle": { "id": "Alat pendukung pengembangan", "en": "Supporting tools" },
+          "icon": "database",
+          "skills": ["MongoDB", "Firebase", "Git & GitHub", "Postman"]
+        }
+      ],
+      "servicesSubtitle": { "id": "Layanan yang bisa kita kerjakan", "en": "Services we can work on" },
+      "services": [
+        {
+          "id": "uiux",
+          "title": { "id": "UI/UX Designer", "en": "UI/UX Designer" },
+          "icon": "layout",
+          "points": [
+            { "id": "Perancangan antarmuka (UI) yang modern.", "en": "Modern interface (UI) design." },
+            { "id": "Pengembangan halaman web responsif.", "en": "Responsive web pages." },
+            { "id": "Pembuatan interaksi elemen UX.", "en": "UX interactions." },
+            { "id": "Membangun brand digital perusahaan.", "en": "Building digital brand assets." }
+          ]
+        },
+        {
+          "id": "webdev",
+          "title": { "id": "Web Development", "en": "Web Development" },
+          "icon": "globe",
+          "points": [
+            { "id": "Pengembangan web full-stack.", "en": "Full-stack web development." },
+            { "id": "Pembuatan REST API.", "en": "REST API development." },
+            { "id": "Integrasi database (MySQL, MongoDB).", "en": "Database integration (MySQL, MongoDB)." },
+            { "id": "Optimasi performa & SEO.", "en": "Performance & SEO optimization." }
+          ]
+        },
+        {
+          "id": "maintenance",
+          "title": { "id": "Maintenance & Optimasi", "en": "Maintenance & Optimization" },
+          "icon": "settings",
+          "points": [
+            { "id": "Perbaikan bug dan error.", "en": "Bug and error fixes." },
+            { "id": "Optimasi kecepatan loading.", "en": "Loading speed optimization." },
+            { "id": "Penambahan fitur baru.", "en": "New feature additions." },
+            { "id": "Dukungan teknis berkelanjutan.", "en": "Ongoing technical support." }
+          ]
+        }
+      ],
+      "portfolioSubtitle": { "id": "Proyek pengembangan web terbaru", "en": "Latest web development projects" },
+      "portfolio": [
+        {
+          "id": "d1",
+          "title": { "id": "Modern Website", "en": "Modern Website" },
+          "description": {
+            "id": "Website perusahaan modern, responsif, dan ringan dengan animasi halus.",
+            "en": "A modern, responsive, lightweight company website with smooth animations."
+          },
+          "image": "/images/portfolio1.svg",
+          "category": "web",
+          "tech": ["React", "Vite", "Tailwind CSS"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "d2",
+          "title": { "id": "Landing Page", "en": "Landing Page" },
+          "description": {
+            "id": "Halaman landing untuk produk dan event dengan fokus konversi.",
+            "en": "Conversion-focused landing pages for products and events."
+          },
+          "image": "/images/portfolio2.svg",
+          "category": "web",
+          "tech": ["HTML", "CSS", "JavaScript"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "d3",
+          "title": { "id": "Sistem Informasi", "en": "Information System" },
+          "description": {
+            "id": "Aplikasi web untuk manajemen data dan laporan (frontend + backend).",
+            "en": "Web app for data management and reporting (frontend + backend)."
+          },
+          "image": "/images/portfolio3.svg",
+          "category": "system",
+          "tech": ["PHP", "MySQL", "Bootstrap"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "d4",
+          "title": { "id": "Online Store", "en": "Online Store" },
+          "description": {
+            "id": "Toko online lengkap dengan keranjang, checkout, dan pembayaran.",
+            "en": "Complete online store with cart, checkout, and payments."
+          },
+          "image": "/images/project.svg",
+          "category": "ecommerce",
+          "tech": ["React", "Node JS", "MongoDB"],
+          "demo": "#",
+          "github": "#"
+        }
+      ]
+    },
+    "creative": {
+      "id": "creative",
+      "label": { "id": "Creative", "en": "Creative" },
+      "shortLabel": { "id": "Creative", "en": "Creative" },
+      "subLabel": "Fotografi, Video & Desain",
+      "icon": "camera",
+      "homeSubtitle": {
+        "id": "Creative | Videographer | Photographer",
+        "en": "Creative | Videographer | Photographer"
+      },
+      "skillsSubtitle": { "id": "Skill creative yang dikuasai", "en": "Creative skills I master" },
+      "skills": [
+        {
+          "id": "photo",
+          "title": { "id": "Fotografi", "en": "Photography" },
+          "subtitle": { "id": "Lebih dari 7 tahun", "en": "7+ years" },
+          "icon": "camera",
+          "skills": ["Kamera Canon DSLR/Mirrorless", "Komposisi & Pencahayaan", "Adobe Lightroom", "Retouching Foto"]
+        },
+        {
+          "id": "video",
+          "title": { "id": "Videografi & Editing", "en": "Videography & Editing" },
+          "subtitle": { "id": "Lebih dari 7 tahun", "en": "7+ years" },
+          "icon": "film",
+          "skills": ["Adobe Premiere Pro", "Adobe After Effects", "Color Grading", "Storyboarding"]
+        },
+        {
+          "id": "design",
+          "title": { "id": "Desain Grafis", "en": "Graphic Design" },
+          "subtitle": { "id": "Lebih dari 7 tahun", "en": "7+ years" },
+          "icon": "palette",
+          "skills": ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Adobe XD"]
+        },
+        {
+          "id": "motion",
+          "title": { "id": "Motion Graphic & VFX", "en": "Motion Graphics & VFX" },
+          "subtitle": { "id": "Efek visual & animasi", "en": "Visual effects & animation" },
+          "icon": "sparkles",
+          "skills": ["Motion Graphic", "Visual Effects", "Adobe Animate", "Blender"]
+        }
+      ],
+      "servicesSubtitle": { "id": "Jasa fotografi & videografi", "en": "Photography & videography services" },
+      "services": [
+        {
+          "id": "videography",
+          "title": { "id": "Videography", "en": "Videography" },
+          "icon": "film",
+          "points": [
+            { "id": "Video dokumentasi acara dan event.", "en": "Event documentation videos." },
+            { "id": "Videografi wedding & engagement.", "en": "Wedding & engagement videos." },
+            { "id": "Konten video untuk media sosial.", "en": "Video content for social media." },
+            { "id": "Color grading dan post-produksi.", "en": "Color grading and post-production." }
+          ]
+        },
+        {
+          "id": "photography",
+          "title": { "id": "Photography", "en": "Photography" },
+          "icon": "camera",
+          "points": [
+            { "id": "Sesi foto portrait & prewedding.", "en": "Portrait & prewedding shoots." },
+            { "id": "Foto produk untuk bisnis.", "en": "Product photography for business." },
+            { "id": "Dokumentasi event.", "en": "Event documentation." },
+            { "id": "Editing dan retouching foto.", "en": "Photo editing and retouching." }
+          ]
+        },
+        {
+          "id": "editing",
+          "title": { "id": "Photo & Video Editing", "en": "Photo & Video Editing" },
+          "icon": "scissors",
+          "points": [
+            { "id": "Editing video sinematik.", "en": "Cinematic video editing." },
+            { "id": "Motion graphic dan animasi.", "en": "Motion graphics and animation." },
+            { "id": "Desain thumbnail YouTube.", "en": "YouTube thumbnail design." },
+            { "id": "Color grading konsisten.", "en": "Consistent color grading." }
+          ]
+        },
+        {
+          "id": "design",
+          "title": { "id": "Desain Grafis", "en": "Graphic Design" },
+          "icon": "palette",
+          "points": [
+            { "id": "Desain poster, banner, dan feed.", "en": "Poster, banner, and feed design." },
+            { "id": "Brand identity & logo.", "en": "Brand identity & logo." },
+            { "id": "Desain kemasan produk.", "en": "Product packaging design." },
+            { "id": "Ilustrasi digital.", "en": "Digital illustration." }
+          ]
+        }
+      ],
+      "portfolioSubtitle": { "id": "Karya visual terbaru", "en": "Latest visual works" },
+      "portfolio": [
+        {
+          "id": "c1",
+          "title": { "id": "Video Dokumentasi", "en": "Event Documentation" },
+          "description": {
+            "id": "Video dokumentasi acara dengan cerita visual yang kuat.",
+            "en": "Event documentary with a strong visual story."
+          },
+          "image": "/images/portfolio1.svg",
+          "category": "video",
+          "tech": ["Adobe Premiere Pro", "Color Grading"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "c2",
+          "title": { "id": "Photoshoot", "en": "Photoshoot" },
+          "description": {
+            "id": "Sesi foto portrait dan prewedding dengan gaya sinematik.",
+            "en": "Portrait and prewedding sessions with a cinematic style."
+          },
+          "image": "/images/portfolio2.svg",
+          "category": "photo",
+          "tech": ["Canon DSLR", "Adobe Lightroom"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "c3",
+          "title": { "id": "Wedding Video", "en": "Wedding Video" },
+          "description": {
+            "id": "Videografi wedding dengan sinematografi kelas atas.",
+            "en": "Wedding videography with premium cinematography."
+          },
+          "image": "/images/portfolio3.svg",
+          "category": "video",
+          "tech": ["Adobe Premiere Pro", "After Effects"],
+          "demo": "#",
+          "github": "#"
+        },
+        {
+          "id": "c4",
+          "title": { "id": "Konten Media Sosial", "en": "Social Media Content" },
+          "description": {
+            "id": "Konten kreatif untuk feed dan reels media sosial.",
+            "en": "Creative content for social media feeds and reels."
+          },
+          "image": "/images/about.svg",
+          "category": "social",
+          "tech": ["Canon Mirrorless", "Adobe Premiere Pro"],
+          "demo": "#",
+          "github": "#"
+        }
+      ]
+    }
+  },
+  "PRICING": {
+    "plans": [
+      {
+        "id": "basic",
+        "name": { "id": "Paket Basic", "en": "Basic Plan" },
+        "desc": {
+          "id": "Cocok untuk landing page atau dokumentasi video singkat.",
+          "en": "Great for a landing page or a short video documentation."
+        },
+        "price": "500rb",
+        "popular": false,
+        "features": [
+          { "id": "1 halaman website responsif", "en": "1 responsive website page" },
+          { "id": "Video dokumentasi hingga 3 menit", "en": "Video documentation up to 3 minutes" },
+          { "id": "Desain simple & clean", "en": "Simple & clean design" },
+          { "id": "Revisi 1x", "en": "1 revision" },
+          { "id": "Pengerjaan 3-7 hari", "en": "Delivery in 3-7 days" }
+        ]
+      },
+      {
+        "id": "pro",
+        "name": { "id": "Paket Professional", "en": "Professional Plan" },
+        "desc": {
+          "id": "Untuk bisnis yang butuh website lengkap atau video promosi.",
+          "en": "For businesses that need a full website or promo video."
+        },
+        "price": "1,5jt",
+        "popular": true,
+        "features": [
+          { "id": "Website hingga 5 halaman + CMS", "en": "Website up to 5 pages + CMS" },
+          { "id": "Video profil perusahaan / iklan", "en": "Company profile / ad video" },
+          { "id": "Optimasi SEO dasar", "en": "Basic SEO optimization" },
+          { "id": "Revisi 3x", "en": "3 revisions" },
+          { "id": "Support 1 bulan", "en": "1 month support" }
+        ]
+      },
+      {
+        "id": "premium",
+        "name": { "id": "Paket Premium", "en": "Premium Plan" },
+        "desc": {
+          "id": "Solusi all-in-one untuk brand yang ingin tampil beda.",
+          "en": "All-in-one solution for brands that want to stand out."
+        },
+        "price": "3,5jt",
+        "popular": false,
+        "features": [
+          { "id": "Website custom + e-commerce", "en": "Custom website + e-commerce" },
+          { "id": "Full video & foto produk", "en": "Full product video & photos" },
+          { "id": "Brand identity lengkap", "en": "Complete brand identity" },
+          { "id": "Revisi tanpa batas (30 hari)", "en": "Unlimited revisions (30 days)" },
+          { "id": "Support 3 bulan", "en": "3 months support" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,486 @@
+backend:
+  name: github
+  repo: lansilvester/lansilvester.github.io
+  branch: main
+  # Ganti dengan URL proxy OAuth Anda setelah deploy Cloudflare Worker
+  # (lihat README bagian "Setup Login Admin").
+  base_url: https://GANTI-DENGAN-PROXY-ANDA.workers.dev
+  auth_endpoint: /auth
+
+site_url: https://lansilvester.github.io/
+display_url: https://lansilvester.github.io/
+
+# Untuk tes offline saja: set true lalu jalankan `npx decap-server`
+# dan buka http://localhost:5173/admin/ — di production biarkan false.
+local_backend: false
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  # ==========================================================
+  # 1) TEKS ANTARMUKA (src/data/ui.json)
+  # ==========================================================
+  - name: ui
+    label: 'Teks & Label'
+    label_singular: 'Teks'
+    editor:
+      preview: false
+    files:
+      - file: 'src/data/ui.json'
+        label: 'Teks Antarmuka (UI)'
+        name: ui
+        format: json
+        fields:
+          - name: header
+            label: 'Header (tombol tema/bahasa/menu)'
+            widget: object
+            fields:
+              - name: toggleTheme
+                label: 'Ganti tema'
+                widget: object
+                fields: &b
+                  - { name: id, label: 'Indonesia', widget: string }
+                  - { name: en, label: 'English', widget: string }
+              - name: openMenu
+                label: 'Buka menu'
+                widget: object
+                fields: *b
+              - name: closeMenu
+                label: 'Tutup menu'
+                widget: object
+                fields: *b
+              - name: toggleLanguage
+                label: 'Ganti bahasa'
+                widget: object
+                fields: *b
+              - name: switchTo
+                label: 'Label tombol bahasa (menampilkan bahasa tujuan)'
+                widget: object
+                fields: *b
+          - name: scrollUp
+            label: 'Tombol kembali ke atas'
+            widget: object
+            fields:
+              - { name: label, label: 'Label', widget: object, fields: *b }
+          - name: hero
+            label: 'Hero (beranda)'
+            widget: object
+            fields:
+              - { name: greeting1, label: 'Sapaan 1', widget: object, fields: *b }
+              - { name: greeting2, label: 'Sapaan 2', widget: object, fields: *b }
+              - { name: greeting3, label: 'Sapaan 3', widget: object, fields: *b }
+              - name: description
+                label: 'Deskripsi'
+                widget: object
+                fields: &bt
+                  - { name: id, label: 'Indonesia', widget: text }
+                  - { name: en, label: 'English', widget: text }
+              - { name: viewWork, label: 'Tombol Lihat Karya', widget: object, fields: *b }
+              - { name: contact, label: 'Tombol Kontak Saya', widget: object, fields: *b }
+              - { name: scroll, label: 'Label scroll ke bawah', widget: object, fields: *b }
+          - name: modeswitch
+            label: 'Mode Personal Branding'
+            widget: object
+            fields:
+              - { name: badge, label: 'Badge', widget: object, fields: *b }
+              - { name: title, label: 'Judul', widget: object, fields: *b }
+              - name: hint
+                label: 'Keterangan'
+                widget: object
+                fields: *bt
+          - name: about
+            label: 'Tentang'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+              - name: description
+                label: 'Deskripsi'
+                widget: object
+                fields: *bt
+              - { name: downloadCV, label: 'Tombol Download CV', widget: object, fields: *b }
+          - name: skills
+            label: 'Skill'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+          - name: qualif
+            label: 'Kualifikasi'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+              - { name: education, label: 'Tab Pendidikan', widget: object, fields: *b }
+              - { name: work, label: 'Tab Pengalaman', widget: object, fields: *b }
+          - name: services
+            label: 'Layanan'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: more, label: 'Teks tombol "selengkapnya"', widget: object, fields: *b }
+              - { name: close, label: 'Tutup', widget: object, fields: *b }
+          - name: portfolio
+            label: 'Portfolio'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: all, label: 'Filter "Semua"', widget: object, fields: *b }
+              - { name: demo, label: 'Tombol Demo', widget: object, fields: *b }
+              - { name: github, label: 'Tombol Source Code', widget: object, fields: *b }
+              - { name: close, label: 'Tutup', widget: object, fields: *b }
+              - { name: tools, label: 'Label Teknologi & Tools', widget: object, fields: *b }
+              - { name: prev, label: 'Sebelumnya', widget: object, fields: *b }
+              - { name: next, label: 'Berikutnya', widget: object, fields: *b }
+              - name: empty
+                label: 'Pesan kategori kosong'
+                widget: object
+                fields: *bt
+          - name: categories
+            label: 'Nama Kategori'
+            widget: object
+            fields:
+              - { name: web, label: 'Website', widget: object, fields: *b }
+              - { name: system, label: 'Sistem Informasi', widget: object, fields: *b }
+              - { name: ecommerce, label: 'Online Store', widget: object, fields: *b }
+              - { name: video, label: 'Video', widget: object, fields: *b }
+              - { name: photo, label: 'Foto', widget: object, fields: *b }
+              - { name: design, label: 'Desain', widget: object, fields: *b }
+              - { name: social, label: 'Media Sosial', widget: object, fields: *b }
+          - name: testimonial
+            label: 'Testimonial'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+          - name: cta
+            label: 'Ajakan Proyek (CTA)'
+            widget: object
+            fields:
+              - { name: title, label: 'Judul', widget: object, fields: *b }
+              - name: description
+                label: 'Deskripsi'
+                widget: object
+                fields: *bt
+              - { name: button, label: 'Tombol', widget: object, fields: *b }
+          - name: contact
+            label: 'Kontak'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+              - { name: name, label: 'Label Nama', widget: object, fields: *b }
+              - { name: emailField, label: 'Label Email', widget: object, fields: *b }
+              - { name: project, label: 'Label Proyek', widget: object, fields: *b }
+              - { name: message, label: 'Label Pesan', widget: object, fields: *b }
+              - { name: namePlaceholder, label: 'Placeholder Nama', widget: object, fields: *b }
+              - { name: emailPlaceholder, label: 'Placeholder Email', widget: object, fields: *b }
+              - { name: projectPlaceholder, label: 'Placeholder Proyek', widget: object, fields: *b }
+              - { name: messagePlaceholder, label: 'Placeholder Pesan', widget: object, fields: *b }
+              - { name: submitWhatsApp, label: 'Tombol Kirim via WhatsApp', widget: object, fields: *b }
+              - { name: submitEmail, label: 'Tombol Kirim via Email', widget: object, fields: *b }
+              - name: whatsappNote
+                label: 'Catatan bawah form'
+                widget: object
+                fields: *bt
+          - name: pricing
+            label: 'Harga Layanan (judul & label umum)'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+              - { name: starting, label: 'Kata "mulai dari"', widget: object, fields: *b }
+              - { name: choose, label: 'Tombol Pilih Paket', widget: object, fields: *b }
+              - { name: popular, label: 'Badge "Paling Populer"', widget: object, fields: *b }
+          - name: footer
+            label: 'Footer'
+            widget: object
+            fields:
+              - { name: tagline, label: 'Tagline', widget: object, fields: *b }
+              - { name: services, label: 'Tautan Layanan', widget: object, fields: *b }
+              - { name: portfolio, label: 'Tautan Portfolio', widget: object, fields: *b }
+              - { name: contact, label: 'Tautan Kontak', widget: object, fields: *b }
+              - { name: madeWith, label: 'Teks "Dibuat dengan"', widget: object, fields: *b }
+
+  # ==========================================================
+  # 2) KONTEN SITUS (src/data/content.json)
+  # ==========================================================
+  - name: konten
+    label: 'Konten Situs'
+    label_singular: 'Konten'
+    editor:
+      preview: false
+    files:
+      - file: 'src/data/content.json'
+        label: 'Data & Isi Situs'
+        name: konten
+        format: json
+        fields:
+          - name: NAV_LINKS
+            label: 'Menu navigasi'
+            widget: list
+            collapsed: true
+            summary: '{{fields.href}}'
+            fields:
+              - name: label
+                label: 'Label'
+                widget: object
+                fields: *b
+              - { name: href, label: 'Tautan (mis. #home)', widget: string }
+              - { name: icon, label: 'Icon', widget: select, options: [home, user, file, briefcase, image, mail] }
+          - name: SOCIALS
+            label: 'Media sosial (samping hero)'
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: 'Nama', widget: string }
+              - { name: url, label: 'URL', widget: string }
+              - { name: icon, label: 'Icon', widget: select, options: [linkedin, instagram, github, facebook, youtube, whatsapp, mail, phone, map] }
+          - name: FOOTER_SOCIALS
+            label: 'Media sosial (footer)'
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: 'Nama', widget: string }
+              - { name: url, label: 'URL', widget: string }
+              - { name: icon, label: 'Icon', widget: select, options: [linkedin, instagram, github, facebook, youtube, whatsapp, mail, phone, map] }
+          - name: HERO
+            label: 'Hero / profil'
+            widget: object
+            fields:
+              - { name: name, label: 'Nama tampilan', widget: string }
+              - { name: photo, label: 'Foto profil', widget: image, choose_url: true }
+              - { name: phone, label: 'Telepon', widget: string }
+              - { name: email, label: 'Email', widget: string }
+              - { name: location, label: 'Lokasi', widget: string }
+              - { name: whatsapp, label: 'URL WhatsApp', widget: string }
+          - name: ABOUT
+            label: 'Tentang'
+            widget: object
+            fields:
+              - { name: photo, label: 'Foto', widget: image, choose_url: true }
+              - { name: cv, label: 'Path CV (PDF)', widget: string }
+              - name: stats
+                label: 'Statistik singkat'
+                widget: list
+                collapsed: true
+                summary: '{{fields.value}}'
+                fields:
+                  - { name: value, label: 'Angka (mis. 5+)', widget: string }
+                  - name: label
+                    label: 'Keterangan'
+                    widget: object
+                    fields: *b
+          - name: QUALIFICATIONS
+            label: 'Kualifikasi'
+            widget: object
+            fields:
+              - name: education
+                label: 'Pendidikan'
+                widget: list
+                collapsed: true
+                summary: '{{fields.title.id}}'
+                fields: &qualitem
+                  - name: title
+                    label: 'Judul'
+                    widget: object
+                    fields: *b
+                  - name: place
+                    label: 'Tempat'
+                    widget: object
+                    fields: *b
+                  - { name: period, label: 'Periode', widget: string }
+                  - { name: side, label: 'Posisi timeline', widget: select, options: [right, left] }
+              - name: work
+                label: 'Pengalaman'
+                widget: list
+                collapsed: true
+                summary: '{{fields.title.id}}'
+                fields: *qualitem
+          - name: TESTIMONIALS
+            label: 'Testimoni'
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: 'Nama', widget: string }
+              - name: role
+                label: 'Peran'
+                widget: object
+                fields: *b
+              - { name: image, label: 'Foto', widget: image, choose_url: true }
+              - { name: stars, label: 'Bintang (1-5)', widget: number, min: 1, max: 5 }
+              - name: text
+                label: 'Isi testimoni'
+                widget: object
+                fields: *bt
+          - name: CONTACT_INFO
+            label: 'Informasi kontak'
+            widget: list
+            collapsed: true
+            summary: '{{fields.value}}'
+            fields:
+              - name: label
+                label: 'Label'
+                widget: object
+                fields: *b
+              - { name: value, label: 'Nilai', widget: string }
+              - { name: icon, label: 'Icon', widget: select, options: [phone, mail, map, whatsapp] }
+              - { name: href, label: 'Tautan (biarkan kosong jika tidak ada)', widget: string, required: false }
+          - name: MODES
+            label: 'Mode & Konten Per Mode'
+            widget: object
+            fields:
+              - name: developer
+                label: 'Mode Developer'
+                widget: object
+                fields: &modefields
+                  - { name: id, label: 'ID mode', widget: string }
+                  - name: label
+                    label: 'Label'
+                    widget: object
+                    fields: *b
+                  - name: shortLabel
+                    label: 'Label pendek (tombol switch)'
+                    widget: object
+                    fields: *b
+                  - { name: subLabel, label: 'Sub label (opsional)', widget: string, required: false }
+                  - { name: icon, label: 'Icon', widget: select, options: [code, server, database, camera, film, palette, sparkles, layout, globe, settings, scissors] }
+                  - name: homeSubtitle
+                    label: 'Subjudul beranda'
+                    widget: object
+                    fields: *b
+                  - name: skillsSubtitle
+                    label: 'Subjudul section skill'
+                    widget: object
+                    fields: *b
+                  - name: skills
+                    label: 'Kelompok skill'
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.title.id}}'
+                    fields: &skillgroup
+                      - { name: id, label: 'ID', widget: string }
+                      - name: title
+                        label: 'Judul'
+                        widget: object
+                        fields: *b
+                      - name: subtitle
+                        label: 'Subjudul'
+                        widget: object
+                        fields: *b
+                      - { name: icon, label: 'Icon', widget: select, options: [code, server, database, camera, film, palette, sparkles, layout, globe, settings, scissors] }
+                      - name: skills
+                        label: 'Daftar skill (tambah satu per item)'
+                        widget: list
+                        field: { name: item, label: 'Skill', widget: string }
+                  - name: servicesSubtitle
+                    label: 'Subjudul section layanan'
+                    widget: object
+                    fields: *b
+                  - name: services
+                    label: 'Layanan'
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.title.id}}'
+                    fields: &servicegroup
+                      - { name: id, label: 'ID', widget: string }
+                      - name: title
+                        label: 'Judul'
+                        widget: object
+                        fields: *b
+                      - { name: icon, label: 'Icon', widget: select, options: [code, server, database, camera, film, palette, sparkles, layout, globe, settings, scissors] }
+                      - name: points
+                        label: 'Poin layanan'
+                        widget: list
+                        collapsed: true
+                        summary: '{{fields.id}}'
+                        fields:
+                          - { name: id, label: 'Indonesia', widget: text }
+                          - { name: en, label: 'English', widget: text }
+                  - name: portfolioSubtitle
+                    label: 'Subjudul section portfolio'
+                    widget: object
+                    fields: *b
+                  - name: portfolio
+                    label: 'Karya'
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.title.id}}'
+                    fields: &portfolioitem
+                      - { name: id, label: 'ID', widget: string }
+                      - name: title
+                        label: 'Judul'
+                        widget: object
+                        fields: *b
+                      - name: description
+                        label: 'Deskripsi'
+                        widget: object
+                        fields: *bt
+                      - { name: image, label: 'Gambar', widget: image, choose_url: true }
+                      - { name: category, label: 'Kategori', widget: select, options: [web, system, ecommerce, video, photo, design, social] }
+                      - name: tech
+                        label: 'Teknologi & tools'
+                        widget: list
+                        field: { name: item, label: 'Teknologi', widget: string }
+                      - { name: demo, label: 'URL demo (biarkan # jika belum)', widget: string }
+                      - { name: github, label: 'URL GitHub (biarkan # jika belum)', widget: string }
+              - name: creative
+                label: 'Mode Creative'
+                widget: object
+                fields: *modefields
+          - name: PRICING
+            label: 'Harga Layanan'
+            widget: object
+            fields:
+              - name: plans
+                label: 'Paket'
+                widget: list
+                collapsed: true
+                summary: '{{fields.name.id}}'
+                fields: &planfields
+                  - { name: id, label: 'ID', widget: string }
+                  - name: name
+                    label: 'Nama paket'
+                    widget: object
+                    fields: *b
+                  - name: desc
+                    label: 'Deskripsi'
+                    widget: object
+                    fields: *bt
+                  - { name: price, label: 'Harga (mis. 500rb)', widget: string }
+                  - { name: popular, label: 'Tandai paling populer', widget: boolean, default: false }
+                  - name: features
+                    label: 'Fitur'
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}}'
+                    fields:
+                      - { name: id, label: 'Indonesia', widget: text }
+                      - { name: en, label: 'English', widget: text }
+
+  # ==========================================================
+  # 3) URUTAN & TAMPILAN LAYOUT (src/data/layout.json)
+  # ==========================================================
+  - name: layout
+    label: 'Urutan & Tampilan'
+    label_singular: 'Section'
+    editor:
+      preview: false
+    files:
+      - file: 'src/data/layout.json'
+        label: 'Urutan & visibilitas section'
+        name: layout
+        format: json
+        fields:
+          - name: sections
+            label: 'Section (tarik item untuk mengubah urutan)'
+            widget: list
+            collapsed: true
+            summary: '{{fields.label}}'
+            fields:
+              - { name: id, label: 'ID section', widget: select, options: [home, about, modeswitch, skills, qualification, services, portfolio, testimonial, pricing, cta, contact] }
+              - { name: label, label: 'Nama (hanya tampilan di editor)', widget: string }
+              - { name: enabled, label: 'Tampilkan di halaman', widget: boolean, default: true }

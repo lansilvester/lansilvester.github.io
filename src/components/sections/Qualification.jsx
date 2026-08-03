@@ -8,13 +8,14 @@ import { QUALIFICATIONS } from '../../data/content'
 
 function TimelineItem({ item }) {
   const isRight = item.side === 'right'
+  const { t } = useI18n()
   return (
     <div className="relative grid grid-cols-[1fr_auto_1fr] items-start gap-4 pb-10 last:pb-0">
       <div className={isRight ? 'text-right' : 'text-left'}>
         {!isRight && (
           <div>
-            <h3 className="text-sm font-semibold text-title sm:text-base">{item.title}</h3>
-            <span className="mt-1 block text-xs text-muted">{item.place}</span>
+            <h3 className="text-sm font-semibold text-title sm:text-base">{t(item.title)}</h3>
+            <span className="mt-1 block text-xs text-muted">{t(item.place)}</span>
             <div className="mt-1 inline-flex items-center gap-1 text-xs text-muted">
               <Icon name="calendar" size={12} />
               {item.period}
@@ -31,8 +32,8 @@ function TimelineItem({ item }) {
       <div className={isRight ? 'text-left' : 'text-right'}>
         {isRight && (
           <div>
-            <h3 className="text-sm font-semibold text-title sm:text-base">{item.title}</h3>
-            <span className="mt-1 block text-xs text-muted">{item.place}</span>
+            <h3 className="text-sm font-semibold text-title sm:text-base">{t(item.title)}</h3>
+            <span className="mt-1 block text-xs text-muted">{t(item.place)}</span>
             <span className="mt-1 inline-flex items-center gap-1 text-xs text-muted">
               <Icon name="calendar" size={12} />
               {item.period}

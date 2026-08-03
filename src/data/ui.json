@@ -1,0 +1,122 @@
+{
+  "header": {
+    "toggleTheme": { "id": "Ganti tema", "en": "Toggle theme" },
+    "openMenu": { "id": "Buka menu", "en": "Open menu" },
+    "closeMenu": { "id": "Tutup menu", "en": "Close menu" },
+    "toggleLanguage": { "id": "Ganti bahasa", "en": "Change language" },
+    "switchTo": { "id": "EN", "en": "ID" }
+  },
+  "scrollUp": {
+    "label": { "id": "Kembali ke atas", "en": "Back to top" }
+  },
+  "hero": {
+    "greeting1": { "id": "Halo, Alan di sini", "en": "Hi, Alan here" },
+    "greeting2": { "id": "Halo, saya Alan", "en": "Hi, I am Alan" },
+    "greeting3": { "id": "Halo, selamat datang", "en": "Hi, welcome" },
+    "description": {
+      "id": "Saya membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual yang dirancang untuk konversi.",
+      "en": "I help businesses and brands look professional through modern websites, video content, and visual design built to convert."
+    },
+    "viewWork": { "id": "Lihat Karya", "en": "See Work" },
+    "contact": { "id": "Kontak Saya", "en": "Contact Me" },
+    "scroll": { "id": "Scroll down", "en": "Scroll down" }
+  },
+  "modeswitch": {
+    "badge": { "id": "Mode Personal Branding", "en": "Personal Branding Mode" },
+    "title": { "id": "Kamu mau dikenal sebagai apa?", "en": "How do you want to be known?" },
+    "hint": {
+      "id": "Skill, layanan, dan portfolio menyesuaikan dengan mode yang dipilih.",
+      "en": "Skills, services, and portfolio adjust to the mode you choose."
+    }
+  },
+  "about": {
+    "sectionTitle": { "id": "Tentang", "en": "About" },
+    "sectionSubtitle": { "id": "Perkenalan diri dulu", "en": "Let me introduce myself" },
+    "description": {
+      "id": "Saya Alan (Varland Lengkong) — mahasiswa D4 Teknik Informatika di Politeknik Negeri Manado dan freelancer di bidang IT serta desain. Saya menggabungkan logika engineering dengan rasa estetika: membangun website yang cepat dan handal, sekaligus mengemas cerita visual yang menarik lewat videografi dan fotografi.",
+      "en": "I am Alan (Varland Lengkong) — a D4 Informatics Engineering student at Politeknik Negeri Manado and a freelancer in IT and design. I combine engineering logic with aesthetics: building fast, reliable websites while telling compelling visual stories through videography and photography."
+    },
+    "downloadCV": { "id": "Download CV", "en": "Download CV" }
+  },
+  "skills": {
+    "sectionTitle": { "id": "Skill", "en": "Skills" }
+  },
+  "qualif": {
+    "sectionTitle": { "id": "Kualifikasi", "en": "Qualification" },
+    "sectionSubtitle": { "id": "Tipe petualangan", "en": "My personal journey" },
+    "education": { "id": "Pendidikan", "en": "Education" },
+    "work": { "id": "Pengalaman", "en": "Experience" }
+  },
+  "services": {
+    "sectionTitle": { "id": "Layanan", "en": "Services" },
+    "more": { "id": "Lihat selengkapnya", "en": "View details" },
+    "close": { "id": "Tutup", "en": "Close" }
+  },
+  "portfolio": {
+    "sectionTitle": { "id": "Portfolio", "en": "Portfolio" },
+    "all": { "id": "Semua", "en": "All" },
+    "demo": { "id": "Lihat Demo", "en": "Live Demo" },
+    "github": { "id": "Source Code", "en": "Source Code" },
+    "close": { "id": "Tutup", "en": "Close" },
+    "tools": { "id": "Teknologi & Tools", "en": "Tech & Tools" },
+    "prev": { "id": "Sebelumnya", "en": "Previous" },
+    "next": { "id": "Berikutnya", "en": "Next" },
+    "empty": { "id": "Belum ada karya di kategori ini.", "en": "No work in this category yet." }
+  },
+  "categories": {
+    "web": { "id": "Website", "en": "Website" },
+    "system": { "id": "Sistem Informasi", "en": "Information System" },
+    "ecommerce": { "id": "Online Store", "en": "Online Store" },
+    "video": { "id": "Video", "en": "Video" },
+    "photo": { "id": "Foto", "en": "Photo" },
+    "design": { "id": "Desain", "en": "Design" },
+    "social": { "id": "Media Sosial", "en": "Social Media" }
+  },
+  "testimonial": {
+    "sectionTitle": { "id": "Testimonial", "en": "Testimonials" },
+    "sectionSubtitle": { "id": "Apa kata klien saya", "en": "What my clients say" }
+  },
+  "cta": {
+    "title": { "id": "Ada proyek dalam pikiran?", "en": "Have a project in mind?" },
+    "description": {
+      "id": "Mari diskusikan ide Anda — saya siap membantu mewujudkannya.",
+      "en": "Let's discuss your idea — I'm ready to bring it to life."
+    },
+    "button": { "id": "Hubungi Saya", "en": "Get in Touch" }
+  },
+  "contact": {
+    "sectionTitle": { "id": "Kontak", "en": "Contact" },
+    "sectionSubtitle": { "id": "Hubungi", "en": "Get in touch" },
+    "name": { "id": "Nama", "en": "Name" },
+    "emailField": { "id": "Email", "en": "Email" },
+    "project": { "id": "Proyek", "en": "Project" },
+    "message": { "id": "Pesan", "en": "Message" },
+    "namePlaceholder": { "id": "Nama Anda", "en": "Your name" },
+    "emailPlaceholder": { "id": "email@anda.com", "en": "you@example.com" },
+    "projectPlaceholder": { "id": "Judul proyek", "en": "Project title" },
+    "messagePlaceholder": { "id": "Tulis pesan Anda", "en": "Write your message" },
+    "submitWhatsApp": { "id": "Kirim via WhatsApp", "en": "Send via WhatsApp" },
+    "submitEmail": { "id": "Kirim via Email", "en": "Send via Email" },
+    "whatsappNote": {
+      "id": "Pesan akan otomatis terisi di WhatsApp saya. Butuh form email? Tombol sekunder tersedia.",
+      "en": "Your message will be pre-filled in my WhatsApp. Need an email form? Use the secondary button."
+    }
+  },
+  "pricing": {
+    "sectionTitle": { "id": "Harga Layanan", "en": "Pricing" },
+    "sectionSubtitle": {
+      "id": "Paket yang bisa disesuaikan dengan kebutuhan",
+      "en": "Plans that can be tailored to your needs"
+    },
+    "starting": { "id": "mulai dari", "en": "starting from" },
+    "choose": { "id": "Pilih Paket", "en": "Choose Plan" },
+    "popular": { "id": "Paling Populer", "en": "Most Popular" }
+  },
+  "footer": {
+    "tagline": { "id": "Web Developer | Creative", "en": "Web Developer | Creative" },
+    "services": { "id": "Layanan", "en": "Services" },
+    "portfolio": { "id": "Portfolio", "en": "Portfolio" },
+    "contact": { "id": "Kontak Saya", "en": "Contact Me" },
+    "madeWith": { "id": "Dibuat dengan", "en": "Made with" }
+  }
+}
