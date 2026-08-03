@@ -2,19 +2,28 @@ import { useState } from 'react'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
+import { useI18n } from '../../useI18n'
 import { CONTACT_INFO, HERO } from '../../data/content'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', project: '', message: '' })
+  const { t } = useI18n()
 
   const update = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const onSubmit = (e) => {
+  const buildBody = () =>
+    `Nama: ${form.name}\nEmail: ${form.email}\nProyek: ${form.project}\n\n${form.message}`
+
+  const onSubmitWhatsApp = (e) => {
+    e.preventDefault()
+    const text = encodeURIComponent(buildBody())
+    window.open(`${HERO.whatsapp}?text=${text}`, '_blank', 'noopener')
+  }
+
+  const onSubmitEmail = (e) => {
     e.preventDefault()
     const subject = encodeURIComponent(`Pesan dari ${form.name || 'website'}`)
-    const body = encodeURIComponent(
-      `Nama: ${form.name}\nEmail: ${form.email}\nProyek: ${form.project}\n\n${form.message}`
-    )
+    const body = encodeURIComponent(buildBody())
     window.open(
       `mailto:${HERO.email}?subject=${subject}&body=${body}`,
       '_blank',
@@ -28,7 +37,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionTitle title="Kontak" subtitle="Hubungi" />
+        <SectionTitle title={t('contact.sectionTitle')} subtitle={t('contact.sectionSubtitle')} />
 
         <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.4fr]">
           <Reveal direction="left" className="space-y-6">
@@ -38,7 +47,7 @@ export default function Contact() {
                   <Icon name={info.icon} size={22} />
                 </span>
                 <div>
-                  <h3 className="text-sm font-medium text-title">{info.label}</h3>
+                  <h3 className="text-sm font-medium text-title">{t(info.label)}</h3>
                   {info.href ? (
                     <a
                       href={info.href}
@@ -55,11 +64,11 @@ export default function Contact() {
           </Reveal>
 
           <Reveal direction="right">
-            <form onSubmit={onSubmit} className="grid gap-4">
+            <form onSubmit={onSubmitWhatsApp} className="grid gap-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-title">
-                    Name
+                    {t('contact.name')}
                   </label>
                   <input
                     id="name"
@@ -69,12 +78,12 @@ export default function Contact() {
                     value={form.name}
                     onChange={update}
                     className={inputClass}
-                    placeholder="Nama Anda"
+                    placeholder={t('contact.namePlaceholder')}
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-title">
-                    Email
+                    {t('contact.emailField')}
                   </label>
                   <input
                     id="email"
@@ -84,14 +93,14 @@ export default function Contact() {
                     value={form.email}
                     onChange={update}
                     className={inputClass}
-                    placeholder="email@anda.com"
+                    placeholder={t('contact.emailPlaceholder')}
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="project" className="mb-1.5 block text-sm font-medium text-title">
-                  Projects
+                  {t('contact.project')}
                 </label>
                 <input
                   id="project"
@@ -100,13 +109,13 @@ export default function Contact() {
                   value={form.project}
                   onChange={update}
                   className={inputClass}
-                  placeholder="Judul proyek"
+                  placeholder={t('contact.projectPlaceholder')}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-title">
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
@@ -116,21 +125,33 @@ export default function Contact() {
                   value={form.message}
                   onChange={update}
                   className={`${inputClass} resize-none`}
-                  placeholder="Tulis pesan Anda"
+                  placeholder={t('contact.messagePlaceholder')}
                 />
               </div>
 
-              <button
-                type="submit"
-                className="group btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-medium text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-primary-alt hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:justify-self-start"
-              >
-                Kirim Pesan{' '}
-                <Icon
-                  name="mail"
-                  size={18}
-                  className="transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110"
-                />
-              </button>
+              <p className="text-xs leading-relaxed text-muted">{t('contact.whatsappNote')}</p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="submit"
+                  className="group btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-medium text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-primary-alt hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  <Icon
+                    name="whatsapp"
+                    size={18}
+                    className="transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110"
+                  />
+                  {t('contact.submitWhatsApp')}
+                </button>
+                <button
+                  type="button"
+                  onClick={onSubmitEmail}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-6 py-3 text-sm font-medium text-title transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary"
+                >
+                  <Icon name="mail" size={18} />
+                  {t('contact.submitEmail')}
+                </button>
+              </div>
             </form>
           </Reveal>
         </div>

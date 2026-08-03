@@ -4,17 +4,19 @@ import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
 import LongShadowBackground from '../effects/LongShadowBackground'
 import playClickSound from '../../utils/playClickSound'
+import { useI18n } from '../../useI18n'
 import { MODES } from '../../data/content'
 
 export default function Skills({ mode }) {
   const modeData = MODES[mode]
   const [open, setOpen] = useState(modeData.skills[0].id)
+  const { t } = useI18n()
 
   return (
     <section id="skills" className="section relative overflow-hidden bg-card py-24 sm:py-28">
       <LongShadowBackground mode={mode} />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionTitle title="Skill" subtitle={modeData.skillsSubtitle} />
+        <SectionTitle title={t('skills.sectionTitle')} subtitle={t(modeData.skillsSubtitle)} />
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-4">
           {modeData.skills.map((group, index) => {
@@ -36,9 +38,9 @@ export default function Skills({ mode }) {
                     </span>
                     <span className="flex-1">
                       <span className="block text-base font-semibold text-title sm:text-lg">
-                        {group.title}
+                        {t(group.title)}
                       </span>
-                      <span className="block text-xs text-muted">{group.subtitle}</span>
+                      <span className="block text-xs text-muted">{t(group.subtitle)}</span>
                     </span>
                     <Icon
                       name="angleDown"

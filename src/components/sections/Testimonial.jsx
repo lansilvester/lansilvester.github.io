@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
+import { useI18n } from '../../useI18n'
 import { TESTIMONIALS } from '../../data/content'
 
 export default function Testimonial() {
   const [index, setIndex] = useState(0)
   const total = TESTIMONIALS.length
+  const { t } = useI18n()
 
   useEffect(() => {
     const timer = setInterval(() => setIndex((i) => (i + 1) % total), 6000)
@@ -16,7 +18,7 @@ export default function Testimonial() {
   return (
     <section id="testimonial" className="section bg-card py-24 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <SectionTitle title="Testimonial" subtitle="Apa kata klien saya" />
+        <SectionTitle title={t('testimonial.sectionTitle')} subtitle={t('testimonial.sectionSubtitle')} />
 
         <Reveal className="mt-12">
           <div className="relative overflow-hidden">
@@ -24,30 +26,32 @@ export default function Testimonial() {
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
-              {TESTIMONIALS.map((t) => (
+              {TESTIMONIALS.map((item) => (
                 <div
-                  key={t.name}
+                  key={item.name}
                   className="w-full shrink-0 rounded-2xl border border-line bg-body p-6 shadow-card sm:p-8"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
                       <img
-                        src={t.image}
-                        alt={t.name}
+                        src={item.image}
+                        alt={item.name}
+                        loading="lazy"
+                        decoding="async"
                         className="h-14 w-14 rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-semibold text-title">{t.name}</h3>
-                        <span className="text-xs text-muted">{t.role}</span>
+                        <h3 className="font-semibold text-title">{item.name}</h3>
+                        <span className="text-xs text-muted">{t(item.role)}</span>
                       </div>
                     </div>
                     <div className="flex gap-0.5 text-primary">
-                      {Array.from({ length: t.stars }).map((_, i) => (
+                      {Array.from({ length: item.stars }).map((_, i) => (
                         <Icon key={i} name="star" size={18} />
                       ))}
                     </div>
                   </div>
-                  <p className="mt-5 text-sm leading-relaxed text-text">{t.text}</p>
+                  <p className="mt-5 text-sm leading-relaxed text-text">{t(item.text)}</p>
                 </div>
               ))}
             </div>

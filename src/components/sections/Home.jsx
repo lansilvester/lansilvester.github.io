@@ -2,6 +2,7 @@ import { TypeAnimation } from 'react-type-animation'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import ParticleField from '../effects/ParticleField'
+import { useI18n } from '../../useI18n'
 import { HERO, MODES, SOCIALS } from '../../data/content'
 
 function BlobPhoto() {
@@ -55,6 +56,7 @@ function BlobPhoto() {
 
 export default function Home({ mode }) {
   const modeData = MODES[mode]
+  const { t } = useI18n()
 
   return (
     <section id="home" className="section relative overflow-hidden pt-28 sm:pt-32">
@@ -82,11 +84,11 @@ export default function Home({ mode }) {
             <Reveal className="text-center lg:text-left">
               <TypeAnimation
                 sequence={[
-                  'Halo, Alan di sini',
+                  t('hero.greeting1'),
                   2200,
-                  'Halo, saya Alan',
+                  t('hero.greeting2'),
                   1800,
-                  'Halo, selamat datang',
+                  t('hero.greeting3'),
                   1800,
                 ]}
                 wrapper="h1"
@@ -96,23 +98,23 @@ export default function Home({ mode }) {
                 className="text-3xl font-bold text-title sm:text-4xl lg:text-[2.6rem] lg:leading-tight"
               />
               <h3 className="mt-2 text-lg font-medium text-text sm:text-xl">
-                {modeData.homeSubtitle}
+                {t(modeData.homeSubtitle)}
               </h3>
               <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted lg:mx-0">
-                {HERO.description}
+                {t('hero.description')}
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <a
                   href="#portfolio"
                   className="btn-fill inline-flex items-center gap-2 rounded-full border-2 border-primary px-8 py-3 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  Lihat Karya <Icon name="layout" size={18} />
+                  {t('hero.viewWork')} <Icon name="layout" size={18} />
                 </a>
                 <a
                   href="#contact"
                   className="group btn-shine inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-medium text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-primary-alt hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  Contact{' '}
+                  {t('hero.contact')}{' '}
                   <Icon
                     name="mail"
                     size={18}
@@ -138,7 +140,7 @@ export default function Home({ mode }) {
               size={26}
               className="transition-transform duration-300 group-hover:-translate-y-1"
             />
-            <span className="text-xs font-medium">Scroll down</span>
+            <span className="text-xs font-medium">{t('hero.scroll')}</span>
             <Icon
               name="arrowDown"
               size={18}

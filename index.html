@@ -4,19 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3b82f6" />
     <meta
       name="description"
       content="Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado. Membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual."
     />
     <meta name="author" content="Alan (Varland Lengkong)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://lansilvester.github.io/" />
+
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lansilvester.github.io/" />
+    <meta property="og:site_name" content="Alan | Web Developer & Creative" />
     <meta property="og:title" content="Alan | Web Developer & Creative" />
     <meta
       property="og:description"
       content="Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado."
     />
-    <meta property="og:image" content="/images/profile.svg" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://lansilvester.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alan | Web Developer & Creative" />
+    <meta
+      name="twitter:description"
+      content="Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado."
+    />
+    <meta name="twitter:image" content="https://lansilvester.github.io/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,12 +42,41 @@
       rel="stylesheet"
     />
     <title>Alan | Web Developer & Creative</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alan (Varland Lengkong)",
+        "url": "https://lansilvester.github.io/",
+        "jobTitle": "Web Developer & Creative Videographer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Manado",
+          "addressRegion": "North Sulawesi",
+          "addressCountry": "ID"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/varland-lengkong-323120152/",
+          "https://instagram.com/lansilvester",
+          "https://github.com/lansilvester",
+          "https://www.youtube.com/channel/UCpGHBPDaXZtKm-gUhQzj5MQ"
+        ]
+      }
+    </script>
+
     <script>
       const theme = localStorage.getItem('theme')
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
       }
     </script>
+
+    <script
+      data-goatcounter="https://lansilvester.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
   </head>
   <body>
     <div id="root"></div>

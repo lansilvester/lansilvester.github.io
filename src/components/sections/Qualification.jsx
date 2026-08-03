@@ -3,6 +3,7 @@ import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
 import playClickSound from '../../utils/playClickSound'
+import { useI18n } from '../../useI18n'
 import { QUALIFICATIONS } from '../../data/content'
 
 function TimelineItem({ item }) {
@@ -46,12 +47,13 @@ function TimelineItem({ item }) {
 export default function Qualification() {
   const [tab, setTab] = useState('education')
   const items = QUALIFICATIONS[tab]
+  const { t } = useI18n()
 
   return (
     <section id="qualification" className="section py-24 sm:py-28">
  
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <SectionTitle title="Kualifikasi" subtitle="Tipe petualangan" />
+        <SectionTitle title={t('qualif.sectionTitle')} subtitle={t('qualif.sectionSubtitle')} />
 
         <Reveal>
           <div className="mt-10 flex justify-center gap-6 sm:gap-10">
@@ -70,9 +72,8 @@ export default function Qualification() {
                 size={20}
                 className="transition-transform group-hover:animate-[wiggle_0.45s_ease-in-out]"
               />{' '}
-              Pendidikan
-            </button>
-            <button
+              {t('qualif.education')}
+            </button>            <button
               type="button"
               onClick={() => {
                 playClickSound()
@@ -87,7 +88,7 @@ export default function Qualification() {
                 size={20}
                 className="transition-transform group-hover:animate-[wiggle_0.45s_ease-in-out]"
               />{' '}
-              Pengalaman
+              {t('qualif.work')}
             </button>
           </div>
         </Reveal>

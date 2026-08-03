@@ -3,6 +3,7 @@ import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import ParticleField from '../effects/ParticleField'
 import LogoMarquee from '../effects/LogoMarquee'
+import { useI18n } from '../../useI18n'
 import { MODES } from '../../data/content'
 
 const NAVBAR_HEIGHT = 64
@@ -12,6 +13,7 @@ export default function ModeSwitch({ mode, onChange }) {
   const keys = ['developer', 'creative']
   const sectionRef = useRef(null)
   const [floating, setFloating] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     const el = sectionRef.current
@@ -46,10 +48,10 @@ export default function ModeSwitch({ mode, onChange }) {
               <ParticleField density={22000} />
               <div className="relative z-10">
                 <span className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-primary">
-                  Mode Personal Branding
+                  {t('modeswitch.badge')}
                 </span>
                 <h2 className="mt-2 text-2xl font-bold text-title sm:text-3xl">
-                  Kamu mau dikenal sebagai apa?
+                  {t('modeswitch.title')}
                 </h2>
 
                 <div
@@ -87,7 +89,7 @@ export default function ModeSwitch({ mode, onChange }) {
                           key === 'developer' ? 'font-bitcount' : ''
                         }`}
                       >
-                        {data.shortLabel}
+                        {t(data.shortLabel)}
                       </span>
                     </button>
                   )
@@ -95,7 +97,7 @@ export default function ModeSwitch({ mode, onChange }) {
               </div>
 
               <p className="mt-6 text-sm text-muted">
-                Skill, layanan, dan portfolio menyesuaikan dengan mode yang dipilih.
+                {t('modeswitch.hint')}
               </p>
               </div>
             </div>
@@ -132,7 +134,7 @@ export default function ModeSwitch({ mode, onChange }) {
               >
                 <Icon name={data.icon} size={20} />
                 <span className={key === 'developer' ? 'font-bitcount' : ''}>
-                  {data.shortLabel}
+                  {t(data.shortLabel)}
                 </span>
               </button>
             )

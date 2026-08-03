@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Icon from '../ui/Icon'
 import { NAV_LINKS } from '../../data/content'
+import { useI18n } from '../../useI18n'
 import { useScrolled, useActiveSection } from '../../hooks/useScroll'
 
 const SECTION_IDS = ['home', 'about', 'skills', 'services', 'portfolio', 'contact']
@@ -9,6 +10,7 @@ export default function Header({ dark, onToggleTheme }) {
   const scrolled = useScrolled()
   const [menuOpen, setMenuOpen] = useState(false)
   const active = useActiveSection(SECTION_IDS)
+  const { t, lang, setLang } = useI18n()
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -63,7 +65,7 @@ export default function Header({ dark, onToggleTheme }) {
                     >
                       <Icon name={link.icon} size={18} />
                     </span>
-                    <span className="flex-1">{link.label}</span>
+                    <span className="flex-1">{t(link.label)}</span>
                     {isActive && <Icon name="arrowRight" size={16} className="text-primary" />}
                   </a>
                 )
@@ -87,7 +89,7 @@ export default function Header({ dark, onToggleTheme }) {
                     size={18}
                     className="transition-transform duration-300 group-hover:-translate-y-0.5"
                   />
-                  {link.label}
+                  {t(link.label)}
                 </a>
               )
             })}
@@ -97,8 +99,18 @@ export default function Header({ dark, onToggleTheme }) {
         <div className="flex items-center gap-2">
           <button
             type="button"
+            onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
+            aria-label={t('header.toggleLanguage')}
+            title={t('header.toggleLanguage')}
+            className="inline-flex items-center gap-1 rounded-xl px-2.5 py-2 text-xs font-bold text-title transition-all duration-300 hover:rotate-6 hover:scale-110 hover:bg-primary-lighter/60 hover:text-primary active:scale-90"
+          >
+            <Icon name="languages" size={18} />
+            {t('header.switchTo')}
+          </button>
+          <button
+            type="button"
             onClick={onToggleTheme}
-            aria-label="Ganti tema"
+            aria-label={t('header.toggleTheme')}
             className="rounded-xl p-2 text-title transition-all duration-300 hover:rotate-6 hover:scale-110 hover:bg-primary-lighter/60 hover:text-primary active:scale-90"
           >
             <Icon name={dark ? 'sun' : 'moon'} size={22} />
@@ -106,7 +118,7 @@ export default function Header({ dark, onToggleTheme }) {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
+            aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
             aria-expanded={menuOpen}
             className="rounded-xl p-2 text-title transition-all duration-300 hover:rotate-6 hover:scale-110 hover:bg-primary-lighter/60 hover:text-primary active:scale-90 lg:hidden"
           >
