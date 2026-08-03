@@ -4,7 +4,7 @@ backend:
   branch: main
   # Ganti dengan URL proxy OAuth Anda setelah deploy Cloudflare Worker
   # (lihat README bagian "Setup Login Admin").
-  base_url: https://GANTI-DENGAN-PROXY-ANDA.workers.dev
+  base_url: https://decap-proxy.alan-lengkong.workers.dev
   auth_endpoint: /auth
 
 site_url: https://lansilvester.github.io/
