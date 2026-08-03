@@ -8,11 +8,15 @@ Website portfolio pribadi berbasis **React + Vite + Tailwind CSS v4** untuk mena
 - Dark / light theme
 - Toggle bahasa **ID / EN**
 - Portfolio grid dengan **filter kategori** + modal detail & lightbox (navigasi keyboard)
-- Form kontak terhubung ke **WhatsApp** (dengan fallback email)
+- **Galeri video** (YouTube/Vimeo) dengan lightbox — khusus mode Creative
+- **Blog** berbasis markdown (`/blog`) dengan halaman detail
+- **Tombol WhatsApp mengambang**
+- Form kontak dengan **validasi + honeypot**, terkirim ke **email (Web3Forms)** atau fallback WhatsApp
 - Section harga layanan (freelance)
-- **Dashboard admin** di `/admin/` (Decap CMS): edit teks, tambah skill, upload foto, atur urutan & visibilitas section, login GitHub
-- SEO: meta Open Graph, JSON-LD `Person`, `robots.txt`, `sitemap.xml`, `404.html`
+- **Dashboard admin** di `/admin/` (Decap CMS): edit teks, tambah skill, upload foto, atur urutan & visibilitas section, **kelola SEO**, **tulis artikel blog**, login GitHub
+- SEO: meta Open Graph **yang bisa diedit dari dashboard**, JSON-LD `Person`, `robots.txt`, `sitemap.xml`, `404.html`
 - Analytics **GoatCounter**
+- **Unit test (Vitest + Testing Library)** sebagai gerbang CI bersama lint
 - Deploy otomatis ke GitHub Pages via GitHub Actions
 
 ## Menjalankan di lokal
@@ -23,6 +27,7 @@ npm run dev      # development (http://localhost:5173)
 npm run build    # build produksi ke dist/
 npm run preview  # pratinjau hasil build
 npm run lint     # oxlint
+npm test         # vitest
 ```
 
 ## Arsitektur konten
@@ -31,9 +36,11 @@ Semua konten yang bisa diedit **disimpan sebagai data (JSON)**, bukan di dalam k
 
 | File | Isi |
 | --- | --- |
-| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, testimoni, harga, kontak, socials |
+| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, galeri video, testimoni, harga, kontak (termasuk `CONTACT_FORM`), socials |
 | `src/data/ui.json` | Teks label antarmuka (nav, tombol, judul section, placeholder) |
-| `src/data/layout.json` | Urutan & visibilitas section di halaman |
+| `src/data/layout.json` | Urutan & visibilitas section di halaman (termasuk `gallery`) |
+| `src/data/site.json` | SEO/Open Graph — dipakai plugin Vite untuk me-replace meta di `index.html` saat build |
+| `src/blog/posts/*.md` | Artikel blog (frontmatter + markdown) — dibuat/diedit lewat `/admin/` |
 
 Setiap teks memakai bentuk bilingual `{ "id": "...", "en": "..." }`. Komponen membaca lewat `t()` di `src/i18n.jsx` (path string untuk teks UI, atau objek `{id,en}` langsung untuk data). `src/data/content.js` hanyalah *adapter* yang mengekspor data JSON agar komponen tetap memakai import yang sama.
 
@@ -44,8 +51,14 @@ Buka **`https://lansilvester.github.io/admin/`** → login dengan akun GitHub ya
 Yang bisa dikelola dari dashboard:
 
 - **Teks & Label** — semua teks ID/EN (hero, about, judul section, tombol, placeholder, footer)
-- **Konten Situs** — menu, socials, profil, kualifikasi, skill (tambah/hapus kelompok & item), layanan, karya portfolio (+ upload gambar), testimoni, info kontak, paket harga
+- **Konten Situs** — menu, socials, profil, kualifikasi, skill (tambah/hapus kelompok & item), layanan, karya portfolio (+ upload gambar), testimoni, info kontak, paket harga, galeri video, form kontak
+- **SEO** — title, description, Open Graph (diedit di menu *Settings*)
+- **Blog** — tulis/edit artikel markdown; file tersimpan di `src/blog/posts/`, otomatis ikut di-build saat deploy
 - **Urutan & Tampilan** — tarik item untuk mengubah urutan section, dan centang/mati-kan visibilitas tiap section
+
+### Form kontak → email (Web3Forms)
+
+Secara bawaan, submit form kontak membuka **WhatsApp**. Untuk mengirim ke **email**, isi `CONTACT_FORM.accessKey` (gratis) dari [web3forms.com](https://web3forms.com/) lewat dashboard admin → menu **Konten Situs → Form Kontak**. Setelah diisi, submit akan mengirim JSON ke endpoint Web3Forms dan hasilnya masuk inbox.
 
 ### Setup login admin (sekali, via Cloudflare Workers)
 
@@ -92,8 +105,8 @@ Semua bisa diedit lewat dashboard, tapi bila perlu langsung:
 
 ## Deploy
 
-Push ke branch `main` — workflow `.github/workflows/deploy.yml` otomatis build dan deploy ke GitHub Pages.
+Push ke branch `main` — workflow `.github/workflows/deploy.yml` otomatis menjalankan **lint + unit test**, build, lalu deploy ke GitHub Pages. Deploy dibatalkan bila lint/test gagal.
 
 ## Stack
 
-React 19 · Vite · Tailwind CSS v4 · lucide-react · react-type-animation · Decap CMS · oxlint
+React 19 · Vite · Tailwind CSS v4 · react-router-dom · react-markdown · lucide-react · react-type-animation · Decap CMS · Vitest + Testing Library · oxlint

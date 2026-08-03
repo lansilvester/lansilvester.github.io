@@ -57,6 +57,8 @@ function BlobPhoto() {
 export default function Home({ mode }) {
   const modeData = MODES[mode]
   const { t } = useI18n()
+  const primaryCta = modeData.cta?.primary || { label: { id: t('hero.viewWork'), en: t('hero.viewWork') }, href: '#portfolio' }
+  const secondaryCta = modeData.cta?.secondary || { label: { id: t('hero.contact'), en: t('hero.contact') }, href: '#contact' }
 
   return (
     <section id="home" className="section relative overflow-hidden pt-28 sm:pt-32">
@@ -105,16 +107,16 @@ export default function Home({ mode }) {
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <a
-                  href="#portfolio"
+                  href={primaryCta.href}
                   className="btn-fill inline-flex items-center gap-2 rounded-full border-2 border-primary px-8 py-3 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  {t('hero.viewWork')} <Icon name="layout" size={18} />
+                  {t(primaryCta.label)} <Icon name="layout" size={18} />
                 </a>
                 <a
-                  href="#contact"
+                  href={secondaryCta.href}
                   className="group btn-shine inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-medium text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-primary-alt hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  {t('hero.contact')}{' '}
+                  {t(secondaryCta.label)}{' '}
                   <Icon
                     name="mail"
                     size={18}

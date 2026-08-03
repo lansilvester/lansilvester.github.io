@@ -79,6 +79,33 @@ collections:
               - { name: viewWork, label: 'Tombol Lihat Karya', widget: object, fields: *b }
               - { name: contact, label: 'Tombol Kontak Saya', widget: object, fields: *b }
               - { name: scroll, label: 'Label scroll ke bawah', widget: object, fields: *b }
+          - name: blog
+            label: 'Blog'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul', widget: object, fields: *b }
+              - name: sectionSubtitle
+                label: 'Subjudul'
+                widget: object
+                fields: *bt
+              - { name: readMore, label: 'Teks "Baca selengkapnya"', widget: object, fields: *b }
+              - { name: backToBlog, label: 'Teks "Kembali ke Blog"', widget: object, fields: *b }
+              - { name: empty, label: 'Pesan kosong', widget: object, fields: *b }
+              - { name: publishedOn, label: 'Label "Dipublikasikan"', widget: object, fields: *b }
+          - name: gallery
+            label: 'Galeri Video'
+            widget: object
+            fields:
+              - { name: sectionTitle, label: 'Judul', widget: object, fields: *b }
+              - { name: sectionSubtitle, label: 'Subjudul', widget: object, fields: *b }
+              - { name: watch, label: 'Tombol Putar Video', widget: object, fields: *b }
+              - { name: close, label: 'Tutup', widget: object, fields: *b }
+              - { name: empty, label: 'Pesan kosong', widget: object, fields: *b }
+          - name: whatsappFloat
+            label: 'Tombol WhatsApp mengambang'
+            widget: object
+            fields:
+              - { name: label, label: 'Label', widget: object, fields: *b }
           - name: modeswitch
             label: 'Mode Personal Branding'
             widget: object
@@ -179,6 +206,20 @@ collections:
               - { name: messagePlaceholder, label: 'Placeholder Pesan', widget: object, fields: *b }
               - { name: submitWhatsApp, label: 'Tombol Kirim via WhatsApp', widget: object, fields: *b }
               - { name: submitEmail, label: 'Tombol Kirim via Email', widget: object, fields: *b }
+              - { name: submit, label: 'Tombol Kirim Pesan (saat form email aktif)', widget: object, fields: *b }
+              - { name: sending, label: 'Teks saat mengirim', widget: object, fields: *b }
+              - name: success
+                label: 'Pesan sukses'
+                widget: object
+                fields: *bt
+              - name: errorValidation
+                label: 'Pesan validasi gagal'
+                widget: object
+                fields: *bt
+              - name: errorGeneric
+                label: 'Pesan gagal kirim'
+                widget: object
+                fields: *bt
               - name: whatsappNote
                 label: 'Catatan bawah form'
                 widget: object
@@ -329,6 +370,13 @@ collections:
               - { name: value, label: 'Nilai', widget: string }
               - { name: icon, label: 'Icon', widget: select, options: [phone, mail, map, whatsapp] }
               - { name: href, label: 'Tautan (biarkan kosong jika tidak ada)', widget: string, required: false }
+          - name: CONTACT_FORM
+            label: 'Form Kontak (opsional)'
+            widget: object
+            hint: 'Aktifkan kirim pesan via API (Web3Forms/Formspree). Kosongkan accessKey untuk tetap memakai WhatsApp.'
+            fields:
+              - { name: accessKey, label: 'Access key (Web3Forms), kosong = pakai WhatsApp', widget: string, required: false }
+              - { name: endpoint, label: 'Endpoint API (default: Web3Forms)', widget: string, required: false }
           - name: MODES
             label: 'Mode & Konten Per Mode'
             widget: object
@@ -352,6 +400,46 @@ collections:
                     label: 'Subjudul beranda'
                     widget: object
                     fields: *b
+                  - name: cta
+                    label: 'Tombol ajakan di beranda (per mode)'
+                    widget: object
+                    fields:
+                      - name: primary
+                        label: 'Tombol utama'
+                        widget: object
+                        fields:
+                          - name: label
+                            label: 'Label'
+                            widget: object
+                            fields: *b
+                          - { name: href, label: 'Tautan (mis. #portfolio)', widget: string }
+                      - name: secondary
+                        label: 'Tombol kedua'
+                        widget: object
+                        fields:
+                          - name: label
+                            label: 'Label'
+                            widget: object
+                            fields: *b
+                          - { name: href, label: 'Tautan (mis. #contact)', widget: string }
+                  - name: videos
+                    label: 'Galeri video (khusus mode Creative)'
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.title.id}}'
+                    fields:
+                      - { name: id, label: 'ID', widget: string }
+                      - name: title
+                        label: 'Judul'
+                        widget: object
+                        fields: *b
+                      - name: description
+                        label: 'Deskripsi'
+                        widget: object
+                        fields: *bt
+                      - { name: platform, label: 'Platform', widget: select, options: [youtube, vimeo], default: youtube }
+                      - { name: videoId, label: 'ID video (YouTube/Vimeo)', widget: string }
+                      - { name: thumbnail, label: 'Thumbnail (kosongkan = otomatis dari YouTube)', widget: image, choose_url: true, required: false }
                   - name: skillsSubtitle
                     label: 'Subjudul section skill'
                     widget: object
@@ -481,6 +569,59 @@ collections:
             collapsed: true
             summary: '{{fields.label}}'
             fields:
-              - { name: id, label: 'ID section', widget: select, options: [home, about, modeswitch, skills, qualification, services, portfolio, testimonial, pricing, cta, contact] }
+              - { name: id, label: 'ID section', widget: select, options: [home, about, modeswitch, skills, qualification, services, portfolio, gallery, testimonial, pricing, cta, contact] }
               - { name: label, label: 'Nama (hanya tampilan di editor)', widget: string }
               - { name: enabled, label: 'Tampilkan di halaman', widget: boolean, default: true }
+
+  # ==========================================================
+  # 4) PENGATURAN SITUS & SEO (src/data/site.json)
+  # ==========================================================
+  - name: settings
+    label: 'Pengaturan & SEO'
+    label_singular: 'Pengaturan'
+    editor:
+      preview: false
+    files:
+      - file: 'src/data/site.json'
+        label: 'Judul, deskripsi & meta SEO'
+        name: settings
+        format: json
+        fields:
+          - { name: title, label: 'Judul situs (tag <title>)', widget: string }
+          - name: description
+            label: 'Deskripsi (meta description)'
+            widget: text
+          - { name: author, label: 'Penulis', widget: string }
+          - { name: url, label: 'URL kanonikal', widget: string }
+          - { name: ogTitle, label: 'Judul Open Graph', widget: string }
+          - name: ogDescription
+            label: 'Deskripsi Open Graph'
+            widget: text
+          - { name: ogImage, label: 'Gambar share (OG)', widget: image, choose_url: true }
+          - { name: themeColor, label: 'Warna tema (hex, mis. #3b82f6)', widget: string }
+
+  # ==========================================================
+  # 5) ARTIKEL BLOG (src/blog/posts/*.md)
+  # ==========================================================
+  - name: blog
+    label: 'Artikel Blog'
+    label_singular: 'Artikel'
+    folder: 'src/blog/posts'
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    fields:
+      - { name: title, label: 'Judul', widget: string }
+      - { name: date, label: 'Tanggal', widget: datetime }
+      - name: excerpt
+        label: 'Ringkasan (tampil di daftar)'
+        widget: text
+      - name: tags
+        label: 'Tag'
+        widget: list
+        field: { name: tag, label: 'Tag', widget: string }
+      - { name: lang, label: 'Bahasa artikel', widget: select, options: [id, en], default: id }
+      - { name: featured, label: 'Artikel unggulan', widget: boolean, default: false, required: false }
+      - { name: body, label: 'Isi artikel (Markdown)', widget: markdown }

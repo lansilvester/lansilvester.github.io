@@ -7,6 +7,7 @@
     { "id": "qualification", "label": "Kualifikasi", "enabled": true },
     { "id": "services", "label": "Layanan", "enabled": true },
     { "id": "portfolio", "label": "Portfolio", "enabled": true },
+    { "id": "gallery", "label": "Galeri Video (khusus mode Creative)", "enabled": true },
     { "id": "testimonial", "label": "Testimonial", "enabled": true },
     { "id": "pricing", "label": "Harga Layanan", "enabled": true },
     { "id": "cta", "label": "Ajakan Proyek (CTA)", "enabled": true },

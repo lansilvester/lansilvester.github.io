@@ -268,6 +268,10 @@
       "href": "https://wa.me/6289694866639"
     }
   ],
+  "CONTACT_FORM": {
+    "endpoint": "",
+    "accessKey": ""
+  },
   "ABOUT": {
     "photo": "/images/uploads/454352231_976050077661766_5666414354415394596_n-removebg-preview.png",
     "cv": "/CV/CV-Varland-Lengkong.pdf",
@@ -447,6 +451,17 @@
         "id": "Web Developer | Freelancer",
         "en": "Web Developer | Freelancer"
       },
+      "cta": {
+        "primary": {
+          "label": { "id": "Lihat Karya", "en": "See Work" },
+          "href": "#portfolio"
+        },
+        "secondary": {
+          "label": { "id": "Kontak Saya", "en": "Contact Me" },
+          "href": "#contact"
+        }
+      },
+      "videos": [],
       "shortLabel": {
         "id": "Developer",
         "en": "Developer"
@@ -708,6 +723,46 @@
         "id": "Creative | Videographer | Photographer",
         "en": "Creative | Videographer | Photographer"
       },
+      "cta": {
+        "primary": {
+          "label": { "id": "Lihat Galeri Video", "en": "Watch Video Reel" },
+          "href": "#gallery"
+        },
+        "secondary": {
+          "label": { "id": "Booking Proyek", "en": "Book a Project" },
+          "href": "#contact"
+        }
+      },
+      "videos": [
+        {
+          "id": "v1",
+          "title": {
+            "id": "Showreel Videografi 2025",
+            "en": "Videography Showreel 2025"
+          },
+          "description": {
+            "id": "Kumpulan highlight karya video terbaik sepanjang tahun.",
+            "en": "A collection of the best video work highlights of the year."
+          },
+          "platform": "youtube",
+          "videoId": "dQw4w9WgXcQ",
+          "thumbnail": ""
+        },
+        {
+          "id": "v2",
+          "title": {
+            "id": "Behind The Scenes",
+            "en": "Behind The Scenes"
+          },
+          "description": {
+            "id": "Proses kreatif di balik produksi konten visual.",
+            "en": "The creative process behind visual content production."
+          },
+          "platform": "youtube",
+          "videoId": "ScMzIvxBSi4",
+          "thumbnail": ""
+        }
+      ],
       "shortLabel": {
         "id": "Creative",
         "en": "Creative"
@@ -902,6 +957,14 @@
       },
       "href": "#portfolio",
       "icon": "image"
+    },
+    {
+      "label": {
+        "id": "Blog",
+        "en": "Blog"
+      },
+      "href": "/blog",
+      "icon": "file"
     },
     {
       "label": {

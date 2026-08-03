@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Icon from '../ui/Icon'
 import { NAV_LINKS } from '../../data/content'
 import { useI18n } from '../../useI18n'
@@ -11,6 +12,12 @@ export default function Header({ dark, onToggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const active = useActiveSection(SECTION_IDS)
   const { t, lang, setLang } = useI18n()
+  const location = useLocation()
+
+  const isActiveLink = (href) =>
+    href.startsWith('#')
+      ? active === href.slice(1)
+      : location.pathname.startsWith(href)
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -28,13 +35,13 @@ export default function Header({ dark, onToggleTheme }) {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a
-          href="#home"
+        <Link
+          to="/"
           className="text-xl font-bold text-title transition-colors hover:text-primary"
           onClick={() => setMenuOpen(false)}
         >
           Alan
-        </a>
+        </Link>
 
         <div
           className={`fixed inset-x-0 top-16 z-40 transition-all duration-300 lg:static lg:pointer-events-auto lg:translate-y-0 lg:opacity-100 ${
@@ -46,18 +53,9 @@ export default function Header({ dark, onToggleTheme }) {
           <div className="mx-auto max-w-6xl px-4 pb-4 sm:px-6 lg:hidden">
             <div className="grid gap-1 rounded-2xl border border-line bg-card p-2 shadow-card">
               {NAV_LINKS.map((link) => {
-                const isActive = active === link.href.slice(1)
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 hover:translate-x-1 ${
-                      isActive
-                        ? 'bg-primary-lighter/40 text-primary'
-                        : 'text-text hover:bg-primary-lighter/30 hover:text-primary'
-                    }`}
-                  >
+                const isActive = isActiveLink(link.href)
+                const inner = (
+                  <>
                     <span
                       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
                         isActive ? 'bg-primary text-white' : 'bg-primary-lighter/50 text-primary'
@@ -67,7 +65,21 @@ export default function Header({ dark, onToggleTheme }) {
                     </span>
                     <span className="flex-1">{t(link.label)}</span>
                     {isActive && <Icon name="arrowRight" size={16} className="text-primary" />}
+                  </>
+                )
+                const className = `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 hover:translate-x-1 ${
+                  isActive
+                    ? 'bg-primary-lighter/40 text-primary'
+                    : 'text-text hover:bg-primary-lighter/30 hover:text-primary'
+                }`
+                return link.href.startsWith('#') ? (
+                  <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={className}>
+                    {inner}
                   </a>
+                ) : (
+                  <Link key={link.href} to={link.href} onClick={() => setMenuOpen(false)} className={className}>
+                    {inner}
+                  </Link>
                 )
               })}
             </div>
@@ -75,22 +87,28 @@ export default function Header({ dark, onToggleTheme }) {
 
           <div className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((link) => {
-              const isActive = active === link.href.slice(1)
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`group link-underline flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium transition-colors ${
-                    isActive ? 'active text-primary' : 'text-text hover:text-primary'
-                  }`}
-                >
+              const isActive = isActiveLink(link.href)
+              const className = `group link-underline flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium transition-colors ${
+                isActive ? 'active text-primary' : 'text-text hover:text-primary'
+              }`
+              const inner = (
+                <>
                   <Icon
                     name={link.icon}
                     size={18}
                     className="transition-transform duration-300 group-hover:-translate-y-0.5"
                   />
                   {t(link.label)}
+                </>
+              )
+              return link.href.startsWith('#') ? (
+                <a key={link.href} href={link.href} className={className}>
+                  {inner}
                 </a>
+              ) : (
+                <Link key={link.href} to={link.href} className={className}>
+                  {inner}
+                </Link>
               )
             })}
           </div>

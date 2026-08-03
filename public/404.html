@@ -7,7 +7,15 @@
     <link rel="canonical" href="https://lansilvester.github.io/" />
     <meta http-equiv="refresh" content="0; url=https://lansilvester.github.io/" />
     <script>
-      window.location.replace('https://lansilvester.github.io/')
+      ;(function () {
+        try {
+          var p = window.location.pathname
+          if (p && p !== '/' && p !== '/index.html') {
+            sessionStorage.setItem('pagesRedirect', p)
+          }
+        } catch (e) {}
+        window.location.replace('https://lansilvester.github.io/')
+      })()
     </script>
   </head>
   <body>

@@ -72,6 +72,18 @@
       }
     </script>
 
+    <script>
+      // GitHub Pages SPA fallback: pulihkan path yang disimpan 404.html agar
+      // rute seperti /blog dan /blog/:slug berfungsi saat dibuka langsung.
+      try {
+        var spaPath = sessionStorage.getItem('pagesRedirect')
+        if (spaPath) {
+          sessionStorage.removeItem('pagesRedirect')
+          history.replaceState(null, '', spaPath)
+        }
+      } catch (e) {}
+    </script>
+
     <script
       data-goatcounter="https://lansilvester.goatcounter.com/count"
       async

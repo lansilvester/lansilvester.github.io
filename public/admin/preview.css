@@ -1,0 +1,109 @@
+/* Gaya pratinjau Decap CMS agar mendekati tampilan asli situs */
+
+:root {
+  --c-body: #fbfbfe;
+  --c-card: #ffffff;
+  --c-title: #25232e;
+  --c-text: #6f6d7d;
+  --c-muted: #a2a0b0;
+  --c-border: rgba(37, 35, 46, 0.08);
+  --p-primary: #3b82f6;
+  --p-primary-alt: #2563eb;
+  --p-primary-lighter: #bfdbfe;
+}
+
+body {
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--c-body);
+  color: var(--c-text);
+  line-height: 1.85;
+  padding: 16px;
+}
+
+.decap-blog {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.decap-blog h1,
+.decap-blog h2,
+.decap-blog h3,
+.decap-blog h4 {
+  color: var(--c-title);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.decap-blog h1 {
+  font-size: 1.75rem;
+}
+
+.decap-blog h2 {
+  font-size: 1.4rem;
+}
+
+.decap-blog h3 {
+  font-size: 1.15rem;
+}
+
+.decap-blog .decap-meta {
+  color: var(--c-muted);
+  font-size: 0.875rem;
+}
+
+.decap-blog a {
+  color: var(--p-primary);
+}
+
+.decap-blog ul,
+.decap-blog ol {
+  padding-left: 1.25rem;
+}
+
+.decap-blog blockquote {
+  border-left: 3px solid var(--p-primary);
+  margin: 1rem 0;
+  padding-left: 1rem;
+  color: var(--c-title);
+  font-style: italic;
+}
+
+.decap-blog code {
+  background: var(--c-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.875em;
+}
+
+.decap-blog pre {
+  background: var(--c-border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.decap-blog pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.decap-blog img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.decap-blog hr {
+  border-color: var(--c-border);
+}
+
+.decap-blog table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.decap-blog th,
+.decap-blog td {
+  border: 1px solid var(--c-border);
+  padding: 6px 10px;
+  text-align: left;
+}
