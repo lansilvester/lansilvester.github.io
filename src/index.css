@@ -5,6 +5,7 @@
 :root {
   --c-body: #fbfbfe;
   --c-card: #ffffff;
+  --c-about: #eef0f4;
   --c-title: #25232e;
   --c-text: #6f6d7d;
   --c-muted: #a2a0b0;
@@ -24,6 +25,7 @@ html[data-mode='creative'] {
 .dark {
   --c-body: #16151f;
   --c-card: #211f2c;
+  --c-about: #23222f;
   --c-title: #f2f1f7;
   --c-text: #c4c2d0;
   --c-muted: #8a8796;
@@ -37,6 +39,7 @@ html[data-mode='creative'] {
   --color-primary-lighter: var(--p-primary-lighter);
   --color-body: var(--c-body);
   --color-card: var(--c-card);
+  --color-about: var(--c-about);
   --color-title: var(--c-title);
   --color-text: var(--c-text);
   --color-muted: var(--c-muted);
@@ -122,6 +125,60 @@ html[data-mode='creative'] {
   animation: float 5s ease-in-out infinite;
 }
 
+/* ===== Orbit partikel di sekitar blob foto (home) ===== */
+.blob-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--size, 120%);
+  aspect-ratio: 1 / 1;
+  margin-left: calc(var(--size, 120%) / -2);
+  margin-top: calc(var(--size, 120%) / -2);
+  animation: orbit-spin var(--dur, 16s) linear infinite;
+  animation-direction: var(--dir, normal);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.blob-orbit-dot {
+  position: absolute;
+  width: var(--dot-size, 8px);
+  height: var(--dot-size, 8px);
+  border-radius: 999px;
+  background: var(--dot-color, var(--p-primary));
+  opacity: var(--dot-opacity, 0.75);
+  box-shadow: 0 0 var(--dot-glow, 10px) var(--dot-color, var(--p-primary));
+}
+
+.blob-orbit-dot--top {
+  top: calc(var(--dot-size, 8px) / -2);
+  left: calc(50% - var(--dot-size, 8px) / 2);
+}
+
+.blob-orbit-dot--right {
+  top: calc(50% - var(--dot-size, 8px) / 2);
+  right: calc(var(--dot-size, 8px) / -2);
+}
+
+.blob-orbit-dot--bottom {
+  bottom: calc(var(--dot-size, 8px) / -2);
+  left: calc(50% - var(--dot-size, 8px) / 2);
+}
+
+.blob-orbit-dot--left {
+  top: calc(50% - var(--dot-size, 8px) / 2);
+  left: calc(var(--dot-size, 8px) / -2);
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ===== Mode font (hanya area konten yang menyesuaikan) ===== */
 .mode-developer {
   font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -154,6 +211,33 @@ html[data-mode='creative'] {
 
 .mode-fade {
   animation: mode-fade 0.5s ease both;
+}
+
+/* ===== Fade halus saat bahasa berpindah ===== */
+.lang-fade {
+  opacity: 1;
+  transition: opacity 0.22s ease;
+  will-change: opacity;
+}
+
+.lang-fade-out {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-fade,
+  .lang-fade-out {
+    transition: none;
+  }
+
+  .blob-orbit,
+  .animate-float {
+    animation: none;
+  }
+
+  .blob-orbit-dot {
+    opacity: var(--dot-opacity, 0.75);
+  }
 }
 
 /* ===== Transisi halus saat toggle mode berpindah ===== */

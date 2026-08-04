@@ -109,7 +109,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('contact.sectionTitle')} subtitle={t('contact.sectionSubtitle')} />
 
         <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.4fr]">

@@ -10,7 +10,7 @@ export default function ScrollUp() {
     <a
       href="#home"
       aria-label={t('scrollUp.label')}
-      className={`group fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-primary-alt hover:shadow-lg ${
+      className={`group fixed bottom-24 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-primary-alt hover:shadow-lg ${
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >

@@ -5,10 +5,72 @@ import ParticleField from '../effects/ParticleField'
 import { useI18n } from '../../useI18n'
 import { HERO, MODES, SOCIALS } from '../../data/content'
 
+const ORBITS = [
+  {
+    size: '115%',
+    dur: '16s',
+    dir: 'normal',
+    dots: [
+      { pos: 'top', size: '7px', color: 'var(--p-primary)', opacity: 0.9, glow: '10px' },
+      { pos: 'right', size: '5px', color: 'var(--p-primary)', opacity: 0.7, glow: '8px' },
+      { pos: 'bottom', size: '9px', color: 'var(--p-primary-alt)', opacity: 0.8, glow: '12px' },
+      { pos: 'left', size: '5px', color: 'var(--p-primary-alt)', opacity: 0.7, glow: '8px' },
+    ],
+  },
+  {
+    size: '135%',
+    dur: '11s',
+    dir: 'reverse',
+    dots: [
+      { pos: 'top', size: '5px', color: 'var(--c-title)', opacity: 0.85, glow: '8px' },
+      { pos: 'right', size: '7px', color: 'var(--p-primary)', opacity: 0.6, glow: '10px' },
+      { pos: 'left', size: '6px', color: 'var(--p-primary)', opacity: 0.6, glow: '9px' },
+    ],
+  },
+  {
+    size: '155%',
+    dur: '22s',
+    dir: 'normal',
+    dots: [
+      { pos: 'top', size: '6px', color: 'var(--p-primary-alt)', opacity: 0.5, glow: '10px' },
+      { pos: 'bottom', size: '6px', color: 'var(--p-primary)', opacity: 0.5, glow: '10px' },
+    ],
+  },
+]
+
+function BlobOrbit() {
+  return (
+    <>
+      {ORBITS.map((ring, i) => (
+        <div
+          key={i}
+          aria-hidden="true"
+          className="blob-orbit"
+          style={{ '--size': ring.size, '--dur': ring.dur, '--dir': ring.dir }}
+        >
+          {ring.dots.map((dot, j) => (
+            <span
+              key={j}
+              className={`blob-orbit-dot blob-orbit-dot--${dot.pos}`}
+              style={{
+                '--dot-size': dot.size,
+                '--dot-color': dot.color,
+                '--dot-opacity': dot.opacity,
+                '--dot-glow': dot.glow,
+              }}
+            />
+          ))}
+        </div>
+      ))}
+    </>
+  )
+}
+
 function BlobPhoto() {
   return (
     <div className="relative mx-auto w-56 sm:w-72 lg:w-80">
-      <div className="animate-float">
+      <div className="animate-float relative">
+        <BlobOrbit />
         <svg
           viewBox="0 0 200 187"
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +125,7 @@ export default function Home({ mode }) {
   return (
     <section id="home" className="section relative overflow-hidden pt-28 sm:pt-32">
       <ParticleField />
-      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-4 pb-6 sm:px-6">
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-2 pb-6 sm:px-4">
         <div className="grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="order-2 grid grid-cols-[auto_1fr] items-center gap-4 lg:order-1">
             <Reveal direction="left">

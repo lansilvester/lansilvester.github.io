@@ -53,7 +53,7 @@ export default function Qualification() {
   return (
     <section id="qualification" className="section py-24 sm:py-28">
  
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('qualif.sectionTitle')} subtitle={t('qualif.sectionSubtitle')} />
 
         <Reveal>

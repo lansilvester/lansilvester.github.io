@@ -17,7 +17,7 @@ export default function Testimonial() {
 
   return (
     <section id="testimonial" className="section bg-card py-24 sm:py-28">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('testimonial.sectionTitle')} subtitle={t('testimonial.sectionSubtitle')} />
 
         <Reveal className="mt-12">

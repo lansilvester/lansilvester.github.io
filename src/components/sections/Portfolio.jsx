@@ -46,7 +46,7 @@ export default function Portfolio({ mode }) {
 
   return (
     <section id="portfolio" className="section py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('portfolio.sectionTitle')} subtitle={t(modeData.portfolioSubtitle)} />
 
         <Reveal className="mt-10">

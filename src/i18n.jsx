@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { LanguageContext } from './useI18n'
 import ui from './data/ui.json'
+
+const FADE_DURATION = 220
 
 // Telusuri ui.json mengikuti path bertitik (mis. "hero.description").
 function lookupPath(node, segments) {
@@ -21,12 +23,32 @@ function resolve(value, lang) {
 }
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'id')
+  const [lang, setLangState] = useState(() => localStorage.getItem('lang') || 'id')
+  const [fading, setFading] = useState(false)
+  const timers = useRef([])
 
   useEffect(() => {
     localStorage.setItem('lang', lang)
     document.documentElement.setAttribute('lang', lang)
   }, [lang])
+
+  useEffect(() => {
+    const pending = timers.current
+    return () => pending.forEach((id) => window.clearTimeout(id))
+  }, [])
+
+  const setLang = (next) => {
+    if (next === lang) return
+    setFading(true)
+    timers.current.push(
+      window.setTimeout(() => {
+        setLangState(next)
+        timers.current.push(
+          window.setTimeout(() => setFading(false), FADE_DURATION)
+        )
+      }, FADE_DURATION)
+    )
+  }
 
   const value = {
     lang,
@@ -40,5 +62,9 @@ export function LanguageProvider({ children }) {
     },
   }
 
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+  return (
+    <LanguageContext.Provider value={value}>
+      <div className={`lang-fade${fading ? ' lang-fade-out' : ''}`}>{children}</div>
+    </LanguageContext.Provider>
+  )
 }

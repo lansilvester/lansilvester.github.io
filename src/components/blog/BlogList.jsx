@@ -12,7 +12,7 @@ export default function BlogList() {
 
   return (
     <section className="section pb-24 pt-28 sm:pb-28 sm:pt-32">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('blog.sectionTitle')} subtitle={t('blog.sectionSubtitle')} />
 
         {visible.length === 0 ? (

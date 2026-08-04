@@ -7,7 +7,7 @@ export default function ProjectInMind() {
 
   return (
     <section className="section py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary-alt px-6 py-14 sm:px-12">
             <div className="grid items-center gap-8 md:grid-cols-[1fr_auto]">

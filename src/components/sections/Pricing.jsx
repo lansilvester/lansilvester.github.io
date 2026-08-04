@@ -9,7 +9,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="section bg-card py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('pricing.sectionTitle')} subtitle={t('pricing.sectionSubtitle')} />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">

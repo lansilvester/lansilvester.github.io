@@ -34,7 +34,7 @@ export default function BlogPost() {
 
   return (
     <section className="section pb-24 pt-28 sm:pb-28 sm:pt-32">
-      <article className="mx-auto max-w-3xl px-4 sm:px-6">
+      <article className="mx-auto max-w-3xl px-2 sm:px-4">
         <Link
           to="/blog"
           className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary-alt"

@@ -15,7 +15,7 @@ export default function Services({ mode }) {
   return (
     <section id="services" className="section relative overflow-hidden bg-card py-24 sm:py-28">
       <ColorWaveBackground />
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('services.sectionTitle')} subtitle={t(modeData.servicesSubtitle)} />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">

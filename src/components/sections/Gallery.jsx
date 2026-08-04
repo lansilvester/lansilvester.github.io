@@ -57,7 +57,7 @@ export default function Gallery({ mode }) {
 
   return (
     <section id="gallery" className="section py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('gallery.sectionTitle')} subtitle={t('gallery.sectionSubtitle')} />
 
         {videos.length === 0 ? (

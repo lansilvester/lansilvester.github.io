@@ -8,8 +8,8 @@ export default function About() {
   const { t } = useI18n()
 
   return (
-    <section id="about" className="section py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="about" className="section bg-about py-24 transition-colors duration-500 sm:py-28">
+      <div className="mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('about.sectionTitle')} subtitle={t('about.sectionSubtitle')} />
 
         <div className="mt-12 grid items-center gap-10 md:grid-cols-2">

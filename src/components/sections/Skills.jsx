@@ -15,7 +15,7 @@ export default function Skills({ mode }) {
   return (
     <section id="skills" className="section relative overflow-hidden bg-card py-24 sm:py-28">
       <LongShadowBackground mode={mode} />
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-2 sm:px-4">
         <SectionTitle title={t('skills.sectionTitle')} subtitle={t(modeData.skillsSubtitle)} />
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-4">

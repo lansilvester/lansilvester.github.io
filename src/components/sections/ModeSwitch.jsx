@@ -42,7 +42,7 @@ export default function ModeSwitch({ mode, onChange }) {
   return (
     <>
       <section ref={sectionRef} className="section pb-0 pt-6 sm:pt-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-2 sm:px-4">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl border border-line bg-card p-6 text-center shadow-card sm:p-10 mb-16 sm:mb-24">
               <ParticleField density={22000} />
