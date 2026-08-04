@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
 import { useI18n } from '../../useI18n'

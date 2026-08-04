@@ -77,7 +77,7 @@
       // rute seperti /blog dan /blog/:slug berfungsi saat dibuka langsung.
       try {
         var spaPath = sessionStorage.getItem('pagesRedirect')
-        if (spaPath) {
+        if (spaPath && spaPath.startsWith('/') && !spaPath.startsWith('//')) {
           sessionStorage.removeItem('pagesRedirect')
           history.replaceState(null, '', spaPath)
         }

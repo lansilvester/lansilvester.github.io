@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router'
 import Header from './components/layout/Header'
 import Home from './components/sections/Home'
 import ModeSwitch from './components/sections/ModeSwitch'

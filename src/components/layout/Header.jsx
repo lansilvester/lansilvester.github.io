@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import Icon from '../ui/Icon'
 import { NAV_LINKS } from '../../data/content'
 import { useI18n } from '../../useI18n'

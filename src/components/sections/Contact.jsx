@@ -8,13 +8,27 @@ import { CONTACT_INFO, CONTACT_FORM, HERO } from '../../data/content'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const DEFAULT_ENDPOINT = 'https://api.web3forms.com/submit'
 
+// Hanya izinkan endpoint https milik web3forms; selain itu pakai default
+// agar data form tidak bisa dikirim ke server lain.
+function resolveEndpoint(custom) {
+  if (typeof custom === 'string' && custom.trim()) {
+    try {
+      const u = new URL(custom)
+      if (u.protocol === 'https:' && u.hostname === 'api.web3forms.com') return u.toString()
+    } catch {
+      return DEFAULT_ENDPOINT
+    }
+  }
+  return DEFAULT_ENDPOINT
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', project: '', message: '', company: '' })
   const [status, setStatus] = useState('idle')
   const { t } = useI18n()
 
   const usingEndpoint = Boolean(CONTACT_FORM.accessKey)
-  const endpoint = CONTACT_FORM.endpoint || DEFAULT_ENDPOINT
+  const endpoint = resolveEndpoint(CONTACT_FORM.endpoint)
 
   const update = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
