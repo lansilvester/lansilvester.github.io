@@ -1,8 +1,8 @@
-const RSS_TO_JSON_URL = 'https://api.rss2json.com/v1/api.json'
-const MEDIUM_STAT_IMAGE = 'medium.com/_/stat'
+const EXCERPT_LIMIT = 220
 
 export function mediumFeedUrl(username) {
-  return `https://medium.com/feed/${username.replace(/^@/, '')}`
+  const name = username.replace(/^@/, '')
+  return `https://medium.com/feed/@${name}`
 }
 
 export function decodeHtml(value) {
@@ -28,31 +28,57 @@ export function extractThumbnail(description) {
   const match = html.match(/<img[^>]+src="([^"]+)"/i)
   if (!match) return ''
   const src = decodeHtml(match[1])
-  if (!src || src.includes(MEDIUM_STAT_IMAGE)) return ''
+  if (!src || src.includes('medium.com/_/stat')) return ''
   return src
+}
+
+function unwrapCdata(value) {
+  const match = String(value || '').match(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/)
+  return match ? match[1] : String(value || '')
+}
+
+function truncate(value, limit) {
+  const text = (value || '').trim()
+  if (text.length <= limit) return text
+  return `${text.slice(0, limit).trimEnd()}…`
+}
+
+// Parsing sederhana RSS Medium (feed berisi <content:encoded>, tanpa <description>).
+export function parseMediumRss(xml) {
+  if (!xml) return []
+  return [...String(xml).matchAll(/<item>([\s\S]*?)<\/item>/gi)]
+    .map((match) => match[1])
+    .map((raw) => {
+      const title = raw.match(/<title>([\s\S]*?)<\/title>/i)
+      const link = raw.match(/<link>([\s\S]*?)<\/link>/i)
+      const pubDate = raw.match(/<pubDate>([\s\S]*?)<\/pubDate>/i)
+      const content =
+        raw.match(/<content:encoded>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/content:encoded>/i) ||
+        raw.match(/<description>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/description>/i)
+      const categories = [...raw.matchAll(/<category>([\s\S]*?)<\/category>/gi)]
+      return {
+        title: stripHtml(unwrapCdata(title && title[1])),
+        link: unwrapCdata(link && link[1]).trim(),
+        pubDate: unwrapCdata(pubDate && pubDate[1]).trim(),
+        categories: categories.map((c) => stripHtml(unwrapCdata(c[1]))).filter(Boolean),
+        content: unwrapCdata(content && content[1]),
+      }
+    })
+    .filter((p) => p.title)
 }
 
 export function mapMediumItem(item) {
   return {
     title: item.title || '',
     link: item.link || '',
-    date: item.pubDate || '',
+    date: item.pubDate || item.date || '',
     thumbnail: extractThumbnail(item.description || item.content || ''),
     tags: Array.isArray(item.categories) ? item.categories.filter((c) => c && c !== 'medium') : [],
-    excerpt: stripHtml(item.description || ''),
+    excerpt: truncate(stripHtml(item.description || item.content || ''), EXCERPT_LIMIT),
   }
 }
 
 export function mapMediumResponse(data) {
   if (!data || !Array.isArray(data.items)) return []
   return data.items.map(mapMediumItem).filter((p) => p.title)
-}
-
-export async function fetchMediumPosts(username) {
-  const endpoint = `${RSS_TO_JSON_URL}?rss_url=${encodeURIComponent(mediumFeedUrl(username))}`
-  const res = await fetch(endpoint)
-  if (!res.ok) throw new Error(`Medium feed request failed: ${res.status}`)
-  const data = await res.json()
-  if (data.status !== 'ok') throw new Error(data.message || 'Medium feed error')
-  return mapMediumResponse(data)
 }

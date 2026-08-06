@@ -29,7 +29,6 @@
     },
     "readMore": { "id": "Baca selengkapnya", "en": "Read more" },
     "readOnMedium": { "id": "Baca di Medium", "en": "Read on Medium" },
-    "loading": { "id": "Memuat artikel...", "en": "Loading articles..." },
     "backToBlog": { "id": "Kembali ke Blog", "en": "Back to Blog" },
     "empty": { "id": "Belum ada artikel.", "en": "No articles yet." },
     "publishedOn": { "id": "Dipublikasikan", "en": "Published" }

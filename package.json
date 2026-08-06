@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-medium.mjs",
     "build": "vite build",
     "lint": "oxlint",
     "test": "vitest run",

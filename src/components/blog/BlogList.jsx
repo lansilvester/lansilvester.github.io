@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
 import { useI18n } from '../../useI18n'
 import { getAllPosts, formatPostDate } from '../../utils/blog'
-import { fetchMediumPosts } from '../../utils/medium'
-import site from '../../data/site.json'
+import mediumPosts from '../../data/medium-posts.json'
 
 function MediumCard({ post }) {
   const { t, lang } = useI18n()
@@ -100,39 +98,14 @@ export default function BlogList() {
   const localPosts = getAllPosts()
   const langPosts = localPosts.filter((p) => !p.lang || p.lang === lang)
   const fallback = langPosts.length ? langPosts : localPosts
-  const [posts, setPosts] = useState(null)
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    let cancelled = false
-    fetchMediumPosts(site.mediumUsername)
-      .then((items) => {
-        if (!cancelled) setPosts(items)
-      })
-      .catch(() => {
-        if (!cancelled) setError(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const visible = posts ?? (error ? fallback : [])
+  const visible = mediumPosts && mediumPosts.length ? mediumPosts : fallback
 
   return (
     <section className="section pb-24 pt-28 sm:pb-28 sm:pt-32">
       <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('blog.sectionTitle')} subtitle={t('blog.sectionSubtitle')} />
 
-        {posts === null && !error && (
-          <p className="mt-12 text-center text-sm text-muted">{t('blog.loading')}</p>
-        )}
-
-        {posts !== null && visible.length === 0 && (
-          <p className="mt-12 text-center text-sm text-muted">{t('blog.empty')}</p>
-        )}
-
-        {error && fallback.length === 0 && (
+        {visible.length === 0 && (
           <p className="mt-12 text-center text-sm text-muted">{t('blog.empty')}</p>
         )}
 

@@ -1,18 +1,37 @@
-import { describe, expect, it, vi, afterEach } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
   mediumFeedUrl,
   decodeHtml,
   stripHtml,
   extractThumbnail,
+  parseMediumRss,
   mapMediumItem,
   mapMediumResponse,
-  fetchMediumPosts,
 } from './medium'
 
+const rssFixture = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Feed</title>
+  <item>
+    <title><![CDATA[Judul Artikel]]></title>
+    <link>https://medium.com/@alan.lengkong/judul-123</link>
+    <category><![CDATA[ai]]></category>
+    <category><![CDATA[medium]]></category>
+    <dc:creator><![CDATA[Varland Lengkong]]></dc:creator>
+    <pubDate>Sat, 14 Sep 2024 19:14:12 GMT</pubDate>
+    <content:encoded><![CDATA[<p><img src="https://cdn-images-1.medium.com/1*x.png" /> Ringkasan <b>artikel</b>.</p>]]></content:encoded>
+  </item>
+  <item>
+    <title><![CDATA[Tanpa Gambar]]></title>
+    <link>https://medium.com/@alan.lengkong/tanpa-gambar</link>
+    <pubDate>Sun, 15 Sep 2024 08:00:00 GMT</pubDate>
+    <content:encoded><![CDATA[<p>Halo dunia</p>]]></content:encoded>
+  </item>
+</channel></rss>`
+
 describe('medium utils', () => {
-  it('membangun URL feed dari username', () => {
-    expect(mediumFeedUrl('@alan.lengkong')).toBe('https://medium.com/feed/alan.lengkong')
-    expect(mediumFeedUrl('alan.lengkong')).toBe('https://medium.com/feed/alan.lengkong')
+  it('membangun URL feed dengan tanda @', () => {
+    expect(mediumFeedUrl('@alan.lengkong')).toBe('https://medium.com/feed/@alan.lengkong')
+    expect(mediumFeedUrl('alan.lengkong')).toBe('https://medium.com/feed/@alan.lengkong')
   })
 
   it('mendekode entitas HTML', () => {
@@ -24,24 +43,34 @@ describe('medium utils', () => {
     expect(stripHtml('&amp;')).toBe('&')
   })
 
-  it('mengambil thumbnail dari deskripsi', () => {
+  it('mengambil thumbnail dari konten', () => {
     const html = '<p>Intro</p><figure><img src="https://cdn-images-1.medium.com/max/630/1*abc.png" /></figure>'
     expect(extractThumbnail(html)).toBe('https://cdn-images-1.medium.com/max/630/1*abc.png')
     expect(extractThumbnail('<img src="https://medium.com/_/stat?event=post.clientViewed" />')).toBe('')
     expect(extractThumbnail('tanpa gambar')).toBe('')
   })
 
+  it('mem-parsing RSS Medium', () => {
+    const posts = parseMediumRss(rssFixture)
+    expect(posts).toHaveLength(2)
+    expect(posts[0].title).toBe('Judul Artikel')
+    expect(posts[0].link).toBe('https://medium.com/@alan.lengkong/judul-123')
+    expect(posts[0].pubDate).toContain('2024')
+    expect(posts[0].categories).toEqual(['ai', 'medium'])
+    expect(posts[0].content).toContain('cdn-images-1.medium.com')
+    expect(posts[1].title).toBe('Tanpa Gambar')
+    expect(parseMediumRss('')).toEqual([])
+  })
+
   it('memetakan satu item feed Medium', () => {
-    const item = {
-      title: 'Judul Artikel',
-      link: 'https://medium.com/@alan.lengkong/judul-123',
-      pubDate: '2024-09-14 19:14:12',
+    const post = mapMediumItem({
+      title: 'Judul',
+      link: 'https://medium.com/x',
+      pubDate: 'Sat, 14 Sep 2024 19:14:12 GMT',
       categories: ['ai', 'medium'],
-      description: '<p><img src="https://cdn-images-1.medium.com/1*x.png" /> Ringkasan <b>artikel</b>.</p>',
-    }
-    const post = mapMediumItem(item)
-    expect(post.title).toBe('Judul Artikel')
-    expect(post.link).toContain('medium.com')
+      content: '<p><img src="https://cdn-images-1.medium.com/1*x.png" /> Ringkasan <b>artikel</b>.</p>',
+    })
+    expect(post.title).toBe('Judul')
     expect(post.thumbnail).toBe('https://cdn-images-1.medium.com/1*x.png')
     expect(post.tags).toEqual(['ai'])
     expect(post.excerpt).toContain('Ringkasan artikel')
@@ -59,35 +88,4 @@ describe('medium utils', () => {
     expect(mapMediumResponse(null)).toEqual([])
     expect(mapMediumResponse({ items: [{ link: 'x' }] })).toEqual([])
   })
-
-  it('fetch artikel Medium', async () => {
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        status: 'ok',
-        items: [{ title: 'Dari Medium', link: 'https://medium.com/artikel', categories: [] }],
-      }),
-    })
-
-    const posts = await fetchMediumPosts('@alan.lengkong')
-    expect(posts).toHaveLength(1)
-    expect(posts[0].title).toBe('Dari Medium')
-    expect(global.fetch).toHaveBeenCalledWith(
-      expect.stringContaining(encodeURIComponent('https://medium.com/feed/alan.lengkong'))
-    )
-  })
-
-  it('melempar error saat response tidak ok', async () => {
-    global.fetch = vi.fn().mockResolvedValue({ ok: false, status: 503 })
-    await expect(fetchMediumPosts('@alan.lengkong')).rejects.toThrow(/503/)
-  })
-
-  it('melempar error saat status feed gagal', async () => {
-    global.fetch = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ status: 'error', message: 'boom' }) })
-    await expect(fetchMediumPosts('@alan.lengkong')).rejects.toThrow('boom')
-  })
-})
-
-afterEach(() => {
-  vi.restoreAllMocks()
 })

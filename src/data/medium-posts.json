@@ -1,0 +1,136 @@
+[
+  {
+    "title": "Artificial Intelligence vs Machine Learning vs Deep Learning",
+    "link": "https://medium.com/@alan.lengkong/artificial-intelligence-vs-machine-learning-vs-deep-learning-ffea61a65710?source=rss-a8f43360d7f8------2",
+    "date": "Sat, 14 Sep 2024 19:14:12 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/630/1*j8JVKva58328Vqqcs-TKUg.png",
+    "tags": [
+      "alogirthms",
+      "deep-learning",
+      "artificial-intelligence",
+      "machine-learning",
+      "neural-networks"
+    ],
+    "excerpt": "AI secara gampang adalah simulasi kepintaran manusia yang dipindahkan ke mesin. Dalam penerapannya, dapat juga mengarah ke Expert System (Sistem Pakar) Machine Learning ML adalah bidang study yang memberikan mesin kemamp…"
+  },
+  {
+    "title": "Roadmap Data Science",
+    "link": "https://medium.com/@alan.lengkong/roadmap-data-science-b5ceb1475977?source=rss-a8f43360d7f8------2",
+    "date": "Sat, 14 Sep 2024 16:57:54 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/637/1*WzoHGw3rrcbhHQDFnWWngw.png",
+    "tags": [],
+    "excerpt": "Data Science Analisis, Bersifat Diagnosis Modeling, Prediksi Testing, Improve"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/18 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-18-til-week-13-final-project-d3813457b2e1?source=rss-a8f43360d7f8------2",
+    "date": "Wed, 18 Jan 2023 16:42:34 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/443/1*9eUqdh4LL-j5tifopM6ifA.png",
+    "tags": [
+      "lx-international",
+      "bootcamp-in-indonesia",
+      "today-i-learned",
+      "sparta-coding-club",
+      "full-stack-developer"
+    ],
+    "excerpt": "Team 7 I’m back to continue my work on the backend. I changed the code structure to make it easier to upgrade and fix in the future, but I haven’t pushed to github and deploy yet because I’m waiting for the frontend work…"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/16 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-16-til-week-13-final-project-24d23280fe8b?source=rss-a8f43360d7f8------2",
+    "date": "Tue, 17 Jan 2023 04:57:16 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/340/1*tivIamhR74HyIR15clPr8g.png",
+    "tags": [
+      "bootcamp-in-indonesia",
+      "sparta-coding-club",
+      "today-i-learned",
+      "full-stack-developer",
+      "lx-international"
+    ],
+    "excerpt": "Team 7 Today I continued working on the backend and tidied up the existing code structure and have already deployed in vercel and github Vercel I also restructured my code according to the positive feedback from Miss Nar…"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/12 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-12-til-week-13-final-project-44c8b9e1cab?source=rss-a8f43360d7f8------2",
+    "date": "Thu, 12 Jan 2023 16:19:29 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*7lnV4L4CjFnqK1EYqWpqTQ.png",
+    "tags": [
+      "sparta-coding-club",
+      "lx-international",
+      "full-stack-developer",
+      "bootcamp-in-indonesia",
+      "today-i-learned"
+    ],
+    "excerpt": "Today is our mid presentation session in zoom. Team 7 After that, i continue create a next backend features API, make a API documentation and wrap up the endpoin format. Postman"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/11 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-11-til-week-13-final-project-38eace033d3f?source=rss-a8f43360d7f8------2",
+    "date": "Thu, 12 Jan 2023 02:31:00 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/721/1*cnE9oeMLjLE9DlbWg4xFfA.png",
+    "tags": [
+      "lx-international",
+      "bootcamp-in-indonesia",
+      "today-i-learned",
+      "sparta-coding-club",
+      "full-stack-developer"
+    ],
+    "excerpt": "Today i created a helper and validation schema using Joi."
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/03 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-03-til-week-13-final-project-53b16bbe515b?source=rss-a8f43360d7f8------2",
+    "date": "Wed, 11 Jan 2023 01:51:58 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*YJ3uukAVp73_XreW_X5jxw.png",
+    "tags": [
+      "lx-international",
+      "bootcamp-in-indonesia",
+      "full-stack-developer",
+      "sparta-coding-club",
+      "today-i-learned"
+    ],
+    "excerpt": "Mentoring Session Today I continued with the backend part, it took me a few days to set up an authentication secure system, and I’m stuck there"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/09/03 TIL/Week 13 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-09-03-til-week-13-final-project-79c1dc6f905d?source=rss-a8f43360d7f8------2",
+    "date": "Tue, 10 Jan 2023 02:07:08 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*RRYLvusAZvkZz_gdrxEPcA.png",
+    "tags": [
+      "full-stack-developer",
+      "bootcamp-in-indonesia",
+      "today-i-learned",
+      "sparta-coding-club",
+      "lx-international"
+    ],
+    "excerpt": "Mentoring session with mentor Justin Today our designers have completed the full design of our project. After that, the frontend works on it according to the existing prototype design. For the backend part, I’m having so…"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/05 TIL/Week 12 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-05-til-week-12-final-project-7add4b934a3f?source=rss-a8f43360d7f8------2",
+    "date": "Thu, 05 Jan 2023 17:06:11 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/339/0*bKat5jW-XnikEaj5.png",
+    "tags": [
+      "full-stack-developer",
+      "sparta-coding-club",
+      "bootcamp-in-indonesia",
+      "lx-international",
+      "today-i-learned"
+    ],
+    "excerpt": "API Documentation on Postman, The guide for using backend API from backend, already post the documentation on Postman. I also already push it on github repository and try to deploy on vercel, but i got some issues and i…"
+  },
+  {
+    "title": "[SpartaCodingClub FullStack Bootcamp in Indonesia] 2023/01/04 TIL/Week 12 [Final Project]",
+    "link": "https://medium.com/@alan.lengkong/spartacodingclub-fullstack-bootcamp-in-indonesia-2023-01-04-til-week-12-final-project-86c28f95066?source=rss-a8f43360d7f8------2",
+    "date": "Thu, 05 Jan 2023 02:11:01 GMT",
+    "thumbnail": "https://cdn-images-1.medium.com/max/434/1*RcJb1ldhYTb6BoiyRnOy9w.png",
+    "tags": [
+      "bootcamp-in-indonesia",
+      "today-i-learned",
+      "sparta-coding-club",
+      "lx-international",
+      "full-stack-developer"
+    ],
+    "excerpt": "Mentoring Session Today I worked on the /logout API and tried to re-deploy it on vercel"
+  }
+]
