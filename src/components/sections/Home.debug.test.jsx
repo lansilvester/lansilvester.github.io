@@ -29,6 +29,6 @@ describe('Home debug', () => {
     const body = document.body.textContent
     console.log('TEXT >>>', JSON.stringify(body))
     expect(body).toContain('website modern')
-   expect(body).toContain('Hweb Developer')
+    expect(body).toContain('Web Developer | Freelancer')
   })
 })
