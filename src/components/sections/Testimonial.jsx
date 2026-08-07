@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
+import useInView from '../../hooks/useInView'
 import { useI18n } from '../../useI18n'
 import { TESTIMONIALS } from '../../data/content'
 
@@ -9,14 +10,17 @@ export default function Testimonial() {
   const [index, setIndex] = useState(0)
   const total = TESTIMONIALS.length
   const { t } = useI18n()
+  const sectionRef = useRef(null)
+  const visible = useInView(sectionRef, '100px')
 
   useEffect(() => {
+    if (!visible) return
     const timer = setInterval(() => setIndex((i) => (i + 1) % total), 6000)
     return () => clearInterval(timer)
-  }, [total])
+  }, [total, visible])
 
   return (
-    <section id="testimonial" className="section bg-card py-24 sm:py-28">
+    <section id="testimonial" ref={sectionRef} className="section bg-card py-24 sm:py-28">
       <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('testimonial.sectionTitle')} subtitle={t('testimonial.sectionSubtitle')} />
 
@@ -36,6 +40,8 @@ export default function Testimonial() {
                       <img
                         src={item.image}
                         alt={item.name}
+                        width={56}
+                        height={56}
                         loading="lazy"
                         decoding="async"
                         className="h-14 w-14 rounded-full object-cover"

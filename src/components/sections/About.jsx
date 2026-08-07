@@ -17,6 +17,8 @@ export default function About() {
             <img
               src={ABOUT.photo}
               alt="Alan"
+              width={320}
+              height={320}
               loading="lazy"
               decoding="async"
               className="mx-auto h-64 w-64 rounded-full object-cover shadow-card sm:h-80 sm:w-80"

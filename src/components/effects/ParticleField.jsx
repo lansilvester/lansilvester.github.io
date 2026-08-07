@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import useInView from '../../hooks/useInView'
 
 const LINK_DIST = 120
 const MOUSE_DIST = 150
@@ -19,6 +20,7 @@ export default function ParticleField({
   interactive = true,
 }) {
   const canvasRef = useRef(null)
+  const visible = useInView(canvasRef, '100px')
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -148,7 +150,7 @@ export default function ParticleField({
       canvas.parentElement.addEventListener('mouseleave', onLeave)
     }
 
-    if (!reduced) raf = requestAnimationFrame(loop)
+    if (!reduced && visible) raf = requestAnimationFrame(loop)
 
     return () => {
       cancelAnimationFrame(raf)
@@ -159,7 +161,7 @@ export default function ParticleField({
         canvas.parentElement.removeEventListener('mouseleave', onLeave)
       }
     }
-  }, [density, interactive])
+  }, [density, interactive, visible])
 
   return (
     <canvas

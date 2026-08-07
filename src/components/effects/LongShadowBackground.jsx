@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react'
+import useInView from '../../hooks/useInView'
 import { ADOBE_LOGOS, TECH_LOGOS } from '../../data/logos'
+import { MODES } from '../../data/content'
+import { findLogo } from '../../utils/skillLogo'
 
 const LOGO_COUNT = 12
 const SHADOW_LENGTH = 1200
@@ -31,18 +34,21 @@ function getColors() {
   }
 }
 
-function roundedRect(ctx, x, y, w, h, r) {
-  const radius = Math.min(r, w / 2, h / 2)
-  ctx.moveTo(x + radius, y)
-  ctx.arcTo(x + w, y, x + w, y + h, radius)
-  ctx.arcTo(x + w, y + h, x, y + h, radius)
-  ctx.arcTo(x, y + h, x, y, radius)
-  ctx.arcTo(x, y, x + w, y, radius)
-  ctx.closePath()
+function skillsLogos(mode) {
+  const logos = mode === 'creative' ? ADOBE_LOGOS : TECH_LOGOS
+  const set = new Map()
+  for (const group of MODES[mode].skills) {
+    for (const skill of group.skills) {
+      const logo = findLogo(skill, logos)
+      if (logo && !set.has(logo.name)) set.set(logo.name, logo)
+    }
+  }
+  return [...set.values()]
 }
 
 export default function LongShadowBackground({ mode = 'developer', className = '' }) {
   const canvasRef = useRef(null)
+  const visible = useInView(canvasRef, '100px')
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -57,9 +63,8 @@ export default function LongShadowBackground({ mode = 'developer', className = '
     let raf = 0
     let colors = getColors()
     const light = { x: 160, y: 200 }
-    const logos = mode === 'creative' ? ADOBE_LOGOS : TECH_LOGOS
+    const logos = skillsLogos(mode)
     const particles = []
-
     const makeParticle = () => {
       const logo = logos[Math.floor(Math.random() * logos.length)]
       return {
@@ -135,7 +140,7 @@ export default function LongShadowBackground({ mode = 'developer', className = '
       ctx.rotate(p.r)
       const half = size / 2
       ctx.beginPath()
-      roundedRect(ctx, -half, -half, size, size, size * 0.22)
+      ctx.rect(-half, -half, size, size)
       ctx.fillStyle = logo.bg
       ctx.fill()
       if (logo.d) {
@@ -146,7 +151,7 @@ export default function LongShadowBackground({ mode = 'developer', className = '
         ctx.fill(path)
       } else if (logo.code) {
         ctx.fillStyle = logo.color
-        ctx.font = `700 ${size * 0.4}px Poppins, system-ui, sans-serif`
+        ctx.font = `700 ${size * 0.4}px "JetBrains Mono", ui-monospace, monospace`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText(logo.code, 0, size * 0.04)
@@ -187,8 +192,27 @@ export default function LongShadowBackground({ mode = 'developer', className = '
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       if (light.x === 160 && light.y === 200) {
         light.x = width / 2
-        light.y = height / 2
+        light.y = window.innerHeight / 2
       }
+      measureSection()
+    }
+
+    const measureSection = () => {
+      const rect = canvas.parentElement.getBoundingClientRect()
+      sectionTop = rect.top + window.scrollY
+      sectionHeight = rect.height
+    }
+
+    let sectionTop = 0
+    let sectionHeight = 0
+    let lastOffset = -1
+
+    const onScroll = () => {
+      const offset = Math.min(Math.max(window.scrollY - sectionTop, 0), sectionHeight)
+      if (offset === lastOffset) return
+      lastOffset = offset
+      canvas.style.transform =
+        offset > 0 ? `translate3d(0, ${offset}px, 0)` : ''
     }
 
     const onMove = (e) => {
@@ -209,9 +233,10 @@ export default function LongShadowBackground({ mode = 'developer', className = '
     while (particles.length < LOGO_COUNT) particles.push(makeParticle())
 
     window.addEventListener('resize', resize)
+    window.addEventListener('scroll', onScroll, { passive: true })
     canvas.parentElement.addEventListener('mousemove', onMove)
 
-    if (reduced) {
+    if (reduced || !visible) {
       drawFrame()
     } else {
       raf = requestAnimationFrame(loop)
@@ -221,9 +246,10 @@ export default function LongShadowBackground({ mode = 'developer', className = '
       cancelAnimationFrame(raf)
       themeObserver.disconnect()
       window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
       canvas.parentElement.removeEventListener('mousemove', onMove)
     }
-  }, [mode])
+  }, [mode, visible])
 
   return (
     <canvas

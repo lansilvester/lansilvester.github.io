@@ -82,6 +82,8 @@ export default function Gallery({ mode }) {
                     <img
                       src={thumbnailUrl(item)}
                       alt={t(item.title)}
+                      width={480}
+                      height={270}
                       loading="lazy"
                       decoding="async"
                       className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"

@@ -1,5 +1,6 @@
 ﻿
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
+import useInView from '../../hooks/useInView'
 import { ADOBE_LOGOS, TECH_LOGOS } from '../../data/logos'
 
 function shuffle(arr) {
@@ -75,9 +76,16 @@ export default function LogoMarquee({ mode }) {
   const target = isTech ? TECH_LOGOS : ADOBE_LOGOS
   const Badge = isTech ? TechBadge : AdobeBadge
   const track = useMemo(() => buildTrack(target), [target])
+  const ref = useRef(null)
+  const visible = useInView(ref, '100px')
 
   return (
-    <div className="marquee relative w-full overflow-hidden" style={{ opacity: 0.4 }} aria-hidden="true">
+    <div
+      ref={ref}
+      className={`marquee relative w-full overflow-hidden${visible ? '' : ' marquee-paused'}`}
+      style={{ opacity: 0.4 }}
+      aria-hidden="true"
+    >
       <div key={mode} className="marquee-enter">
         <div className="marquee-edge">
           <div className="marquee-track flex w-max items-center py-4 blur-[5px] saturate-0">

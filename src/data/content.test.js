@@ -24,7 +24,7 @@ describe('content.json integrity', () => {
   })
 
   it('menu navigasi berisi tautan blog', () => {
-    expect(content.NAV_LINKS.some((l) => l.href === '/blog')).toBe(true)
+    expect(content.NAV_LINKS.some((l) => l.href === '#blog')).toBe(true)
   })
 
   it('hero punya tautan WhatsApp', () => {
@@ -33,7 +33,7 @@ describe('content.json integrity', () => {
 
   it('layout memiliki semua section yang dipakai App', () => {
     const ids = new Set(layout.sections.map((s) => s.id))
-    for (const id of ['home', 'about', 'modeswitch', 'skills', 'qualification', 'services', 'portfolio', 'gallery', 'testimonial', 'pricing', 'cta', 'contact']) {
+    for (const id of ['home', 'about', 'modeswitch', 'skills', 'qualification', 'services', 'portfolio', 'gallery', 'testimonial', 'blog', 'pricing', 'cta', 'contact']) {
       expect(ids.has(id)).toBe(true)
     }
   })

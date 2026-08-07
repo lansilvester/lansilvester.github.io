@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-gradient-to-br from-primary to-primary-alt text-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <h2 className="text-2xl font-bold">Alan</h2>
+          <h2 className="font-display text-2xl font-bold">Alan</h2>
           <span className="mt-1 block text-sm text-white/80">{t('footer.tagline')}</span>
         </div>
 

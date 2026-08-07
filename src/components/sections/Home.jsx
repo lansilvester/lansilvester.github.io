@@ -1,7 +1,9 @@
+import { useRef } from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import ParticleField from '../effects/ParticleField'
+import useInView from '../../hooks/useInView'
 import { useI18n } from '../../useI18n'
 import { HERO, MODES, SOCIALS } from '../../data/content'
 
@@ -119,11 +121,13 @@ function BlobPhoto() {
 export default function Home({ mode }) {
   const modeData = MODES[mode]
   const { t } = useI18n()
+  const sectionRef = useRef(null)
+  const visible = useInView(sectionRef)
   const primaryCta = modeData.cta?.primary || { label: { id: t('hero.viewWork'), en: t('hero.viewWork') }, href: '#portfolio' }
   const secondaryCta = modeData.cta?.secondary || { label: { id: t('hero.contact'), en: t('hero.contact') }, href: '#contact' }
 
   return (
-    <section id="home" className="section relative overflow-hidden pt-28 sm:pt-32">
+    <section id="home" ref={sectionRef} className="section relative overflow-hidden pt-28 sm:pt-32">
       <ParticleField />
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-2 pb-6 sm:px-4">
         <div className="grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
@@ -146,21 +150,27 @@ export default function Home({ mode }) {
             </Reveal>
 
             <Reveal className="text-center lg:text-left">
-              <TypeAnimation
-                sequence={[
-                  t('hero.greeting1'),
-                  2200,
-                  t('hero.greeting2'),
-                  1800,
-                  t('hero.greeting3'),
-                  1800,
-                ]}
-                wrapper="h1"
-                speed={55}
-                deletionSpeed={35}
-                repeat={Infinity}
-                className="text-3xl font-bold text-title sm:text-4xl lg:text-[2.6rem] lg:leading-tight"
-              />
+              {visible ? (
+                <TypeAnimation
+                  sequence={[
+                    t('hero.greeting1'),
+                    2200,
+                    t('hero.greeting2'),
+                    1800,
+                    t('hero.greeting3'),
+                    1800,
+                  ]}
+                  wrapper="h1"
+                  speed={55}
+                  deletionSpeed={35}
+                  repeat={Infinity}
+                  className="font-display text-3xl font-bold text-title sm:text-4xl lg:text-[2.6rem] lg:leading-tight"
+                />
+              ) : (
+                <h1 className="font-display text-3xl font-bold text-title sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
+                  {t('hero.greeting1')}
+                </h1>
+              )}
               <h3 className="mt-2 text-lg font-medium text-text sm:text-xl">
                 {t(modeData.homeSubtitle)}
               </h3>
@@ -204,7 +214,7 @@ export default function Home({ mode }) {
               size={26}
               className="transition-transform duration-300 group-hover:-translate-y-1"
             />
-            <span className="text-xs font-medium">{t('hero.scroll')}</span>
+            <span className="font-mono text-xs font-medium">{t('hero.scroll')}</span>
             <Icon
               name="arrowDown"
               size={18}

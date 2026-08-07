@@ -29,6 +29,8 @@ export default function ProjectInMind() {
               <img
                 src="/images/project.svg"
                 alt="Proyek"
+                width={400}
+                height={400}
                 loading="lazy"
                 decoding="async"
                 className="mx-auto hidden w-56 rotate-3 rounded-2xl shadow-card transition-transform duration-500 hover:rotate-0 hover:scale-105 md:block"

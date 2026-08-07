@@ -44,8 +44,11 @@ html[data-mode='creative'] {
   --color-text: var(--c-text);
   --color-muted: var(--c-muted);
   --color-line: var(--c-border);
-  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", "Space Grotesk", var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --shadow-card: var(--c-shadow);
+  --breakpoint-xxl: 1536px;
 }
 
 @layer base {
@@ -181,20 +184,24 @@ html[data-mode='creative'] {
 
 /* ===== Mode font (hanya area konten yang menyesuaikan) ===== */
 .mode-developer {
+  font-family: var(--font-sans);
+}
+
+.mode-developer :is(h1, h2, h3, h4, h5, h6) {
   font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 .mode-creative {
-  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .mode-creative :is(h1, h2, h3, h4, h5, h6) {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Fraunces", Georgia, serif;
 }
 
 /* ===== Font teks "Developer" pada ModeSwitch ===== */
 .font-bitcount {
-  font-family: "Bitcount Prop Single", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Syne", "Space Grotesk", var(--font-sans);
 }
 
 /* ===== Animasi fade saat mode berpindah ===== */
@@ -260,7 +267,7 @@ body {
 }
 
 .marquee-track {
-  animation: marquee 35s linear infinite;
+  animation: marquee 80s linear infinite;
   will-change: transform;
 }
 
@@ -427,6 +434,11 @@ body {
 
 /* Marquee berhenti sesaat saat di-hover (semua lapisan agar tetap sinkron) */
 .marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Marquee dijeda saat section di luar layar */
+.marquee-paused .marquee-track {
   animation-play-state: paused;
 }
 

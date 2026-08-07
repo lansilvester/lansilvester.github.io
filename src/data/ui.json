@@ -31,6 +31,8 @@
     "readOnMedium": { "id": "Baca di Medium", "en": "Read on Medium" },
     "backToBlog": { "id": "Kembali ke Blog", "en": "Back to Blog" },
     "empty": { "id": "Belum ada artikel.", "en": "No articles yet." },
+    "prev": { "id": "Artikel sebelumnya", "en": "Previous articles" },
+    "next": { "id": "Artikel selanjutnya", "en": "Next articles" },
     "publishedOn": { "id": "Dipublikasikan", "en": "Published" }
   },
   "gallery": {

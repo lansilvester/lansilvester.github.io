@@ -47,7 +47,7 @@ export default function ModeSwitch({ mode, onChange }) {
             <div className="relative overflow-hidden rounded-3xl border border-line bg-card p-6 text-center shadow-card sm:p-10 mb-16 sm:mb-24">
               <ParticleField density={22000} />
               <div className="relative z-10">
-                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-primary">
+                <span className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-primary">
                   {t('modeswitch.badge')}
                 </span>
                 <h2 className="mt-2 text-2xl font-bold text-title sm:text-3xl">

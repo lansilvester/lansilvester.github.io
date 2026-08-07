@@ -94,6 +94,8 @@ export default function Portfolio({ mode }) {
                     <img
                       src={item.image}
                       alt={item.title}
+                      width={400}
+                      height={400}
                       loading="lazy"
                       decoding="async"
                       className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -149,6 +151,8 @@ export default function Portfolio({ mode }) {
               <img
                 src={current.image}
                 alt={current.title}
+                width={400}
+                height={400}
                 className="max-h-[45vh] w-full object-cover"
               />
               <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
@@ -178,7 +182,7 @@ export default function Portfolio({ mode }) {
 
               {current.tech && current.tech.length > 0 && (
                 <div className="mt-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">
                     {t('portfolio.tools')}
                   </span>
                   <div className="mt-2 flex flex-wrap gap-2">

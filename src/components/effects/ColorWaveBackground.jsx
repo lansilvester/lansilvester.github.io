@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import useInView from '../../hooks/useInView'
 
 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4)
 const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t))
@@ -29,6 +30,7 @@ function getColors() {
 
 export default function ColorWaveBackground({ className = '' }) {
   const canvasRef = useRef(null)
+  const visible = useInView(canvasRef, '100px')
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -187,7 +189,7 @@ export default function ColorWaveBackground({ className = '' }) {
     canvas.parentElement.addEventListener('mousedown', onDown)
     canvas.parentElement.addEventListener('touchstart', onDown, { passive: true })
 
-    if (reduced) {
+    if (reduced || !visible) {
       ctx.fillStyle = bgColor
       ctx.fillRect(0, 0, width, height)
     } else {
@@ -203,7 +205,7 @@ export default function ColorWaveBackground({ className = '' }) {
       canvas.parentElement.removeEventListener('mousedown', onDown)
       canvas.parentElement.removeEventListener('touchstart', onDown)
     }
-  }, [])
+  }, [visible])
 
   return (
     <canvas
