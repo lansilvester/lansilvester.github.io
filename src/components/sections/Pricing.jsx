@@ -38,7 +38,7 @@ export default function Pricing() {
 
                 <ul className="mt-6 grid flex-1 gap-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-text">
+                    <li key={feature.id} className="flex items-start gap-2 text-sm text-text">
                       <Icon name="check" size={18} className="mt-0.5 shrink-0 text-primary" />
                       {t(feature)}
                     </li>

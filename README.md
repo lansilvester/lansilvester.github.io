@@ -8,7 +8,7 @@ Website portfolio pribadi berbasis **React + Vite + Tailwind CSS v4** untuk mena
 - Dark / light theme
 - Toggle bahasa **ID / EN**
 - Portfolio grid dengan **filter kategori** + modal detail & lightbox (navigasi keyboard)
-- **Galeri video** (YouTube/Vimeo) dengan lightbox — khusus mode Creative
+- **Feed Instagram** (marquee 2 baris) sebagai portfolio mode Creative
 - **Blog** berbasis markdown (`/blog`) dengan halaman detail
 - **Tombol WhatsApp mengambang**
 - Form kontak dengan **validasi + honeypot**, terkirim ke **email (Web3Forms)** atau fallback WhatsApp
@@ -36,9 +36,9 @@ Semua konten yang bisa diedit **disimpan sebagai data (JSON)**, bukan di dalam k
 
 | File | Isi |
 | --- | --- |
-| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, galeri video, testimoni, harga, kontak (termasuk `CONTACT_FORM`), socials |
+| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, feed Instagram, harga, kontak (termasuk `CONTACT_FORM`), socials |
 | `src/data/ui.json` | Teks label antarmuka (nav, tombol, judul section, placeholder) |
-| `src/data/layout.json` | Urutan & visibilitas section di halaman (termasuk `gallery`) |
+| `src/data/layout.json` | Urutan & visibilitas section di halaman |
 | `src/data/site.json` | SEO/Open Graph — dipakai plugin Vite untuk me-replace meta di `index.html` saat build |
 | `src/blog/posts/*.md` | Artikel blog (frontmatter + markdown) — dibuat/diedit lewat `/admin/` |
 
@@ -51,7 +51,7 @@ Buka **`https://lansilvester.github.io/admin/`** → login dengan akun GitHub ya
 Yang bisa dikelola dari dashboard:
 
 - **Teks & Label** — semua teks ID/EN (hero, about, judul section, tombol, placeholder, footer)
-- **Konten Situs** — menu, socials, profil, kualifikasi, skill (tambah/hapus kelompok & item), layanan, karya portfolio (+ upload gambar), testimoni, info kontak, paket harga, galeri video, form kontak
+- **Konten Situs** — menu, socials, profil, kualifikasi, skill (tambah/hapus kelompok & item), layanan, karya portfolio (+ upload gambar), info kontak, paket harga, konfigurasi feed Instagram, form kontak
 - **SEO** — title, description, Open Graph (diedit di menu *Settings*)
 - **Blog** — tulis/edit artikel markdown; file tersimpan di `src/blog/posts/`, otomatis ikut di-build saat deploy
 - **Urutan & Tampilan** — tarik item untuk mengubah urutan section, dan centang/mati-kan visibilitas tiap section
@@ -95,7 +95,7 @@ Semua bisa diedit lewat dashboard, tapi bila perlu langsung:
 
 - **Foto/karya asli** → taruh di `public/images/` (atau `public/images/uploads/`), lalu ubah path di `src/data/content.json`.
 - **Link proyek** → nilai `demo` (URL live) dan `github` (URL repo) di `src/data/content.json` (awalnya `#`).
-- **Testimoni** → bagian `TESTIMONIALS` di `src/data/content.json`.
+- **Feed Instagram** → refresh manual dengan `npm run fetch:instagram` (atau otomatis saat `npm run build`), lalu commit hasilnya.
 
 ## Konfigurasi lain
 
@@ -109,4 +109,4 @@ Push ke branch `main` — workflow `.github/workflows/deploy.yml` otomatis menja
 
 ## Stack
 
-React 19 · Vite · Tailwind CSS v4 · react-router-dom · react-markdown · lucide-react · react-type-animation · Decap CMS · Vitest + Testing Library · oxlint
+React 19 · Vite · Tailwind CSS v4 · react-router · lucide-react · react-type-animation · Decap CMS · Vitest + Testing Library · oxlint

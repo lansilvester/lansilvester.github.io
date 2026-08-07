@@ -48,7 +48,6 @@ html[data-mode='creative'] {
   --font-display: "Syne", "Space Grotesk", var(--font-sans);
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --shadow-card: var(--c-shadow);
-  --breakpoint-xxl: 1536px;
 }
 
 @layer base {
@@ -432,11 +431,6 @@ body {
   }
 }
 
-/* Marquee berhenti sesaat saat di-hover (semua lapisan agar tetap sinkron) */
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-
 /* Marquee dijeda saat section di luar layar */
 .marquee-paused .marquee-track {
   animation-play-state: paused;
@@ -558,7 +552,99 @@ body {
   .btn-shine:hover::before {
     animation: none;
   }
-  .marquee:hover .marquee-track {
-    animation-play-state: running;
+  .about-photo,
+  .about-highlight::before {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ===== Foto About: transisi perpindahan mode (highlight animation) ===== */
+.about-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  animation: about-photo-in 0.55s ease-out both;
+}
+
+@keyframes about-photo-in {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.96) rotate(-2deg);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+.about-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  animation: about-photo-glow 1.05s ease-out 0.08s both;
+  pointer-events: none;
+}
+
+@keyframes about-photo-glow {
+  0% {
+    box-shadow: inset 0 0 0 3px var(--color-primary),
+      0 0 0 0 color-mix(in srgb, var(--color-primary) 55%, transparent);
+  }
+  100% {
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.4),
+      0 0 46px 6px color-mix(in srgb, var(--color-primary) 0%, transparent);
+  }
+}
+
+.about-highlight {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.about-photo-shift img {
+  object-position: 50% calc(50% + 30px);
+}
+
+/* Background gelap pada section About → teks selalu terang */
+#about.about-invert {
+  --color-title: #f2f1f7;
+  --color-text: #c8c6d4;
+  --color-muted: #a8a5b4;
+}
+
+.about-highlight::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: -80%;
+  width: 55%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-18deg);
+  animation: about-highlight-sweep 0.95s ease-in-out 0.12s both;
+}
+
+@keyframes about-highlight-sweep {
+  0% {
+    left: -80%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  100% {
+    left: 145%;
+    opacity: 0;
   }
 }

@@ -27,7 +27,6 @@ describe('Home debug', () => {
     )
     vi.advanceTimersByTime(3000)
     const body = document.body.textContent
-    console.log('TEXT >>>', JSON.stringify(body))
     expect(body).toContain('website modern')
     expect(body).toContain('Bikin Website Estetik & Super Kencang Buat Bisnis Kamu')
   })

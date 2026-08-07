@@ -92,15 +92,6 @@ collections:
               - { name: backToBlog, label: 'Teks "Kembali ke Blog"', widget: object, fields: *b }
               - { name: empty, label: 'Pesan kosong', widget: object, fields: *b }
               - { name: publishedOn, label: 'Label "Dipublikasikan"', widget: object, fields: *b }
-          - name: gallery
-            label: 'Galeri Video'
-            widget: object
-            fields:
-              - { name: sectionTitle, label: 'Judul', widget: object, fields: *b }
-              - { name: sectionSubtitle, label: 'Subjudul', widget: object, fields: *b }
-              - { name: watch, label: 'Tombol Putar Video', widget: object, fields: *b }
-              - { name: close, label: 'Tutup', widget: object, fields: *b }
-              - { name: empty, label: 'Pesan kosong', widget: object, fields: *b }
           - name: whatsappFloat
             label: 'Tombol WhatsApp mengambang'
             widget: object
@@ -163,6 +154,10 @@ collections:
                 label: 'Pesan kategori kosong'
                 widget: object
                 fields: *bt
+              - name: openInstagram
+                label: 'Teks "Buka di Instagram" (marquee feed)'
+                widget: object
+                fields: *b
           - name: categories
             label: 'Nama Kategori'
             widget: object
@@ -174,12 +169,11 @@ collections:
               - { name: photo, label: 'Foto', widget: object, fields: *b }
               - { name: design, label: 'Desain', widget: object, fields: *b }
               - { name: social, label: 'Media Sosial', widget: object, fields: *b }
-          - name: testimonial
-            label: 'Testimonial'
-            widget: object
-            fields:
-              - { name: sectionTitle, label: 'Judul section', widget: object, fields: *b }
-              - { name: sectionSubtitle, label: 'Subjudul section', widget: object, fields: *b }
+              - { name: film, label: 'FILM', widget: object, fields: *b }
+              - { name: studio, label: 'FOTO STUDIO', widget: object, fields: *b }
+              - { name: outdoor, label: 'OUTDOOR EVENT', widget: object, fields: *b }
+              - { name: branding, label: 'PERSONAL BRANDING', widget: object, fields: *b }
+              - { name: other, label: 'Lainnya', widget: object, fields: *b }
           - name: cta
             label: 'Ajakan Proyek (CTA)'
             widget: object
@@ -301,7 +295,9 @@ collections:
             label: 'Tentang'
             widget: object
             fields:
-              - { name: photo, label: 'Foto', widget: image, choose_url: true }
+              - { name: photo, label: 'Foto (mode Creative)', widget: image, choose_url: true }
+              - { name: photoDeveloper, label: 'Foto (mode Developer)', widget: image, choose_url: true }
+              - { name: background, label: 'Background section', widget: image, choose_url: true }
               - { name: cv, label: 'Path CV (PDF)', widget: string }
               - name: stats
                 label: 'Statistik singkat'
@@ -310,6 +306,7 @@ collections:
                 summary: '{{fields.value}}'
                 fields:
                   - { name: value, label: 'Angka (mis. 5+)', widget: string }
+                  - { name: since, label: 'Tahun mulai (opsional — dihitung otomatis, mis. 2015)', widget: number, min: 1900, max: 2100, required: false }
                   - name: label
                     label: 'Keterangan'
                     widget: object
@@ -340,23 +337,6 @@ collections:
                 collapsed: true
                 summary: '{{fields.title.id}}'
                 fields: *qualitem
-          - name: TESTIMONIALS
-            label: 'Testimoni'
-            widget: list
-            collapsed: true
-            summary: '{{fields.name}}'
-            fields:
-              - { name: name, label: 'Nama', widget: string }
-              - name: role
-                label: 'Peran'
-                widget: object
-                fields: *b
-              - { name: image, label: 'Foto', widget: image, choose_url: true }
-              - { name: stars, label: 'Bintang (1-5)', widget: number, min: 1, max: 5 }
-              - name: text
-                label: 'Isi testimoni'
-                widget: object
-                fields: *bt
           - name: CONTACT_INFO
             label: 'Informasi kontak'
             widget: list
@@ -422,24 +402,24 @@ collections:
                             widget: object
                             fields: *b
                           - { name: href, label: 'Tautan (mis. #contact)', widget: string }
-                  - name: videos
-                    label: 'Galeri video (khusus mode Creative)'
-                    widget: list
-                    collapsed: true
-                    summary: '{{fields.title.id}}'
+                  - name: instagram
+                    label: 'Feed Instagram (mode Creative)'
+                    widget: object
                     fields:
-                      - { name: id, label: 'ID', widget: string }
-                      - name: title
-                        label: 'Judul'
-                        widget: object
-                        fields: *b
-                      - name: description
-                        label: 'Deskripsi'
-                        widget: object
-                        fields: *bt
-                      - { name: platform, label: 'Platform', widget: select, options: [youtube, vimeo], default: youtube }
-                      - { name: videoId, label: 'ID video (YouTube/Vimeo)', widget: string }
-                      - { name: thumbnail, label: 'Thumbnail (kosongkan = otomatis dari YouTube)', widget: image, choose_url: true, required: false }
+                      - { name: username, label: 'Username Instagram', widget: string }
+                      - { name: limit, label: 'Jumlah postingan yang diambil', widget: number, default: 12 }
+                      - name: categories
+                        label: 'Kategori filter yang tampil'
+                        widget: list
+                        field: { name: item, label: 'Kategori', widget: string }
+                      - name: mapping
+                        label: 'Paksa kategori per shortcode (JSON, mis. {"DXJG8qHEqhy": "outdoor"})'
+                        widget: code
+                        default_language: json
+                      - name: keywords
+                        label: 'Kata kunci kategorisasi otomatis (JSON)'
+                        widget: code
+                        default_language: json
                   - name: skillsSubtitle
                     label: 'Subjudul section skill'
                     widget: object
@@ -508,7 +488,7 @@ collections:
                         widget: object
                         fields: *bt
                       - { name: image, label: 'Gambar', widget: image, choose_url: true }
-                      - { name: category, label: 'Kategori', widget: select, options: [web, system, ecommerce, video, photo, design, social] }
+                      - { name: category, label: 'Kategori', widget: select, options: [web, system, ecommerce, video, photo, design, social, other] }
                       - name: tech
                         label: 'Teknologi & tools'
                         widget: list
@@ -569,7 +549,7 @@ collections:
             collapsed: true
             summary: '{{fields.label}}'
             fields:
-              - { name: id, label: 'ID section', widget: select, options: [home, about, modeswitch, skills, qualification, services, portfolio, gallery, testimonial, pricing, cta, contact] }
+              - { name: id, label: 'ID section', widget: select, options: [home, about, modeswitch, skills, qualification, services, portfolio, blog, pricing, cta, contact] }
               - { name: label, label: 'Nama (hanya tampilan di editor)', widget: string }
               - { name: enabled, label: 'Tampilkan di halaman', widget: boolean, default: true }
 

@@ -62,8 +62,8 @@ function MarqueeRow({ logos, Badge }) {
           className="flex w-max shrink-0 items-center gap-8 pr-8"
           aria-hidden={copy === 1}
         >
-          {logos.map((logo) => (
-            <Badge key={logo.name} logo={logo} />
+          {logos.map((logo, i) => (
+            <Badge key={`${logo.name}-${i}`} logo={logo} />
           ))}
         </div>
       ))}

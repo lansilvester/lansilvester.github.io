@@ -115,7 +115,7 @@ export default function Contact() {
         <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.4fr]">
           <Reveal direction="left" className="space-y-6">
             {CONTACT_INFO.map((info) => (
-              <div key={info.label} className="flex items-center gap-4">
+              <div key={info.label.id} className="flex items-center gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-lighter/60 text-primary">
                   <Icon name={info.icon} size={22} />
                 </span>

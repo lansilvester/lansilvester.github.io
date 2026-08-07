@@ -32,21 +32,22 @@ export function useActiveSection(ids) {
       { rootMargin: '-45% 0px -50% 0px' }
     )
 
+    const observed = observedIds.current
     observerRef.current = observer
-    observedIds.current.clear()
+    observed.clear()
 
     ids.forEach((id) => {
       const el = document.getElementById(id)
       if (el) {
-        observedIds.current.add(id)
+        observed.add(id)
         observer.observe(el)
       }
     })
 
     return () => {
       observer.disconnect()
-      if (observerRef.current === observer) observerRef.current = null
-      observedIds.current.clear()
+      observerRef.current = null
+      observed.clear()
     }
   }, [ids])
 

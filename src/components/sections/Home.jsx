@@ -99,10 +99,10 @@ function BlobPhoto() {
             />
             <image
               href={HERO.photo}
-              x="5"
-              y="10"
-              width="190"
-              height="190"
+              x="-42.5"
+              y="-37.5"
+              width="285"
+              height="285"
               preserveAspectRatio="xMidYMid slice"
             />
           </g>
@@ -123,8 +123,8 @@ export default function Home({ mode }) {
   const { t } = useI18n()
   const sectionRef = useRef(null)
   const visible = useInView(sectionRef)
-  const primaryCta = modeData.cta?.primary || { label: { id: t('hero.viewWork'), en: t('hero.viewWork') }, href: '#portfolio' }
-  const secondaryCta = modeData.cta?.secondary || { label: { id: t('hero.contact'), en: t('hero.contact') }, href: '#contact' }
+  const primaryCta = modeData.cta?.primary || { label: 'hero.viewWork', href: '#portfolio' }
+  const secondaryCta = modeData.cta?.secondary || { label: 'hero.contact', href: '#contact' }
 
   return (
     <section id="home" ref={sectionRef} className="section relative overflow-hidden pt-28 sm:pt-32">

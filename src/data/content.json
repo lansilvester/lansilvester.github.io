@@ -2,7 +2,7 @@
   "FOOTER_SOCIALS": [
     {
       "name": "Facebook",
-      "url": "https://facebook.com/",
+      "url": "https://www.facebook.com/janganmasukanemail/",
       "icon": "facebook"
     },
     {
@@ -273,11 +273,14 @@
     "accessKey": ""
   },
   "ABOUT": {
-    "photo": "/images/uploads/454352231_976050077661766_5666414354415394596_n-removebg-preview.webp",
+    "photo": "/images/uploads/alan-profile-2.webp",
+    "photoDeveloper": "/images/uploads/alan-profile-lokon.webp",
+    "background": "/images/uploads/about-background.webp",
     "cv": "/CV/CV-Varland-Lengkong.pdf",
     "stats": [
       {
         "value": "5+",
+        "since": 2015,
         "label": {
           "id": "Tahun ngoding & ngulik tech",
           "en": "Years of programming"
@@ -554,7 +557,6 @@
           "href": "#contact"
         }
       },
-      "videos": [],
       "shortLabel": {
         "id": "Developer",
         "en": "Developer"
@@ -822,7 +824,7 @@
             "id": "Lihat Showreel",
             "en": "Watch Video Reel"
           },
-          "href": "#gallery"
+          "href": "#portfolio"
         },
         "secondary": {
           "label": {
@@ -832,36 +834,6 @@
           "href": "#contact"
         }
       },
-      "videos": [
-        {
-          "id": "v1",
-          "title": {
-            "id": "Showreel Videografi",
-            "en": "Videography Showreel"
-          },
-          "description": {
-            "id": "Kumpulan rangkuman karya visual & video terbaik yang pernah digarap.",
-            "en": "A collection of the best video work highlights of the year."
-          },
-          "platform": "youtube",
-          "videoId": "dQw4w9WgXcQ",
-          "thumbnail": ""
-        },
-        {
-          "id": "v2",
-          "title": {
-            "id": "Behind The Scenes",
-            "en": "Behind The Scenes"
-          },
-          "description": {
-            "id": "Keseruan & proses kreatif di balik layar pembuatan konten visual.",
-            "en": "The creative process behind visual content production."
-          },
-          "platform": "youtube",
-          "videoId": "ScMzIvxBSi4",
-          "thumbnail": ""
-        }
-      ],
       "shortLabel": {
         "id": "Creative",
         "en": "Creative"
@@ -977,40 +949,24 @@
             }
           ]
         }
-      ]
+      ],
+      "instagram": {
+        "username": "lansilvester",
+        "limit": 12,
+        "categories": ["film", "studio", "outdoor", "branding"],
+        "mapping": {},
+        "keywords": {
+          "film": ["film", "cinematic", "sinematik", "showreel", "color grading", "kaler greding"],
+          "studio": ["studio", "photoshoot", "portrait", "retouch", "sesi foto"],
+          "outdoor": ["outdoor", "event", "dokumentasi", "acara", "paskah", "pernikahan"],
+          "branding": ["branding", "lesson", "selfie"]
+        }
+      }
     }
   },
-  "TESTIMONIALS": [
-    {
-      "name": "Johanes Roring",
-      "role": {
-        "id": "Klien",
-        "en": "Client"
-      },
-      "image": "/images/testimonial2.svg",
-      "stars": 5,
-      "text": {
-        "id": "Eksekusi websitenya sat-set banget! Desainnya rapi, responsif, dan komunikasi sama Alan enak banget. Sangat recommended buat yang mau upgrade branding!",
-        "en": "Super clean execution! The website looks slick, works seamlessly, and working with Alan was effortless."
-      }
-    },
-    {
-      "name": "Yogi Tangkilisan",
-      "role": {
-        "id": "Klien",
-        "en": "Client"
-      },
-      "image": "/images/testimonial3.svg",
-      "stars": 5,
-      "text": {
-        "id": "Hasil video dokumentasinya luar biasa! Tone warnanya dapet, cutting-an lagunya pas, dan pengerjaannya tepat waktu. Klien puas banget!",
-        "en": "The event highlight video was amazing! Great color grading, perfect pacing, and delivered right on schedule."
-      }
-    }
-  ],
   "HERO": {
     "name": "Alan",
-    "photo": "/images/uploads/454352231_976050077661766_5666414354415394596_n-removebg-preview.webp",
+    "photo": "/images/uploads/hero.webp",
     "phone": "(+62)89694866639",
     "email": "alan.lengkong@gmail.com",
     "location": "Manado City - North Sulawesi",
@@ -1056,14 +1012,6 @@
       },
       "href": "#portfolio",
       "icon": "image"
-    },
-    {
-      "label": {
-        "id": "Testimoni",
-        "en": "Testimonials"
-      },
-      "href": "#testimonial",
-      "icon": "message"
     },
     {
       "label": {

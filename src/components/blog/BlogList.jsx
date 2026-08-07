@@ -106,6 +106,7 @@ export default function BlogList() {
   const trackRef = useRef(null)
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false })
   const suppressClick = useRef(false)
+  const suppressTimer = useRef(null)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
 
@@ -125,6 +126,7 @@ export default function BlogList() {
     return () => {
       el.removeEventListener('scroll', updateArrows)
       window.removeEventListener('resize', updateArrows)
+      window.clearTimeout(suppressTimer.current)
     }
   }, [visible.length])
 
@@ -160,6 +162,10 @@ export default function BlogList() {
   const onPointerUp = (e) => {
     if (e.pointerType !== 'mouse') return
     drag.current.active = false
+    window.clearTimeout(suppressTimer.current)
+    suppressTimer.current = window.setTimeout(() => {
+      suppressClick.current = false
+    }, 350)
   }
 
   const onClickCapture = (e) => {

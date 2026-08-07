@@ -15,8 +15,6 @@ const Skills = lazy(() => import('./components/sections/Skills'))
 const Qualification = lazy(() => import('./components/sections/Qualification'))
 const Services = lazy(() => import('./components/sections/Services'))
 const Portfolio = lazy(() => import('./components/sections/Portfolio'))
-const Gallery = lazy(() => import('./components/sections/Gallery'))
-const Testimonial = lazy(() => import('./components/sections/Testimonial'))
 const Pricing = lazy(() => import('./components/sections/Pricing'))
 const ProjectInMind = lazy(() => import('./components/sections/ProjectInMind'))
 const Contact = lazy(() => import('./components/sections/Contact'))
@@ -37,7 +35,7 @@ function HomeSections({ mode, onModeChange }) {
 
   const sections = {
     home: <Home mode={mode} />,
-    about: <About />,
+    about: <About mode={mode} />,
     modeswitch: <ModeSwitch mode={mode} onChange={onModeChange} />,
     skills: (
       <div key={`skills-${mode}`} className={`mode-fade ${modeClass}`}>
@@ -55,12 +53,6 @@ function HomeSections({ mode, onModeChange }) {
         <Portfolio mode={mode} />
       </div>
     ),
-    gallery: (
-      <div key={`gallery-${mode}`} className={`mode-fade ${modeClass}`}>
-        <Gallery mode={mode} />
-      </div>
-    ),
-    testimonial: <Testimonial />,
     blog: (
       <div key="blog">
         <BlogList />

@@ -14,8 +14,11 @@ describe('content.json integrity', () => {
     }
   })
 
-  it('mode creative punya galeri video', () => {
-    expect(Array.isArray(content.MODES.creative.videos)).toBe(true)
+  it('mode creative punya konfigurasi feed instagram', () => {
+    const ig = content.MODES.creative.instagram
+    expect(ig).toBeTruthy()
+    expect(ig.username).toBeTruthy()
+    expect(Array.isArray(ig.categories)).toBe(true)
   })
 
   it('form kontak punya kunci accessKey & endpoint', () => {
@@ -33,7 +36,7 @@ describe('content.json integrity', () => {
 
   it('layout memiliki semua section yang dipakai App', () => {
     const ids = new Set(layout.sections.map((s) => s.id))
-    for (const id of ['home', 'about', 'modeswitch', 'skills', 'qualification', 'services', 'portfolio', 'gallery', 'testimonial', 'blog', 'pricing', 'cta', 'contact']) {
+    for (const id of ['home', 'about', 'modeswitch', 'skills', 'qualification', 'services', 'portfolio', 'blog', 'pricing', 'cta', 'contact']) {
       expect(ids.has(id)).toBe(true)
     }
   })

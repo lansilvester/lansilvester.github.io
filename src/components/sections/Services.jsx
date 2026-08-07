@@ -79,7 +79,7 @@ export default function Services({ mode }) {
             </div>
             <ul className="mt-6 grid gap-3">
               {modeData.services.find((s) => s.id === activeModal).points.map((point) => (
-                <li key={point} className="flex items-start gap-2 text-sm text-text">
+                <li key={point.id} className="flex items-start gap-2 text-sm text-text">
                   <Icon name="check" size={18} className="mt-0.5 shrink-0 text-primary" />
                   {t(point)}
                 </li>

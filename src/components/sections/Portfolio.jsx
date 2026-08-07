@@ -2,19 +2,43 @@ import { useEffect, useState } from 'react'
 import Reveal from '../ui/Reveal'
 import Icon from '../ui/Icon'
 import SectionTitle from '../ui/SectionTitle'
+import InstagramMarquee from '../ui/InstagramMarquee'
 import playClickSound from '../../utils/playClickSound'
 import { useI18n } from '../../useI18n'
 import { MODES } from '../../data/content'
+import instagramPosts from '../../data/instagram-posts.json'
 
 export default function Portfolio({ mode }) {
   const modeData = MODES[mode]
   const { t } = useI18n()
+  const igConfig = MODES.creative?.instagram
+  const igItems = instagramPosts && instagramPosts.length ? instagramPosts : []
+  const useInstagram = mode === 'creative' && igConfig?.username && igItems.length > 0
 
-  const categories = ['all', ...new Set(modeData.portfolio.map((p) => p.category))]
+  const igCats = useInstagram
+    ? [
+        'all',
+        ...(igConfig.categories || []),
+        ...(igItems.some((p) => !p.category) ? ['other'] : []),
+      ]
+    : []
+  const categories = useInstagram
+    ? igCats
+    : ['all', ...new Set(modeData.portfolio.map((p) => p.category))]
+
   const [activeCat, setActiveCat] = useState('all')
   const [activeIndex, setActiveIndex] = useState(null)
 
-  const items = activeCat === 'all' ? modeData.portfolio : modeData.portfolio.filter((p) => p.category === activeCat)
+  const items = useInstagram
+    ? activeCat === 'all'
+      ? igItems
+      : activeCat === 'other'
+        ? igItems.filter((p) => !p.category)
+        : igItems.filter((p) => p.category === activeCat)
+    : activeCat === 'all'
+      ? modeData.portfolio
+      : modeData.portfolio.filter((p) => p.category === activeCat)
+
   const current = activeIndex !== null ? items[activeIndex] : null
 
   useEffect(() => {
@@ -71,11 +95,17 @@ export default function Portfolio({ mode }) {
             ))}
           </div>
         </Reveal>
+      </div>
 
-        {items.length === 0 ? (
-          <p className="mt-12 text-center text-sm text-muted">{t('portfolio.empty')}</p>
-        ) : (
-          <Reveal direction="zoom" className="mt-12">
+      {items.length === 0 ? (
+        <p className="mx-auto mt-12 max-w-6xl px-2 text-center text-sm text-muted sm:px-4">
+          {t('portfolio.empty')}
+        </p>
+      ) : useInstagram ? (
+        <InstagramMarquee items={items} />
+      ) : (
+        <div className="mx-auto mt-12 max-w-6xl px-2 sm:px-4">
+          <Reveal direction="zoom">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((item, index) => (
                 <article
@@ -130,8 +160,8 @@ export default function Portfolio({ mode }) {
               ))}
             </div>
           </Reveal>
-        )}
-      </div>
+        </div>
+      )}
 
       {current && (
         <div

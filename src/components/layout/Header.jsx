@@ -5,7 +5,7 @@ import { NAV_LINKS } from '../../data/content'
 import { useI18n } from '../../useI18n'
 import { useScrolled, useActiveSection } from '../../hooks/useScroll'
 
-const SECTION_IDS = ['home', 'about', 'skills', 'services', 'portfolio', 'testimonial', 'blog', 'contact']
+const SECTION_IDS = ['home', 'about', 'skills', 'services', 'portfolio', 'blog', 'contact']
 
 export default function Header({ dark, onToggleTheme }) {
   const scrolled = useScrolled()

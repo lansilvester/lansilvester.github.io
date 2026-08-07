@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/fetch-medium.mjs",
+    "prebuild": "node scripts/fetch-medium.mjs && node scripts/fetch-instagram.mjs",
     "build": "vite build",
     "lint": "oxlint",
     "test": "vitest run",
+    "fetch:instagram": "node scripts/fetch-instagram.mjs",
+    "fetch:medium": "node scripts/fetch-medium.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

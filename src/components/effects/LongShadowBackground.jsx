@@ -67,6 +67,7 @@ export default function LongShadowBackground({ mode = 'developer', className = '
     const particles = []
     const makeParticle = () => {
       const logo = logos[Math.floor(Math.random() * logos.length)]
+      if (!logo) return null
       return {
         logo,
         size: MIN_SIZE + Math.random() * (MAX_SIZE - MIN_SIZE),
@@ -230,7 +231,10 @@ export default function LongShadowBackground({ mode = 'developer', className = '
     })
 
     resize()
-    while (particles.length < LOGO_COUNT) particles.push(makeParticle())
+    while (particles.length < LOGO_COUNT) {
+      const p = makeParticle()
+      if (p) particles.push(p)
+    }
 
     window.addEventListener('resize', resize)
     window.addEventListener('scroll', onScroll, { passive: true })

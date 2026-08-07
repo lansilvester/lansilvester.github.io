@@ -35,13 +35,6 @@
     "next": { "id": "Artikel selanjutnya", "en": "Next articles" },
     "publishedOn": { "id": "Dipublikasikan", "en": "Published" }
   },
-  "gallery": {
-    "sectionTitle": { "id": "Galeri Video", "en": "Video Gallery" },
-    "sectionSubtitle": { "id": "Karya video pilihan", "en": "Selected video works" },
-    "watch": { "id": "Putar Video", "en": "Play Video" },
-    "close": { "id": "Tutup", "en": "Close" },
-    "empty": { "id": "Belum ada video.", "en": "No videos yet." }
-  },
   "whatsappFloat": {
     "label": { "id": "Chat via WhatsApp", "en": "Chat on WhatsApp" }
   },
@@ -85,7 +78,8 @@
     "tools": { "id": "Teknologi & Tools", "en": "Tech & Tools" },
     "prev": { "id": "Sebelumnya", "en": "Previous" },
     "next": { "id": "Berikutnya", "en": "Next" },
-    "empty": { "id": "Belum ada karya di kategori ini.", "en": "No work in this category yet." }
+    "empty": { "id": "Belum ada karya di kategori ini.", "en": "No work in this category yet." },
+    "openInstagram": { "id": "Buka di Instagram", "en": "Open on Instagram" }
   },
   "categories": {
     "web": { "id": "Website", "en": "Website" },
@@ -94,11 +88,12 @@
     "video": { "id": "Video", "en": "Video" },
     "photo": { "id": "Foto", "en": "Photo" },
     "design": { "id": "Desain", "en": "Design" },
-    "social": { "id": "Media Sosial", "en": "Social Media" }
-  },
-  "testimonial": {
-    "sectionTitle": { "id": "Testimonial", "en": "Testimonials" },
-    "sectionSubtitle": { "id": "Apa kata klien saya", "en": "What my clients say" }
+    "social": { "id": "Media Sosial", "en": "Social Media" },
+    "film": { "id": "FILM", "en": "FILM" },
+    "studio": { "id": "FOTO STUDIO", "en": "STUDIO PHOTO" },
+    "outdoor": { "id": "OUTDOOR EVENT", "en": "OUTDOOR EVENT" },
+    "branding": { "id": "PERSONAL BRANDING", "en": "PERSONAL BRANDING" },
+    "other": { "id": "Lainnya", "en": "Others" }
   },
   "cta": {
     "title": { "id": "Ada proyek dalam pikiran?", "en": "Have a project in mind?" },

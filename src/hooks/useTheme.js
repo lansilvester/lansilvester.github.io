@@ -1,17 +1,28 @@
 import { useCallback, useEffect, useState } from 'react'
 
-export function useTheme() {
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
+const listeners = new Set()
 
-  const toggle = useCallback(() => {
-    setDark((prev) => !prev)
-  }, [])
+function isDark() {
+  return document.documentElement.classList.contains('dark')
+}
+
+function setGlobalDark(dark) {
+  document.documentElement.classList.toggle('dark', dark)
+  localStorage.setItem('theme', dark ? 'dark' : 'light')
+  listeners.forEach((fn) => fn(dark))
+}
+
+export function useTheme() {
+  const [dark, setDark] = useState(isDark)
 
   useEffect(() => {
-    const root = document.documentElement
-    root.classList.toggle('dark', dark)
-    localStorage.setItem('theme', dark ? 'dark' : 'light')
-  }, [dark])
+    listeners.add(setDark)
+    return () => listeners.delete(setDark)
+  }, [])
+
+  const toggle = useCallback(() => {
+    setGlobalDark(!isDark())
+  }, [])
 
   return { dark, toggle }
 }

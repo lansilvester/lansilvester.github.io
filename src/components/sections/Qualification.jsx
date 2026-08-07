@@ -52,7 +52,6 @@ export default function Qualification() {
 
   return (
     <section id="qualification" className="section py-24 sm:py-28">
- 
       <div className="mx-auto max-w-4xl px-2 sm:px-4">
         <SectionTitle title={t('qualif.sectionTitle')} subtitle={t('qualif.sectionSubtitle')} />
 
@@ -74,7 +73,9 @@ export default function Qualification() {
                 className="transition-transform group-hover:animate-[wiggle_0.45s_ease-in-out]"
               />{' '}
               {t('qualif.education')}
-            </button>            <button
+            </button>
+
+            <button
               type="button"
               onClick={() => {
                 playClickSound()
@@ -97,7 +98,7 @@ export default function Qualification() {
         <Reveal direction="zoom" className="mt-10">
           <div className="mx-auto max-w-2xl">
             {items.map((item, index) => (
-              <TimelineItem key={`${item.title}-${index}`} item={item} />
+              <TimelineItem key={`${item.title.id}-${index}`} item={item} />
             ))}
           </div>
         </Reveal>

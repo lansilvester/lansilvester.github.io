@@ -19,7 +19,6 @@ export const FOOTER_SOCIALS = content.FOOTER_SOCIALS
 export const HERO = content.HERO
 export const ABOUT = content.ABOUT
 export const QUALIFICATIONS = content.QUALIFICATIONS
-export const TESTIMONIALS = content.TESTIMONIALS
 export const CONTACT_INFO = content.CONTACT_INFO
 export const CONTACT_FORM = content.CONTACT_FORM
 export const MODES = content.MODES

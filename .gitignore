@@ -15,6 +15,9 @@ dist-ssr
 graphify
 graphify-out
 
+# Foto sumber asli (tidak dipakai langsung oleh situs)
+originals/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
