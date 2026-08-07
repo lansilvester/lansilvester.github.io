@@ -7,6 +7,7 @@ const readJson = (rel) => JSON.parse(readFileSync(join(ROOT, rel), 'utf8'))
 const OUT = join(ROOT, 'src/data/instagram-posts.json')
 const IMG_DIR = join(ROOT, 'public/images/instagram')
 const IG_APP_ID = '936619743392459'
+const FETCH_TIMEOUT_MS = 30000
 
 const HEADERS = {
   'x-ig-app-id': IG_APP_ID,
@@ -34,15 +35,22 @@ function pickCategory(node, config) {
 }
 
 async function downloadImage(url, base) {
-  const res = await fetch(url, {
-    headers: { Referer: 'https://www.instagram.com/', 'User-Agent': HEADERS['User-Agent'] },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const buf = Buffer.from(await res.arrayBuffer())
-  if (!buf.length) throw new Error('respons kosong')
-  const ext = extFor(res.headers.get('content-type') || 'image/jpeg')
-  writeFileSync(`${base}${ext}`, buf)
-  return `/images/instagram/${base.split('/').pop()}${ext}`
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
+  try {
+    const res = await fetch(url, {
+      headers: { Referer: 'https://www.instagram.com/', 'User-Agent': HEADERS['User-Agent'] },
+      signal: controller.signal,
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const buf = Buffer.from(await res.arrayBuffer())
+    if (!buf.length) throw new Error('respons kosong')
+    const ext = extFor(res.headers.get('content-type') || 'image/jpeg')
+    writeFileSync(`${base}${ext}`, buf)
+    return `/images/instagram/${base.split('/').pop()}${ext}`
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 function extFor(contentType) {
@@ -60,7 +68,14 @@ try {
   }
 
   const url = `https://www.instagram.com/api/v1/users/web_profile_info/?username=${encodeURIComponent(config.username)}`
-  const res = await fetch(url, { headers: HEADERS })
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
+  let res
+  try {
+    res = await fetch(url, { headers: HEADERS, signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const payload = await res.json()
   const user = payload?.data?.user

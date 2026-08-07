@@ -1,0 +1,39 @@
+name: Update Instagram Feed
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: instagram-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Fetch feed Instagram
+        run: node scripts/fetch-instagram.mjs
+      - name: Commit data baru bila ada
+        run: |
+          if git status --porcelain | grep -qE 'src/data/instagram-posts.json|public/images/instagram/'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/data/instagram-posts.json public/images/instagram/
+            git commit -m "chore: perbarui feed Instagram"
+            git push
+            gh workflow run deploy.yml --ref main
+          else
+            echo "Tidak ada perubahan feed Instagram."
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
