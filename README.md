@@ -1,68 +1,100 @@
-# Portfolio — Alan (Varland Lengkong)
+# 💼 Portfolio — Alan (Varland Lengkong)
 
-Website portfolio pribadi berbasis **React + Vite + Tailwind CSS v4** untuk menampilkan dua sisi personal branding: **Developer / Programmer** dan **Creative / Videographer** — dengan fitur toggle mode, dark mode, bahasa Indonesia/Inggris, dan **dashboard admin (Decap CMS)** untuk mengelola konten.
+Website portfolio pribadi dua sisi: **Developer / Programmer** ⚙️ dan **Creative / Videographer** 🎬 — lengkap dengan toggle mode, dark mode, bahasa Indonesia/Inggris, feed Instagram, blog, dan **dashboard admin (Decap CMS)**.
 
-## Fitur
+> 🚀 **Live demo:** [lansilvester.github.io](https://lansilvester.github.io/)
 
-- Dua mode personal branding (Developer & Creative) dengan gaya visual & konten berbeda
-- Dark / light theme
-- Toggle bahasa **ID / EN**
-- Portfolio grid dengan **filter kategori** + modal detail & lightbox (navigasi keyboard)
-- **Feed Instagram** (marquee 2 baris) sebagai portfolio mode Creative
-- **Blog** berbasis markdown (`/blog`) dengan halaman detail
-- **Tombol WhatsApp mengambang**
-- Form kontak dengan **validasi + honeypot**, terkirim ke **email (Web3Forms)** atau fallback WhatsApp
-- Section harga layanan (freelance)
-- **Dashboard admin** di `/admin/` (Decap CMS): edit teks, tambah skill, upload foto, atur urutan & visibilitas section, **kelola SEO**, **tulis artikel blog**, login GitHub
-- SEO: meta Open Graph **yang bisa diedit dari dashboard**, JSON-LD `Person`, `robots.txt`, `sitemap.xml`, `404.html`
-- Analytics **GoatCounter**
-- **Unit test (Vitest + Testing Library)** sebagai gerbang CI bersama lint
-- Deploy otomatis ke GitHub Pages via GitHub Actions
+## 🏷️ Badges
 
-## Menjalankan di lokal
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-06B6D4?logo=tailwindcss&logoColor=white&style=flat-square)
+![react-router](https://img.shields.io/badge/react--router-8-CA4245?logo=reactrouter&logoColor=white&style=flat-square)
+![Decap CMS](https://img.shields.io/badge/Decap%20CMS-494957?style=flat-square)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white&style=flat-square)
+![oxlint](https://img.shields.io/badge/oxlint-f8c457?logo=oxc&logoColor=black&style=flat-square)
+![Deploy](https://github.com/lansilvester/lansilvester.github.io/actions/workflows/deploy.yml/badge.svg)
+
+## ✨ Preview
+
+| ⚙️ Developer mode | 🎬 Creative mode |
+| :---: | :---: |
+| ![Developer mode](./screenshots/developer-mode.png) | ![Creative mode](./screenshots/creative-mode.png) |
+
+## 🚀 Fitur
+
+- 🔄 **Dua mode personal branding** (Developer & Creative) — gaya visual & konten berbeda, perpindahan instan dengan animasi
+- 🌗 **Dark / light theme**
+- 🌐 **Bahasa Indonesia / English**
+- 🗂️ **Portfolio grid** dengan filter kategori + modal detail & lightbox (navigasi keyboard)
+- 📸 **Feed Instagram** (marquee 2 baris) sebagai portfolio mode Creative — diperbarui otomatis setiap 3 jam
+- 📝 **Blog** berbasis markdown dengan halaman detail
+- 💬 **Tombol WhatsApp mengambang**
+- ✉️ **Form kontak** dengan validasi + honeypot → email (Web3Forms) atau fallback WhatsApp
+- 💰 **Paket harga layanan** (freelance)
+- ⚙️ **Dashboard admin** di `/admin/` (Decap CMS): edit teks, kelola skill/layanan/portfolio, upload foto, atur urutan & visibilitas section, tulis blog, kelola SEO — semua perubahan otomatis di-commit ke git
+- 🔍 **SEO**: meta Open Graph yang bisa diedit dari dashboard, JSON-LD `Person`, `robots.txt`, `sitemap.xml`, `404.html`
+- 📊 **Analytics GoatCounter**
+- 🧪 **Unit test (Vitest + Testing Library)** sebagai gerbang CI bersama lint
+- 🚢 **Deploy otomatis** ke GitHub Pages via GitHub Actions
+
+## 🛠️ Stack
+
+| Layer | Teknologi |
+| --- | --- |
+| Frontend | React 19 · react-router 8 · lucide-react · react-type-animation |
+| Styling | Tailwind CSS v4 · variabel CSS `--c-*` / `--p-*` |
+| Build | Vite (code-splitting per section, `prebuild` fetch feed) |
+| CMS | Decap CMS (`/admin/`) |
+| Testing | Vitest · Testing Library · oxlint |
+| CI/CD | GitHub Actions → lint → test → build → GitHub Pages |
+
+## 📂 Arsitektur konten
+
+Semua konten yang bisa diedit **disimpan sebagai data (JSON)**, bukan di dalam kode — sehingga bisa dikelola lewat dashboard:
+
+| File | Isi | Diakses lewat |
+| --- | --- | --- |
+| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, feed Instagram, harga, kontak, socials | `src/data/content.js` |
+| `src/data/ui.json` | Label antarmuka (nav, tombol, judul section) | `t('nav.home')` |
+| `src/data/layout.json` | Urutan & visibilitas section | `App.jsx` |
+| `src/data/site.json` | SEO / Open Graph (di-replace saat build) | Plugin Vite |
+| `src/blog/posts/*.md` | Artikel blog (frontmatter + markdown) | `src/utils/blog.js` |
+
+Setiap teks bilingual memakai bentuk `{ "id": "...", "en": "..." }` atau path string. Komponen membaca lewat `t()` di `src/i18n.jsx`.
+
+> 📚 Ingin memahami **kenapa** arsitekturnya begini (pola, pelajaran, checklist bug)? Baca **[LEARNING.md](./LEARNING.md)**.
+
+## 🧭 Menjalankan di lokal
 
 ```bash
 npm install
 npm run dev      # development (http://localhost:5173)
-npm run build    # build produksi ke dist/
+npm run build    # build produksi ke dist/ (otomatis refresh feed Medium & Instagram)
 npm run preview  # pratinjau hasil build
 npm run lint     # oxlint
 npm test         # vitest
+npm run fetch:instagram  # refresh feed Instagram manual
+npm run fetch:medium     # refresh artikel Medium manual
 ```
 
-## Arsitektur konten
+## 🎛️ Dashboard admin (Decap CMS)
 
-Semua konten yang bisa diedit **disimpan sebagai data (JSON)**, bukan di dalam kode — sehingga bisa dikelola lewat dashboard:
+Buka **`https://lansilvester.github.io/admin/`** → login dengan akun GitHub yang punya akses push ke repo. Setiap perubahan otomatis di-commit → workflow build & deploy ulang → situs ter-update dalam ±1–2 menit. Semua edit punya riwayat git, jadi bisa di-undo.
 
-| File | Isi |
-| --- | --- |
-| `src/data/content.json` | Hero, about, kualifikasi, skill, layanan, portfolio, feed Instagram, harga, kontak (termasuk `CONTACT_FORM`), socials |
-| `src/data/ui.json` | Teks label antarmuka (nav, tombol, judul section, placeholder) |
-| `src/data/layout.json` | Urutan & visibilitas section di halaman |
-| `src/data/site.json` | SEO/Open Graph — dipakai plugin Vite untuk me-replace meta di `index.html` saat build |
-| `src/blog/posts/*.md` | Artikel blog (frontmatter + markdown) — dibuat/diedit lewat `/admin/` |
-
-Setiap teks memakai bentuk bilingual `{ "id": "...", "en": "..." }`. Komponen membaca lewat `t()` di `src/i18n.jsx` (path string untuk teks UI, atau objek `{id,en}` langsung untuk data). `src/data/content.js` hanyalah *adapter* yang mengekspor data JSON agar komponen tetap memakai import yang sama.
-
-## Dashboard admin (Decap CMS)
-
-Buka **`https://lansilvester.github.io/admin/`** → login dengan akun GitHub yang punya akses push ke repo. Setiap perubahan otomatis **di-commit ke repo** → workflow build & deploy ulang → perubahan tampil di situs dalam ±1–2 menit. Semua edit punya riwayat versi (git), jadi bisa di-undo.
-
-Yang bisa dikelola dari dashboard:
+Yang bisa dikelola:
 
 - **Teks & Label** — semua teks ID/EN (hero, about, judul section, tombol, placeholder, footer)
-- **Konten Situs** — menu, socials, profil, kualifikasi, skill (tambah/hapus kelompok & item), layanan, karya portfolio (+ upload gambar), info kontak, paket harga, konfigurasi feed Instagram, form kontak
-- **SEO** — title, description, Open Graph (diedit di menu *Settings*)
-- **Blog** — tulis/edit artikel markdown; file tersimpan di `src/blog/posts/`, otomatis ikut di-build saat deploy
-- **Urutan & Tampilan** — tarik item untuk mengubah urutan section, dan centang/mati-kan visibilitas tiap section
+- **Konten Situs** — menu, socials, profil, kualifikasi, skill, layanan, karya portfolio (+ upload gambar), info kontak, paket harga, konfigurasi feed Instagram, form kontak
+- **SEO** — title, description, Open Graph (menu *Settings*)
+- **Blog** — tulis/edit artikel markdown; ikut di-build saat deploy
+- **Urutan & Tampilan** — urutan & visibilitas section
 
 ### Form kontak → email (Web3Forms)
 
-Secara bawaan, submit form kontak membuka **WhatsApp**. Untuk mengirim ke **email**, isi `CONTACT_FORM.accessKey` (gratis) dari [web3forms.com](https://web3forms.com/) lewat dashboard admin → menu **Konten Situs → Form Kontak**. Setelah diisi, submit akan mengirim JSON ke endpoint Web3Forms dan hasilnya masuk inbox.
+Secara bawaan, submit form membuka **WhatsApp**. Untuk kirim ke **email**, isi `CONTACT_FORM.accessKey` (gratis) dari [web3forms.com](https://web3forms.com/) lewat dashboard → **Konten Situs → Form Kontak**. Setelah diisi, submit mengirim JSON ke endpoint Web3Forms.
 
 ### Setup login admin (sekali, via Cloudflare Workers)
-
-Login GitHub pada Decap butuh **OAuth App** + **proxy OAuth** (Cloudflare Worker). Langkahnya:
 
 1. **Buat GitHub OAuth App** — https://github.com/settings/applications/new
    - *Homepage URL*: `https://<proxy-domain>.workers.dev`
@@ -84,29 +116,24 @@ Login GitHub pada Decap butuh **OAuth App** + **proxy OAuth** (Cloudflare Worker
 
 ### Tes offline (opsional)
 
-Untuk mencoba editor tanpa push:
 1. Ubah `local_backend: false` → `true` di `public/admin/config.yml`.
 2. Jalankan `npx decap-server` (terpisah) lalu `npm run dev` dan buka `http://localhost:5173/admin/`.
 3. Kembalikan `local_backend: false` sebelum deploy.
 
-## Mengubah konten langsung di kode
-
-Semua bisa diedit lewat dashboard, tapi bila perlu langsung:
+## 🗂️ Mengubah konten langsung di kode
 
 - **Foto/karya asli** → taruh di `public/images/` (atau `public/images/uploads/`), lalu ubah path di `src/data/content.json`.
 - **Link proyek** → nilai `demo` (URL live) dan `github` (URL repo) di `src/data/content.json` (awalnya `#`).
 - **Feed Instagram** → refresh manual dengan `npm run fetch:instagram` (atau otomatis saat `npm run build`), lalu commit hasilnya.
 
-## Konfigurasi lain
+## 🚢 Deploy
+
+Push ke branch `main` — workflow `.github/workflows/deploy.yml` otomatis menjalankan **lint + unit test**, build, lalu deploy ke GitHub Pages. Deploy dibatalkan bila lint/test gagal.
+
+Feed Instagram di-refresh otomatis oleh `.github/workflows/update-instagram.yml` (cron tiap 3 jam) — jika ada perubahan, ia commit + push serta men-trigger deploy ulang.
+
+## 🔗 Konfigurasi lain
 
 - **Analytics**: buat akun di [goatcounter.com](https://www.goatcounter.com/) dengan subdomain `lansilvester`, sesuaikan `data-goatcounter` di `index.html`.
 - **Foto profil** → `public/images/profile.svg`.
 - **CV** → `public/CV/`.
-
-## Deploy
-
-Push ke branch `main` — workflow `.github/workflows/deploy.yml` otomatis menjalankan **lint + unit test**, build, lalu deploy ke GitHub Pages. Deploy dibatalkan bila lint/test gagal.
-
-## Stack
-
-React 19 · Vite · Tailwind CSS v4 · react-router · lucide-react · react-type-animation · Decap CMS · Vitest + Testing Library · oxlint
