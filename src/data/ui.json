@@ -1,155 +1,398 @@
 {
-  "header": {
-    "toggleTheme": { "id": "Ganti tema", "en": "Toggle theme" },
-    "openMenu": { "id": "Buka menu", "en": "Open menu" },
-    "closeMenu": { "id": "Tutup menu", "en": "Close menu" },
-    "toggleLanguage": { "id": "Ganti bahasa", "en": "Change language" },
-    "switchTo": { "id": "EN", "en": "ID" }
-  },
-  "scrollUp": {
-    "label": { "id": "Kembali ke atas", "en": "Back to top" }
-  },
-  "hero": {
-    "greeting1": { "id": "Halo, Alan di sini", "en": "Hi, Alan here" },
-    "greeting2": { "id": "Halo, saya Alan", "en": "Hi, I am Alan" },
-    "greeting3": { "id": "Halo, selamat datang", "en": "Hi, welcome" },
-    "description": {
-      "id": "Saya membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual yang dirancang untuk konversi.",
-      "en": "I help businesses and brands look professional through modern websites, video content, and visual design built to convert."
-    },
-    "viewWork": { "id": "Lihat Karya", "en": "See Work" },
-    "contact": { "id": "Kontak Saya", "en": "Contact Me" },
-    "scroll": { "id": "Scroll down", "en": "Scroll down" }
-  },
-  "blog": {
-    "sectionTitle": { "id": "Blog", "en": "Blog" },
-    "sectionSubtitle": {
-      "id": "Artikel seputar web development, videografi, dan desain",
-      "en": "Articles about web development, videography, and design"
-    },
-    "readMore": { "id": "Baca selengkapnya", "en": "Read more" },
-    "readOnMedium": { "id": "Baca di Medium", "en": "Read on Medium" },
-    "backToBlog": { "id": "Kembali ke Blog", "en": "Back to Blog" },
-    "empty": { "id": "Belum ada artikel.", "en": "No articles yet." },
-    "prev": { "id": "Artikel sebelumnya", "en": "Previous articles" },
-    "next": { "id": "Artikel selanjutnya", "en": "Next articles" },
-    "publishedOn": { "id": "Dipublikasikan", "en": "Published" }
-  },
-  "whatsappFloat": {
-    "label": { "id": "Chat via WhatsApp", "en": "Chat on WhatsApp" }
-  },
-  "modeswitch": {
-    "badge": { "id": "Mode Personal Branding", "en": "Personal Branding Mode" },
-    "title": { "id": "Kamu mau dikenal sebagai apa?", "en": "How do you want to be known?" },
-    "hint": {
-      "id": "Skill, layanan, dan portfolio menyesuaikan dengan mode yang dipilih.",
-      "en": "Skills, services, and portfolio adjust to the mode you choose."
-    }
-  },
-  "about": {
-    "sectionTitle": { "id": "Tentang", "en": "About" },
-    "sectionSubtitle": { "id": "Perkenalan diri dulu", "en": "Let me introduce myself" },
-    "description": {
-      "id": "Saya Alan (Varland Lengkong) — mahasiswa D4 Teknik Informatika di Politeknik Negeri Manado dan freelancer di bidang IT serta desain. Saya menggabungkan logika engineering dengan rasa estetika: membangun website yang cepat dan handal, sekaligus mengemas cerita visual yang menarik lewat videografi dan fotografi.",
-      "en": "I am Alan (Varland Lengkong) — a D4 Informatics Engineering student at Politeknik Negeri Manado and a freelancer in IT and design. I combine engineering logic with aesthetics: building fast, reliable websites while telling compelling visual stories through videography and photography."
-    },
-    "downloadCV": { "id": "Download CV", "en": "Download CV" }
-  },
-  "skills": {
-    "sectionTitle": { "id": "Skill", "en": "Skills" }
-  },
-  "qualif": {
-    "sectionTitle": { "id": "Kualifikasi", "en": "Qualification" },
-    "sectionSubtitle": { "id": "Tipe petualangan", "en": "My personal journey" },
-    "education": { "id": "Pendidikan", "en": "Education" },
-    "work": { "id": "Pengalaman", "en": "Experience" }
-  },
-  "services": {
-    "sectionTitle": { "id": "Layanan", "en": "Services" },
-    "more": { "id": "Lihat selengkapnya", "en": "View details" },
-    "close": { "id": "Tutup", "en": "Close" }
-  },
-  "portfolio": {
-    "sectionTitle": { "id": "Portfolio", "en": "Portfolio" },
-    "all": { "id": "Semua", "en": "All" },
-    "demo": { "id": "Lihat Demo", "en": "Live Demo" },
-    "github": { "id": "Source Code", "en": "Source Code" },
-    "close": { "id": "Tutup", "en": "Close" },
-    "tools": { "id": "Teknologi & Tools", "en": "Tech & Tools" },
-    "prev": { "id": "Sebelumnya", "en": "Previous" },
-    "next": { "id": "Berikutnya", "en": "Next" },
-    "empty": { "id": "Belum ada karya di kategori ini.", "en": "No work in this category yet." },
-    "openInstagram": { "id": "Buka di Instagram", "en": "Open on Instagram" }
-  },
-  "categories": {
-    "web": { "id": "Website", "en": "Website" },
-    "system": { "id": "Sistem Informasi", "en": "Information System" },
-    "ecommerce": { "id": "Online Store", "en": "Online Store" },
-    "video": { "id": "Video", "en": "Video" },
-    "photo": { "id": "Foto", "en": "Photo" },
-    "design": { "id": "Desain", "en": "Design" },
-    "social": { "id": "Media Sosial", "en": "Social Media" },
-    "film": { "id": "FILM", "en": "FILM" },
-    "studio": { "id": "FOTO STUDIO", "en": "STUDIO PHOTO" },
-    "outdoor": { "id": "OUTDOOR EVENT", "en": "OUTDOOR EVENT" },
-    "branding": { "id": "PERSONAL BRANDING", "en": "PERSONAL BRANDING" },
-    "other": { "id": "Lainnya", "en": "Others" }
-  },
-  "cta": {
-    "title": { "id": "Ada proyek dalam pikiran?", "en": "Have a project in mind?" },
-    "description": {
-      "id": "Mari diskusikan ide Anda — saya siap membantu mewujudkannya.",
-      "en": "Let's discuss your idea — I'm ready to bring it to life."
-    },
-    "button": { "id": "Hubungi Saya", "en": "Get in Touch" }
-  },
   "contact": {
-    "sectionTitle": { "id": "Kontak", "en": "Contact" },
-    "sectionSubtitle": { "id": "Hubungi", "en": "Get in touch" },
-    "name": { "id": "Nama", "en": "Name" },
-    "emailField": { "id": "Email", "en": "Email" },
-    "project": { "id": "Proyek", "en": "Project" },
-    "message": { "id": "Pesan", "en": "Message" },
-    "namePlaceholder": { "id": "Nama Anda", "en": "Your name" },
-    "emailPlaceholder": { "id": "email@anda.com", "en": "you@example.com" },
-    "projectPlaceholder": { "id": "Judul proyek", "en": "Project title" },
-    "messagePlaceholder": { "id": "Tulis pesan Anda", "en": "Write your message" },
-    "submitWhatsApp": { "id": "Kirim via WhatsApp", "en": "Send via WhatsApp" },
-    "submitEmail": { "id": "Kirim via Email", "en": "Send via Email" },
-    "submit": { "id": "Kirim Pesan", "en": "Send Message" },
-    "sending": { "id": "Mengirim...", "en": "Sending..." },
+    "errorValidation": {
+      "id": "Mohon lengkapi nama, email, dan pesan.",
+      "en": "Please fill in your name, email, and message."
+    },
     "success": {
       "id": "Pesan berhasil dikirim! Saya akan segera menghubungi Anda.",
       "en": "Message sent successfully! I will get back to you soon."
     },
-    "errorValidation": {
-      "id": "Mohon lengkapi nama, email, dan pesan.",
-      "en": "Please fill in your name, email, and message."
+    "whatsappNote": {
+      "id": "Pesan akan otomatis terisi di WhatsApp saya. Butuh form email? Tombol sekunder tersedia.",
+      "en": "Your message will be pre-filled in my WhatsApp. Need an email form? Use the secondary button."
+    },
+    "submitEmail": {
+      "id": "Kirim via Email",
+      "en": "Send via Email"
+    },
+    "message": {
+      "id": "Pesan",
+      "en": "Message"
+    },
+    "namePlaceholder": {
+      "id": "Nama Anda",
+      "en": "Your name"
+    },
+    "submitWhatsApp": {
+      "id": "Kirim via WhatsApp",
+      "en": "Send via WhatsApp"
+    },
+    "name": {
+      "id": "Nama",
+      "en": "Name"
+    },
+    "messagePlaceholder": {
+      "id": "Tulis pesan Anda",
+      "en": "Write your message"
     },
     "errorGeneric": {
       "id": "Gagal mengirim. Coba lagi, atau hubungi saya langsung via WhatsApp.",
       "en": "Failed to send. Please try again, or reach me directly on WhatsApp."
     },
-    "whatsappNote": {
-      "id": "Pesan akan otomatis terisi di WhatsApp saya. Butuh form email? Tombol sekunder tersedia.",
-      "en": "Your message will be pre-filled in my WhatsApp. Need an email form? Use the secondary button."
+    "sectionTitle": {
+      "id": "Kontak",
+      "en": "Contact"
+    },
+    "emailPlaceholder": {
+      "id": "email@anda.com",
+      "en": "you@example.com"
+    },
+    "submit": {
+      "id": "Kirim Pesan",
+      "en": "Send Message"
+    },
+    "project": {
+      "id": "Proyek",
+      "en": "Project"
+    },
+    "projectPlaceholder": {
+      "id": "Judul proyek",
+      "en": "Project title"
+    },
+    "sending": {
+      "id": "Mengirim...",
+      "en": "Sending..."
+    },
+    "sectionSubtitle": {
+      "id": "Hubungi",
+      "en": "Get in touch"
+    },
+    "emailField": {
+      "id": "Email",
+      "en": "Email"
+    }
+  },
+  "skills": {
+    "sectionTitle": {
+      "id": "Skill",
+      "en": "Skills"
+    }
+  },
+  "blog": {
+    "backToBlog": {
+      "id": "Kembali ke Blog",
+      "en": "Back to Blog"
+    },
+    "readOnMedium": {
+      "id": "Baca di Medium",
+      "en": "Read on Medium"
+    },
+    "readMore": {
+      "id": "Baca selengkapnya",
+      "en": "Read more"
+    },
+    "publishedOn": {
+      "id": "Dipublikasikan",
+      "en": "Published"
+    },
+    "empty": {
+      "id": "Belum ada artikel.",
+      "en": "No articles yet."
+    },
+    "prev": {
+      "id": "Artikel sebelumnya",
+      "en": "Previous articles"
+    },
+    "sectionTitle": {
+      "id": "Blog",
+      "en": "Blog"
+    },
+    "next": {
+      "id": "Artikel selanjutnya",
+      "en": "Next articles"
+    },
+    "sectionSubtitle": {
+      "id": "Artikel seputar web development, videografi, dan desain",
+      "en": "Articles about web development, videography, and design"
     }
   },
   "pricing": {
-    "sectionTitle": { "id": "Harga Layanan", "en": "Pricing" },
+    "sectionTitle": {
+      "id": "Harga Layanan",
+      "en": "Pricing"
+    },
     "sectionSubtitle": {
       "id": "Paket yang bisa disesuaikan dengan kebutuhan",
       "en": "Plans that can be tailored to your needs"
     },
-    "starting": { "id": "mulai dari", "en": "starting from" },
-    "choose": { "id": "Pilih Paket", "en": "Choose Plan" },
-    "popular": { "id": "Paling Populer", "en": "Most Popular" }
+    "starting": {
+      "id": "mulai dari",
+      "en": "starting from"
+    },
+    "choose": {
+      "id": "Pilih Paket",
+      "en": "Choose Plan"
+    },
+    "popular": {
+      "id": "Paling Populer",
+      "en": "Most Popular"
+    }
+  },
+  "portfolio": {
+    "all": {
+      "id": "Semua",
+      "en": "All"
+    },
+    "demo": {
+      "id": "Lihat Demo",
+      "en": "Live Demo"
+    },
+    "github": {
+      "id": "Source Code",
+      "en": "Source Code"
+    },
+    "openInstagram": {
+      "id": "Buka di Instagram",
+      "en": "Open on Instagram"
+    },
+    "empty": {
+      "id": "Belum ada karya di kategori ini.",
+      "en": "No work in this category yet."
+    },
+    "prev": {
+      "id": "Sebelumnya",
+      "en": "Previous"
+    },
+    "sectionTitle": {
+      "id": "Portfolio",
+      "en": "Portfolio"
+    },
+    "next": {
+      "id": "Berikutnya",
+      "en": "Next"
+    },
+    "close": {
+      "id": "Tutup",
+      "en": "Close"
+    },
+    "tools": {
+      "id": "Teknologi & Tools",
+      "en": "Tech & Tools"
+    }
+  },
+  "scrollUp": {
+    "label": {
+      "id": "Kembali ke atas",
+      "en": "Back to top"
+    }
+  },
+  "whatsappFloat": {
+    "label": {
+      "id": "Chat via WhatsApp",
+      "en": "Chat on WhatsApp"
+    }
+  },
+  "qualif": {
+    "sectionTitle": {
+      "id": "Kualifikasi",
+      "en": "Qualification"
+    },
+    "sectionSubtitle": {
+      "id": "Tipe petualangan",
+      "en": "My personal journey"
+    },
+    "education": {
+      "id": "Pendidikan",
+      "en": "Education"
+    },
+    "work": {
+      "id": "Pengalaman",
+      "en": "Experience"
+    }
+  },
+  "header": {
+    "toggleTheme": {
+      "id": "Ganti tema",
+      "en": "Toggle theme"
+    },
+    "openMenu": {
+      "id": "Buka menu",
+      "en": "Open menu"
+    },
+    "closeMenu": {
+      "id": "Tutup menu",
+      "en": "Close menu"
+    },
+    "toggleLanguage": {
+      "id": "Ganti bahasa",
+      "en": "Change language"
+    },
+    "switchTo": {
+      "id": "EN",
+      "en": "ID"
+    }
+  },
+  "about": {
+    "sectionTitle": {
+      "id": "Tentang",
+      "en": "About"
+    },
+    "sectionSubtitle": {
+      "id": "Perkenalan diri dulu",
+      "en": "Let me introduce myself"
+    },
+    "description": {
+      "id": "Saya Alan (Varland Lengkong), seorang IT professional yang memiliki ketertarikan pada teknologi dan kreativitas. Dengan latar belakang Teknik Informatika, saya mengembangkan solusi digital melalui software development, networking, dan desain, sekaligus mengeksplorasi storytelling melalui fotografi dan videografi. Bagi saya, teknologi bukan hanya tentang bagaimana sesuatu bekerja, tetapi juga bagaimana solusi tersebut dapat memberikan pengalaman yang baik bagi penggunanya.",
+      "en": "I’m Alan (Varland Lengkong), an IT professional with a background in Informatics Engineering and experience in software development, networking, and creative technology. I combine an engineering mindset with creativity to build digital solutions that are functional, reliable, and visually engaging. Beyond technology, I explore visual storytelling through photography and videography.\n\nFor me, technology is not only about how things work, but also about how they can create meaningful and effective experiences for people."
+    },
+    "downloadCV": {
+      "id": "Download CV",
+      "en": "Download CV"
+    }
+  },
+  "cta": {
+    "title": {
+      "id": "Ada proyek dalam pikiran?",
+      "en": "Have a project in mind?"
+    },
+    "description": {
+      "id": "Mari diskusikan ide Anda — saya siap membantu mewujudkannya.",
+      "en": "Let's discuss your idea — I'm ready to bring it to life."
+    },
+    "button": {
+      "id": "Hubungi Saya",
+      "en": "Get in Touch"
+    }
+  },
+  "modeswitch": {
+    "badge": {
+      "id": "Mode Personal Branding",
+      "en": "Personal Branding Mode"
+    },
+    "title": {
+      "id": "Kamu mau dikenal sebagai apa?",
+      "en": "How do you want to be known?"
+    },
+    "hint": {
+      "id": "Skill, layanan, dan portfolio menyesuaikan dengan mode yang dipilih.",
+      "en": "Skills, services, and portfolio adjust to the mode you choose."
+    }
+  },
+  "hero": {
+    "greeting1": {
+      "id": "Halo, Alan di sini",
+      "en": "Hi, Alan here"
+    },
+    "greeting2": {
+      "id": "Halo, saya Alan",
+      "en": "Hi, I am Alan"
+    },
+    "greeting3": {
+      "id": "Halo, selamat datang",
+      "en": "Hi, welcome"
+    },
+    "description": {
+      "id": "Saya membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual yang dirancang untuk konversi.",
+      "en": "I help businesses and brands look professional through modern websites, video content, and visual design built to convert."
+    },
+    "viewWork": {
+      "id": "Lihat Karya",
+      "en": "See Work"
+    },
+    "contact": {
+      "id": "Kontak Saya",
+      "en": "Contact Me"
+    },
+    "scroll": {
+      "id": "Scroll down",
+      "en": "Scroll down"
+    }
   },
   "footer": {
-    "tagline": { "id": "Web Developer | Creative", "en": "Web Developer | Creative" },
-    "services": { "id": "Layanan", "en": "Services" },
-    "portfolio": { "id": "Portfolio", "en": "Portfolio" },
-    "contact": { "id": "Kontak Saya", "en": "Contact Me" },
-    "madeWith": { "id": "Dibuat dengan", "en": "Made with" }
+    "tagline": {
+      "id": "Web Developer | Creative",
+      "en": "Web Developer | Creative"
+    },
+    "services": {
+      "id": "Layanan",
+      "en": "Services"
+    },
+    "portfolio": {
+      "id": "Portfolio",
+      "en": "Portfolio"
+    },
+    "contact": {
+      "id": "Kontak Saya",
+      "en": "Contact Me"
+    },
+    "madeWith": {
+      "id": "Dibuat dengan",
+      "en": "Made with"
+    }
+  },
+  "categories": {
+    "ecommerce": {
+      "id": "Online Store",
+      "en": "Online Store"
+    },
+    "film": {
+      "id": "FILM",
+      "en": "FILM"
+    },
+    "social": {
+      "id": "Media Sosial",
+      "en": "Social Media"
+    },
+    "system": {
+      "id": "Sistem Informasi",
+      "en": "Information System"
+    },
+    "other": {
+      "id": "Lainnya",
+      "en": "Others"
+    },
+    "photo": {
+      "id": "Foto",
+      "en": "Photo"
+    },
+    "web": {
+      "id": "Website",
+      "en": "Website"
+    },
+    "studio": {
+      "id": "FOTO STUDIO",
+      "en": "STUDIO PHOTO"
+    },
+    "video": {
+      "id": "Video",
+      "en": "Video"
+    },
+    "branding": {
+      "id": "PERSONAL BRANDING",
+      "en": "PERSONAL BRANDING"
+    },
+    "outdoor": {
+      "id": "OUTDOOR EVENT",
+      "en": "OUTDOOR EVENT"
+    },
+    "design": {
+      "id": "Desain",
+      "en": "Design"
+    }
+  },
+  "services": {
+    "sectionTitle": {
+      "id": "Layanan",
+      "en": "Services"
+    },
+    "more": {
+      "id": "Lihat selengkapnya",
+      "en": "View details"
+    },
+    "close": {
+      "id": "Tutup",
+      "en": "Close"
+    }
   }
 }
