@@ -1,12 +1,12 @@
 {
-  "title": "Alan | Web Developer & Creative",
-  "description": "Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado. Membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual.",
-  "author": "Alan (Varland Lengkong)",
-  "url": "https://lansilvester.github.io/",
   "ogTitle": "Alan | Web Developer & Creative",
+  "ogImage": "/images/uploads/cuplikan-layar-2026-08-11-004838.png",
   "ogDescription": "Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado.",
-  "ogImage": "/og-image.png",
-  "themeColor": "#3b82f6",
+  "author": "Alan (Varland Lengkong)",
   "mediumUsername": "@alan.lengkong",
-  "mediumUrl": "https://medium.com/@alan.lengkong"
+  "url": "https://lansilvester.github.io/",
+  "title": "Alan | Web Developer & Creative",
+  "mediumUrl": "https://medium.com/@alan.lengkong",
+  "themeColor": "#3b82f6",
+  "description": "Portfolio Alan (Varland Lengkong) - Web Developer dan Creative Videographer dari Manado. Membantu bisnis dan brand tampil profesional lewat website modern, konten video, dan desain visual."
 }
