@@ -21,25 +21,6 @@
   <script>
     // Pratinjau editor mengikuti gaya situs (lihat /admin/preview.css).
     window.CMS.registerPreviewStyle('/admin/preview.css')
-
-    // Pratinjau khusus untuk koleksi blog: tampilkan judul/meta sebelum body.
-    if (typeof window.React !== 'undefined') {
-      window.CMS.registerPreviewTemplate('blog', function ({ entry, widgetFor }) {
-        var React = window.React
-        var data = entry.get('data')
-        return React.createElement(
-          'article',
-          { className: 'decap-blog' },
-          React.createElement('h1', null, data.get('title')),
-          React.createElement('p', { className: 'decap-meta' }, data.get('date')),
-          data.get('excerpt')
-            ? React.createElement('blockquote', null, data.get('excerpt'))
-            : null,
-          React.createElement('hr', null),
-          widgetFor('body')
-        )
-      })
-    }
   </script>
 </body>
 </html>

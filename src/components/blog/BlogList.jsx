@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Icon from '../ui/Icon'
 import Reveal from '../ui/Reveal'
 import { useI18n } from '../../useI18n'
-import { getAllPosts, formatPostDate } from '../../utils/blog'
+import { formatPostDate } from '../../utils/blog'
 import mediumPosts from '../../data/medium-posts.json'
 
 function MediumCard({ post }) {
@@ -60,48 +60,9 @@ function MediumCard({ post }) {
   )
 }
 
-function LocalCard({ post }) {
-  const { t, lang } = useI18n()
-  return (
-    <a
-      href={`/blog/${post.slug}`}
-      className="group flex w-72 shrink-0 snap-start flex-col gap-2 rounded-2xl border border-line bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl sm:w-80 lg:w-96"
-    >
-      <div className="flex flex-wrap items-center gap-2">
-        {post.tags?.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full bg-primary-lighter/40 px-3 py-0.5 text-xs font-medium text-primary"
-          >
-            {tag}
-          </span>
-        ))}
-        <span className="text-xs text-muted">{formatPostDate(post.date, lang === 'id' ? 'id-ID' : 'en-US')}</span>
-      </div>
-      <h2 className="text-lg font-semibold text-title transition-colors group-hover:text-primary sm:text-xl">
-        {post.title}
-      </h2>
-      {post.excerpt && (
-        <p className="text-sm leading-relaxed text-muted">{post.excerpt}</p>
-      )}
-      <span className="mt-2 inline-flex items-center gap-2 self-start text-sm font-medium text-primary">
-        {t('blog.readMore')}
-        <Icon
-          name="arrowRight"
-          size={16}
-          className="transition-transform duration-300 group-hover:translate-x-1"
-        />
-      </span>
-    </a>
-  )
-}
-
 export default function BlogList() {
-  const { t, lang } = useI18n()
-  const localPosts = getAllPosts()
-  const langPosts = localPosts.filter((p) => !p.lang || p.lang === lang)
-  const fallback = langPosts.length ? langPosts : localPosts
-  const visible = mediumPosts && mediumPosts.length ? mediumPosts : fallback
+  const { t } = useI18n()
+  const visible = mediumPosts && mediumPosts.length ? mediumPosts : []
 
   const trackRef = useRef(null)
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false })
@@ -226,9 +187,9 @@ export default function BlogList() {
             onPointerUp={onPointerUp}
             className="mt-4 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto pb-4 scrollbar-hide"
           >
-            {visible.map((post) =>
-              post.link ? <MediumCard key={post.link} post={post} /> : <LocalCard key={post.slug} post={post} />
-            )}
+            {visible.map((post) => (
+              <MediumCard key={post.link} post={post} />
+            ))}
           </div>
         )}
       </div>

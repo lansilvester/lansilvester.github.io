@@ -26,8 +26,9 @@ Dashboard ini (Decap CMS) dipakai untuk mengelola semua isi website portfolio ta
 | **Konten Situs** | Data utama: profil, hero, skill, layanan, karya, kualifikasi, harga, kontak. |
 | **Urutan & Tampilan** | Atur urutan section dan tampil/sembunyikan section di halaman. |
 | **Pengaturan & SEO** | Judul situs, deskripsi meta, gambar share, warna tema. |
-| **Artikel Blog** | Tulis/edit artikel blog (Markdown). |
 | **Panduan** | Halaman yang sedang Anda baca ini. |
+
+> **Soal blog:** Artikel Anda hanya ditampilkan dari **Medium.com** (feed otomatis). Untuk menulis/mengedit tulisan, lakukan di Medium — setelah ±30 menit feed di halaman blog akan ter-update.
 
 ---
 

@@ -582,33 +582,7 @@ collections:
           - { name: themeColor, label: 'Warna tema (hex, mis. #3b82f6)', widget: string }
 
   # ==========================================================
-  # 5) ARTIKEL BLOG (src/blog/posts/*.md)
-  # ==========================================================
-  - name: blog
-    label: 'Artikel Blog'
-    label_singular: 'Artikel'
-    folder: 'src/blog/posts'
-    create: true
-    slug: '{{slug}}'
-    extension: md
-    format: frontmatter
-    identifier_field: title
-    fields:
-      - { name: title, label: 'Judul', widget: string }
-      - { name: date, label: 'Tanggal', widget: datetime }
-      - name: excerpt
-        label: 'Ringkasan (tampil di daftar)'
-        widget: text
-      - name: tags
-        label: 'Tag'
-        widget: list
-        field: { name: tag, label: 'Tag', widget: string }
-      - { name: lang, label: 'Bahasa artikel', widget: select, options: [id, en], default: id }
-      - { name: featured, label: 'Artikel unggulan', widget: boolean, default: false, required: false }
-      - { name: body, label: 'Isi artikel (Markdown)', widget: markdown }
-
-  # ==========================================================
-  # 6) PANDUAN PENGGUNAAN CMS (docs/cms-guide.md)
+  # 5) PANDUAN PENGGUNAAN CMS (docs/cms-guide.md)
   # ==========================================================
   - name: panduan
     label: 'Panduan'

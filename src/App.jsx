@@ -20,7 +20,6 @@ const Pricing = lazy(() => import('./components/sections/Pricing'))
 const ProjectInMind = lazy(() => import('./components/sections/ProjectInMind'))
 const Contact = lazy(() => import('./components/sections/Contact'))
 const BlogList = lazy(() => import('./components/blog/BlogList'))
-const BlogPost = lazy(() => import('./components/blog/BlogPost'))
 
 const SWITCH_DURATION = 550
 
@@ -108,7 +107,6 @@ function App() {
       <Header dark={dark} onToggleTheme={toggle} />
       <Routes>
         <Route path="/" element={<HomeSections mode={mode} onModeChange={handleModeChange} />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
