@@ -140,6 +140,7 @@ export default function About({ mode }) {
               <div className="mt-9">
                 <a
                   href={ABOUT.cv}
+                  download="CV - Varland Lengkong.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="group btn-shine inline-flex items-center gap-2 rounded-full bg-primary px-9 py-3.5 text-base font-semibold text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-primary-alt hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"

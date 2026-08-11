@@ -9,6 +9,7 @@ backend:
 
 site_url: https://lansilvester.github.io/
 display_url: https://lansilvester.github.io/
+logo_url: /images/uploads/alan-profile-2.webp
 
 # Untuk tes offline saja: set true lalu jalankan `npx decap-server`
 # dan buka http://localhost:5173/admin/ — di production biarkan false.
@@ -605,3 +606,20 @@ collections:
       - { name: lang, label: 'Bahasa artikel', widget: select, options: [id, en], default: id }
       - { name: featured, label: 'Artikel unggulan', widget: boolean, default: false, required: false }
       - { name: body, label: 'Isi artikel (Markdown)', widget: markdown }
+
+  # ==========================================================
+  # 6) PANDUAN PENGGUNAAN CMS (docs/cms-guide.md)
+  # ==========================================================
+  - name: panduan
+    label: 'Panduan'
+    label_singular: 'Panduan'
+    files:
+      - file: 'docs/cms-guide.md'
+        label: 'Panduan Penggunaan CMS'
+        name: panduan
+        format: frontmatter
+        editor:
+          preview: true
+        fields:
+          - { name: title, label: 'Judul', widget: string }
+          - { name: body, label: 'Isi Panduan (Markdown)', widget: markdown }
