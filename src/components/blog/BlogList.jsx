@@ -64,7 +64,7 @@ function LocalCard({ post }) {
   const { t, lang } = useI18n()
   return (
     <a
-      href="#blog"
+      href={`/blog/${post.slug}`}
       className="group flex w-72 shrink-0 snap-start flex-col gap-2 rounded-2xl border border-line bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl sm:w-80 lg:w-96"
     >
       <div className="flex flex-wrap items-center gap-2">

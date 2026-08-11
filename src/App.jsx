@@ -10,6 +10,7 @@ import WhatsAppFloat from './components/layout/WhatsAppFloat'
 import { useTheme } from './hooks/useTheme'
 import playModeSound from './utils/playModeSound'
 import { LAYOUT } from './data/content'
+import site from './data/site.json'
 
 const Skills = lazy(() => import('./components/sections/Skills'))
 const Qualification = lazy(() => import('./components/sections/Qualification'))
@@ -19,6 +20,7 @@ const Pricing = lazy(() => import('./components/sections/Pricing'))
 const ProjectInMind = lazy(() => import('./components/sections/ProjectInMind'))
 const Contact = lazy(() => import('./components/sections/Contact'))
 const BlogList = lazy(() => import('./components/blog/BlogList'))
+const BlogPost = lazy(() => import('./components/blog/BlogPost'))
 
 const SWITCH_DURATION = 550
 
@@ -81,6 +83,11 @@ function App() {
   const [mode, setMode] = useState('developer')
   const [switching, setSwitching] = useState(false)
   const switchTimer = useRef(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    if (pathname === '/') document.title = site.title
+  }, [pathname])
 
   const handleModeChange = (next) => {
     if (next === mode || switching) return
@@ -101,6 +108,7 @@ function App() {
       <Header dark={dark} onToggleTheme={toggle} />
       <Routes>
         <Route path="/" element={<HomeSections mode={mode} onModeChange={handleModeChange} />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />

@@ -85,7 +85,7 @@
       // rute selain /blog berfungsi saat dibuka langsung.
       try {
         var spaPath = sessionStorage.getItem('pagesRedirect')
-        if (spaPath && spaPath.startsWith('/') && !spaPath.startsWith('//') && !spaPath.startsWith('/blog')) {
+        if (spaPath && spaPath.startsWith('/') && !spaPath.startsWith('//')) {
           sessionStorage.removeItem('pagesRedirect')
           history.replaceState(null, '', spaPath)
         }
