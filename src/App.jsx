@@ -104,7 +104,7 @@ function App() {
   return (
     <div>
       <ScrollToTop />
-      <Header dark={dark} onToggleTheme={toggle} />
+      <Header dark={dark} onToggleTheme={toggle} mode={mode} />
       <Routes>
         <Route path="/" element={<HomeSections mode={mode} onModeChange={handleModeChange} />} />
         <Route path="*" element={<Navigate to="/" replace />} />

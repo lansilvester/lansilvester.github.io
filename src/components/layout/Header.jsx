@@ -7,17 +7,33 @@ import { useScrolled, useActiveSection } from '../../hooks/useScroll'
 
 const SECTION_IDS = ['home', 'about', 'skills', 'services', 'portfolio', 'blog', 'contact']
 
-export default function Header({ dark, onToggleTheme }) {
+export default function Header({ dark, onToggleTheme, mode = 'developer' }) {
   const scrolled = useScrolled()
   const [menuOpen, setMenuOpen] = useState(false)
   const active = useActiveSection(SECTION_IDS)
   const { t, lang, setLang } = useI18n()
   const location = useLocation()
 
+  const navLinks = NAV_LINKS.filter((link) => !link.mode || link.mode === mode)
+
   const isActiveLink = (href) =>
     href.startsWith('#')
       ? active === href.slice(1)
       : location.pathname.startsWith(href)
+
+  const renderLink = (link, className, onClick, inner) => {
+    const isHash = link.href.startsWith('#')
+    const isExternal = link.href.startsWith('/')
+    return isHash || isExternal ? (
+      <a key={link.href} href={link.href} className={className} onClick={onClick}>
+        {inner}
+      </a>
+    ) : (
+      <Link key={link.href} to={link.href} className={className} onClick={onClick}>
+        {inner}
+      </Link>
+    )
+  }
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -50,7 +66,7 @@ export default function Header({ dark, onToggleTheme }) {
         </div>
 
         <div className="hidden h-full items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const isActive = isActiveLink(link.href)
             const className = `group link-underline flex flex-col items-center gap-0.5 px-3 py-2 text-xs font-medium transition-colors ${
               isActive ? 'active text-primary' : 'text-text hover:text-primary'
@@ -65,15 +81,7 @@ export default function Header({ dark, onToggleTheme }) {
                 {t(link.label)}
               </>
             )
-            return link.href.startsWith('#') ? (
-              <a key={link.href} href={link.href} className={className}>
-                {inner}
-              </a>
-            ) : (
-              <Link key={link.href} to={link.href} className={className}>
-                {inner}
-              </Link>
-            )
+            return renderLink(link, className, undefined, inner)
           })}
         </div>
 
@@ -116,8 +124,13 @@ export default function Header({ dark, onToggleTheme }) {
         }`}
       >
         <div className="w-full max-w-md rounded-3xl border border-line bg-card/90 p-2 shadow-card backdrop-blur-xl">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const isActive = isActiveLink(link.href)
+            const className = `flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all duration-300 hover:translate-x-1 ${
+              isActive
+                ? 'bg-primary-lighter/40 text-primary'
+                : 'text-text hover:bg-primary-lighter/30 hover:text-primary'
+            }`
             const inner = (
               <>
                 <span
@@ -131,20 +144,7 @@ export default function Header({ dark, onToggleTheme }) {
                 {isActive && <Icon name="arrowRight" size={16} className="text-primary" />}
               </>
             )
-            const className = `flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all duration-300 hover:translate-x-1 ${
-              isActive
-                ? 'bg-primary-lighter/40 text-primary'
-                : 'text-text hover:bg-primary-lighter/30 hover:text-primary'
-            }`
-            return link.href.startsWith('#') ? (
-              <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={className}>
-                {inner}
-              </a>
-            ) : (
-              <Link key={link.href} to={link.href} onClick={() => setMenuOpen(false)} className={className}>
-                {inner}
-              </Link>
-            )
+            return renderLink(link, className, () => setMenuOpen(false), inner)
           })}
         </div>
       </div>

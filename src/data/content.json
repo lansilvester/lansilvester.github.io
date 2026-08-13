@@ -1023,6 +1023,15 @@
     },
     {
       "label": {
+        "id": "Day One",
+        "en": "Day One"
+      },
+      "href": "/day_one_picture/",
+      "icon": "camera",
+      "mode": "creative"
+    },
+    {
+      "label": {
         "id": "Kontak",
         "en": "Contact"
       },
