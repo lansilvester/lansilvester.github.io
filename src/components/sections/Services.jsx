@@ -19,7 +19,7 @@ export default function Services({ mode }) {
         <SectionTitle title={t('services.sectionTitle')} subtitle={t(modeData.servicesSubtitle)} />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {modeData.services.map((service, index) => (
+          {modeData.services?.map((service, index) => (
             <Reveal key={service.id} delay={index * 100}>
               <div className="group flex h-full flex-col items-start gap-4 rounded-2xl border border-line bg-body p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-lighter/60 text-primary transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
@@ -63,7 +63,7 @@ export default function Services({ mode }) {
           >
             <div className="flex items-start justify-between gap-4">
               <h4 className="text-xl font-semibold text-title">
-                {t(modeData.services.find((s) => s.id === activeModal).title)}
+                {t(modeData.services?.find((s) => s.id === activeModal)?.title)}
               </h4>
               <button
                 type="button"
@@ -78,7 +78,7 @@ export default function Services({ mode }) {
               </button>
             </div>
             <ul className="mt-6 grid gap-3">
-              {modeData.services.find((s) => s.id === activeModal).points.map((point) => (
+              {modeData.services?.find((s) => s.id === activeModal)?.points?.map((point) => (
                 <li key={point.id} className="flex items-start gap-2 text-sm text-text">
                   <Icon name="check" size={18} className="mt-0.5 shrink-0 text-primary" />
                   {t(point)}

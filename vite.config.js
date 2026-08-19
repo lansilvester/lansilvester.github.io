@@ -7,18 +7,39 @@ import tailwindcss from '@tailwindcss/vite'
 // sehingga teks SEO bisa diedit lewat dashboard Decap CMS tanpa sentuh kode.
 function htmlSiteMeta() {
   let site = {}
+  let content = {}
   return {
     name: 'html-site-meta',
     buildStart() {
       try {
         site = JSON.parse(readFileSync(new URL('./src/data/site.json', import.meta.url), 'utf8'))
+        content = JSON.parse(readFileSync(new URL('./src/data/content.json', import.meta.url), 'utf8'))
       } catch {
         site = {}
+        content = {}
       }
     },
     transformIndexHtml(html) {
       const abs = (src) => (src && src.startsWith('/') ? `${site.url.replace(/\/$/, '')}${src}` : src)
       const ogImage = abs(site.ogImage)
+      
+      const socials = content.SOCIALS || []
+      const hero = content.HERO || {}
+      
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": hero.name || site.title || "Portfolio",
+        "url": site.url || "",
+        "jobTitle": site.description ? site.description.split('-')[1]?.trim() || "Web Developer" : "Web Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": hero.location || "",
+          "addressCountry": "ID"
+        },
+        "sameAs": socials.map(s => s.url).filter(Boolean)
+      }
+
       return html
         .replace(/<title>[^<]*<\/title>/, `<title>${site.title || 'Portfolio'}</title>`)
         .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${site.description || ''}"`)
@@ -33,6 +54,7 @@ function htmlSiteMeta() {
         .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${site.ogTitle || site.title || ''}"`)
         .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${site.ogDescription || site.description || ''}"`)
         .replace(/<meta name="twitter:image" content="[^"]*"/, `<meta name="twitter:image" content="${ogImage || ''}"`)
+        .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`)
     },
   }
 }

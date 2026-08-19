@@ -24,7 +24,7 @@ export default function Portfolio({ mode }) {
     : []
   const categories = useInstagram
     ? igCats
-    : ['all', ...new Set(modeData.portfolio.map((p) => p.category))]
+    : ['all', ...new Set(modeData.portfolio?.map((p) => p.category) || [])]
 
   const [activeCat, setActiveCat] = useState('all')
   const [activeIndex, setActiveIndex] = useState(null)
@@ -36,8 +36,8 @@ export default function Portfolio({ mode }) {
         ? igItems.filter((p) => !p.category)
         : igItems.filter((p) => p.category === activeCat)
     : activeCat === 'all'
-      ? modeData.portfolio
-      : modeData.portfolio.filter((p) => p.category === activeCat)
+      ? (modeData.portfolio || [])
+      : (modeData.portfolio || []).filter((p) => p.category === activeCat)
 
   const current = activeIndex !== null ? items[activeIndex] : null
 
@@ -48,6 +48,17 @@ export default function Portfolio({ mode }) {
   useEffect(() => {
     if (activeIndex === null) return
     document.body.style.overflow = 'hidden'
+    
+    // Focus Trap setup
+    const modal = document.getElementById('portfolio-modal')
+    const focusable = modal?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    const firstFocusable = focusable && focusable[0]
+    const lastFocusable = focusable && focusable[focusable.length - 1]
+
+    if (firstFocusable) {
+      firstFocusable.focus()
+    }
+
     const onKey = (e) => {
       if (e.key === 'Escape') {
         playClickSound()
@@ -55,7 +66,22 @@ export default function Portfolio({ mode }) {
       }
       if (e.key === 'ArrowRight') setActiveIndex((i) => (i + 1 + items.length) % items.length)
       if (e.key === 'ArrowLeft') setActiveIndex((i) => (i - 1 + items.length) % items.length)
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            lastFocusable?.focus()
+            e.preventDefault()
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            firstFocusable?.focus()
+            e.preventDefault()
+          }
+        }
+      }
     }
+    
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
@@ -174,6 +200,7 @@ export default function Portfolio({ mode }) {
           }}
         >
           <div
+            id="portfolio-modal"
             className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-card shadow-card"
             onClick={(e) => e.stopPropagation()}
           >

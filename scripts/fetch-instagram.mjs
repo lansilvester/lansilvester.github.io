@@ -131,5 +131,6 @@ try {
   writeFileSync(OUT, `${JSON.stringify(posts, null, 2)}\n`)
   console.log(`[instagram] ${posts.length} postingan disimpan (${downloaded} gambar baru) ke src/data/instagram-posts.json`)
 } catch (err) {
+  console.error(`::error title=Instagram Fetch Failed::Gagal memperbarui feed (${err.message})`)
   console.warn(`[instagram] Gagal memperbarui feed (${err.message}) — memakai data yang sudah ada.`)
 }

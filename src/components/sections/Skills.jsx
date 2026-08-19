@@ -17,7 +17,7 @@ export default function Skills({ mode }) {
         <SectionTitle title={t('skills.sectionTitle')} subtitle={t(modeData.skillsSubtitle)} />
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
-          {modeData.skills.map((group, index) => (
+          {modeData.skills?.map((group, index) => (
             <Reveal key={group.id} delay={index * 80}>
               <div className="rounded-2xl border border-line bg-body p-5 shadow-card sm:p-6">
                 <div className="flex items-center gap-4">
@@ -33,7 +33,7 @@ export default function Skills({ mode }) {
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
+                  {group.skills?.map((skill) => (
                     <span
                       key={skill}
                       className="inline-flex items-center gap-2 rounded-full border border-line bg-card py-1.5 pl-1.5 pr-3 text-sm font-medium text-text transition-colors hover:border-primary/40 hover:bg-primary-lighter/20"

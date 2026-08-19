@@ -31,5 +31,6 @@ try {
   writeFileSync(OUT, `${JSON.stringify(items, null, 2)}\n`)
   console.log(`[medium] ${items.length} artikel disimpan ke src/data/medium-posts.json`)
 } catch (err) {
+  console.error(`::error title=Medium Fetch Failed::Gagal memperbarui feed (${err.message})`)
   console.warn(`[medium] Gagal memperbarui feed (${err.message}) — memakai data yang sudah ada.`)
 }

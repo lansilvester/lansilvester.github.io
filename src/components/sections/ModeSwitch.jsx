@@ -56,7 +56,7 @@ export default function ModeSwitch({ mode, onChange }) {
 
                 <div
                   className="relative mx-auto mt-8 grid max-w-3xl grid-cols-2 rounded-[3rem] border border-line bg-body p-2 shadow-card"
-                  role="group"
+                  role="radiogroup"
                   aria-label="Pilih mode personal branding"
                 >
                 <span
@@ -71,8 +71,9 @@ export default function ModeSwitch({ mode, onChange }) {
                     <button
                       key={key}
                       type="button"
+                      role="radio"
                       onClick={() => onChange(key)}
-                      aria-pressed={isActive}
+                      aria-checked={isActive}
                       className={`group relative z-10 flex flex-col items-center justify-center gap-2 rounded-[3rem] px-4 py-6 transition-all duration-300 hover:scale-[1.03] active:scale-95 sm:gap-3 ${
                         isActive ? 'text-white' : 'text-title hover:text-primary'
                       }`}
@@ -118,7 +119,7 @@ export default function ModeSwitch({ mode, onChange }) {
         style={{ top: NAVBAR_HEIGHT + FLOAT_OFFSET }}
         aria-hidden={!floating}
       >
-        <div className="flex items-center gap-1 rounded-full border border-line bg-card/95 p-1 shadow-card backdrop-blur-md">
+        <div className="flex items-center gap-1 rounded-full border border-line bg-card/95 p-1 shadow-card backdrop-blur-md" role="radiogroup" aria-label="Pilih mode">
           {keys.map((key) => {
             const data = MODES[key]
             const isActive = mode === key
@@ -126,8 +127,9 @@ export default function ModeSwitch({ mode, onChange }) {
               <button
                 key={key}
                 type="button"
+                role="radio"
                 onClick={() => onChange(key)}
-                aria-pressed={isActive}
+                aria-checked={isActive}
                 className={`flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 sm:px-4 ${
                   isActive ? 'bg-primary text-white shadow-card' : 'text-title hover:text-primary'
                 }`}
